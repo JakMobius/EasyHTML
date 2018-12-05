@@ -10,6 +10,10 @@
 				min-width: 100%;
 				margin: 0;
 				padding:0;
+				text-size-adjust: none;
+				-moz-text-size-adjust: none;
+				-webkit-text-size-adjust: none;
+				-ms-text-size-adjust: none;
 			}
 
 			h1 {
@@ -44,7 +48,8 @@
 				margin: 50px;
 				background:#fff;
 				border-radius: 30px;
-				box-shadow: 0 0 40px rgba(0,0,0,0.2)
+				box-shadow: 0 0 40px rgba(0,0,0,0.2);
+				transform: translateX(0);
 			}
 
 			li {
@@ -64,13 +69,40 @@
 
 			@media (min-width: 900px) {
 				.wrapper {
-					margin-top: 50px;
-					margin-left: 50%;
-					margin-bottom: 100px;
-					margin-right: 0;
-					width: 800px;
-					left: 50%;
+					margin: 50px 0 100px 50%;
+					width: 700px;
 					transform: translateX(-50%);
+				}
+			}
+
+			@media (max-width: 720px) {
+				.logo {
+					width: 100px;
+					margin-left: -50px;
+				}
+
+				.wrapper {
+					padding-top: 100px!important;
+				}
+
+				h1 {
+					font-size: 25px;
+				}
+
+				h2 {
+					font-size: 17px;
+				}
+				li span {
+					font-size: 14px;
+				}
+			}
+
+			@media (max-width: 620px) {
+				.wrapper {
+					margin: 0 0;
+					padding: 20px;
+					border-radius: 0;
+					box-shadow: none
 				}
 			}
 		</style>
@@ -131,7 +163,7 @@
 			</ul>
 			<h2>5. Условия внесения изменений в настоящую Политику конфиденциальности</h2>
 			<ul>
-				<li><span>Действующая редакция настоящей Политики конфиденциальности, являющаяся публичным документом, доступна любому пользователю сети сети Интернет при переходе на ссылку <a href="https://htmlpreview.github.io/?https://github.com/JakMobius/EasyHTML/blob/master/privacy_policy/ru/index.html">https://htmlpreview.github.io/?https://github.com/JakMobius/EasyHTML/blob/master/privacy_policy/ru/index.html</a>. Разработчик оставляет за собой право внесения изменений в настоящую Политику конфиденциальности. При внесении изменений Разработчик обязан указать дату последнего редактирования внизу страницы</span></li>
+				<li><span>Действующая редакция настоящей Политики конфиденциальности, являющаяся публичным документом, доступна любому пользователю сети сети Интернет при переходе на ссылку <a href="http://foobar">http://foobar</a>. Разработчик оставляет за собой право внесения изменений в настоящую Политику конфиденциальности. При внесении изменений Разработчик обязан указать дату последнего редактирования внизу страницы и  уведомить об этом Пользователей путём размещения новой редакции Политики конциденциальности по постоянному адресу <a href="http://foobar">http://foobar</a></span></li>
 			</ul>
 		</div>
 		<footer>JakMobius © 2018. Дата изменения: 02.12.2018</footer>
