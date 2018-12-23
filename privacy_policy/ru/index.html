@@ -63,8 +63,12 @@
 				color: black;
 			}
 
-			span:not(.no-semicolon):after {
+			span:after {
 				content:";";
+			}
+
+			span.no-semicolon:after {
+				content: "";
 			}
 
 			@media (min-width: 900px) {
@@ -99,7 +103,7 @@
 
 			@media (max-width: 620px) {
 				.wrapper {
-					margin: 0 0;
+					margin: 0 0 40px 0;
 					padding: 20px;
 					border-radius: 0;
 					box-shadow: none
