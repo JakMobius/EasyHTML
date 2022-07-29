@@ -1,0 +1,38 @@
+/* 
+  FileDesc.strings
+  EasyHTML
+
+  Created by Артем on 23/05/2019.
+  Copyright © 2019 Артем. All rights reserved.
+*/
+
+"text"="Текстовый файл";
+"webpage"="Веб-страница";
+"jsfile"="JavaScript";
+"plistfile"="Список Свойств";
+"objcfile"="Исходный код Objective-C";
+"cfile"="Исходный код C";
+"cppfile"="Исходный код C++";
+"headerfile"="Заголовочный файл";
+"csfile"="Исходный код C#";
+"swiftfile"="Исходный код Swift";
+"pythonfile"="Исходный код Python";
+"pascalfile"="Исходный код Pascal";
+"mdfile"="Исходный код Markdown";
+"forfile"="Исходный код Fortran";
+"fsharpfile"="Исходный код F#";
+"jpegimage"="Изображение JPEG";
+"bmpimage"="Изображение BMP";
+"tiffimage"="Изображение TIFF";
+"gifimage"="Изображение GIF";
+"pngimage"="Изображение PNG";
+"icoimage"="Изображение ICO";
+"pdf"="Документ PDF";
+"audio"="Аудио";
+"film"="Фильм";
+"archive"="Архив";
+"general"="Файл #";
+"folder"="Папка";
+"emptyfolder"="Пустая папка";
+"folderwithfiles"="Папка с объектами (#)";
+"unknown"="Неизвестный файл";

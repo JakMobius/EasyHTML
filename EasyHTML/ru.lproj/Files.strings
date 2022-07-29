@@ -1,0 +1,75 @@
+/* 
+  Files.strings
+  EasyHTML
+
+  Created by Артем on 24/05/2019.
+  Copyright © 2019 Артем. All rights reserved.
+*/
+
+"errormalformedpath"="Неверный адрес файла";
+"errornotfile"="Ожидался файл, но данный адрес относится к тому, что не является файлом";
+"errornotfolder"="Ожидалась папка, но данный адрес относится к тому, что не является папкой";
+"errornotfound"="По указанному адресу ничего не найдено";
+"errorrestrictedcontent"="Файл не может быть передан, поскольку его содержимое заблокировано";
+"internalservererror"="Внутренняя ошибка сервера";
+"badinputerror"="Некорректный запрос";
+"autherror"="Ошибка аунтефикации";
+"accesserror"="Ошибка доступа";
+"ratelimiterror"="Превышена допустимая частота запросов";
+"httperror"="Ошибка HTTP";
+"errorfileonpath"="Адрес назначения содержит файл";
+"errorfolderonpath"="Адрес назначения содержит папку";
+"errordisallowedname"="Недопустимое имя";
+"errorinsufficientspace"="Недостаточно места";
+"errornowritepermission"="У Вас нет права на запись";
+"errorteamfolder"="Невозможно переместить или удалить командные папки";
+"errortoomanywriteoperations"="Слишком много запросов на запись. Попробуйте позже";
+"errortoomanyfiles"="Слишком много файлов для удаления (>10000)";
+"errorpreviewinprogress"="Предпросмотр еще создается";
+"errorpreviewunsupportedcontent"="Неподдерживаемое содержимое";
+"errorpreviewunsupportedextension"="Неподдерживаемое расширение";
+"errorrestoreinvalidrevision"="The revision is invalid";
+"errorthumbnailunsupportedextension"="Неподдерживаемое расширение";
+"errorthumbnailunsupportedimage"="Неподдерживаемое изображение";
+"errorrelocationfromlookup"="Ошибка адреса источника";
+"errorrelocationfromwrite"="Ошибка записи в адрес источника";
+"errorrelocationtowrite"="Ошибка записи в адрес назначения";
+"errorcantcopysharedfolder"="Невозможно скопировать общую папку";
+"errorcantnestsharedfolder"="Операция перемещения приведет к вложенным общим папкам, что запрещено";
+"errorrelocationtoomanyfiles"="Слишком много файлов для копирования (>10000)";
+"errorduplicatedornestedpaths"="There are duplicated/nested paths among source and destination paths";
+"errorcantmovefolderintoitself"="Невозможно переместить папку в саму себя";
+"errorthumbnailconversion"="Произошла ошибка при создании предпросмотра";
+
+"remotefileopeningioswarning"="Предпросмотр удалённых HTML файлов доступен только c iOS 11";
+
+"emptyfolder"="Пустая папка";
+"emptyfolderhint"="Коснитесь значка '+' в углу списка, чтобы добавить новый файл, создать папку или импортировать медиафайлы";
+
+"cloning"="Дублирование...";
+"renaming"="Переименование...";
+
+"foldererror"="Ошибка чтения";
+"foldererrordesc"="Во время чтения папки произошла ошибка";
+"uploadinglibrary"="Отправка библиотеки";
+"dropboxziplibrarywarn"="Сжатая библиотека";
+"dropboxziplibrarywarndesc"="Библиотека '#' является сжатым архивом. Средства EasyHTML не позволяют разархивировать файлы на удаленных размещениях. Вы действительно хотите загрузить эту библиотеку?";
+
+"uploadingphoto"="Отправка изображения";
+
+"countingfiles"="Подготовка (# файлов)";
+"deletingfiles"="Удаление файлов (#1 из #2)";
+"copyingfiles"="Копирование файлов (#1 из #2)";
+
+"cannotmovefileshere"="Невозможно переместить файлы сюда";
+"cannotmovethisfilehere"="Невозможно переместить этот файл сюда";
+"cannotmoveloadingisinprogress"="Пожалуйста, дождитесь окончания загрузки папки перед перемещением файлов";
+
+"movehint1"="Смахните колоду вверх, чтобы переместить все файлы в текущую папку";
+"movehint2"="Смахните колоду вправо, чтобы перемещать файлы выборочно";
+"movehint3"="Сдвиньте колоду влево для отмены";
+"movehinthorizontal1"="Смахните карточку вверх, чтобы скопировать файл в текущую папку";
+"movehinthorizontal2"="Сдвиньте список вниз, чтобы вернуться к группированному виду";
+"movehinthorizontal3"="Удерживайте, чтобы удалить файлы из списка";
+
+"dndnotlocalfile"="Сначала скачайте файл с удалённого размещения";

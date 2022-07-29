@@ -1,0 +1,123 @@
+/* 
+  Preferences.strings
+  EasyHTML
+
+  Created by Артем on 24/05/2019.
+  Copyright © 2019 Артем. All rights reserved.
+*/
+
+"statistics"="Statistics";
+"stat_filescreated"="Total files created";
+"stat_filesdeleted"="Total files deleted";
+"stat_filesopened"="Total files opened";
+"stat_folderscreated"="Total folders created";
+"stat_foldersdeleted"="Total folders deleted";
+"stat_installdate"="Application install date";
+"stat_installversion"="First installed version";
+"stat_symbolswritten"="Total symbols written";
+"stat_earlyversion"="1.3.1 or earlier";
+
+"codehighlightingpref"="Syntax highlighting";
+"codehighlightingitem"="Syntax highlighting options";
+"codehighlightingconf"="Configuration";
+"selecthighlightingmode"="Select mode";
+"newsyntaxhighlightingscheme"="New scheme";
+"fileextension"="File extension";
+"createsyntaxhighlightingscheme"="Create";
+
+"consoleplaceholder"="Code to execute...";
+"consoleoptions"="CONSOLE OPTIONS";
+"consoleshouldvanish"="Clear console automatically";
+
+"searchsettings"="SEARCH / REPLACE OPTIONS";
+"casesensitivesearch"="Case-sensitive searching";
+
+"language"="Language";
+"langneedtoreboot"="Сhanges will take effect after restarting the application";
+
+"byeditingdate"="By editing date";
+"bycreationdate"="By creation date";
+"byname"="By name";
+"bytype"="By type";
+"nosorting"="None";
+
+"byeditingdatedesc"="After editing, the file will be moved to the top of the list. This file sorting type does not support remote locations.";
+"bycreationdatedesc"="At the very top will be files and folders created later than others. This file sorting type does not support remote locations.";
+"bynamedesc"="Files and folders will be sorted based on their name.";
+"bytypedesc"="Files sorted by type will be located at the top, folders - at the bottom.";
+"nosortingdesc"="The file list will not be sorted";
+
+"sortingtype"="FILE SORTING TYPE";
+"feedback"="Feedback";
+"vkpage"="Developer's VK Page";
+"bugmail"="Developer's E-Mail";
+
+"layout"="Layout";
+"theme0"="Green";
+"theme1"="Red";
+"theme2"="Dark";
+"theme3"="Blue";
+"usageofblacktheme"="Use a dark theme if you want to save the battery charge on an OLED display device";
+"themesectiontitle"="COLOR THEME";
+
+"autoCloseBrackets"="Automatically close brackets and quotes";
+"lineNumbers"="Line numbers";
+"matchTags"="Highlight matching XML Tags";
+"matchBrackets"="Highlight matching brackets";
+"autoCloseTags"="Automatically close XML tags";
+"foldGutter"="Enable code folding";
+"colorpicker"="Color Labels";
+"lineWrapping"="Line Wrapping";
+"editoroptions"="EDITOR OPTIONS";
+"fontsize"="FONT SIZE";
+"pluginsdescription"="Some functions of the editor can be turned off in order to save battery, or in cases where your device loads files too slow or does not work enough smoothly";
+"fontsizedescription"="The font size can also be changed while editing the file using the buttons in the additional panel";
+
+"sortdescription"="File sorting is only possible in local, FTP and SFTP locations.";
+
+"hapticfeedbackoptions"="HAPTIC FEEDBACK";
+"hapticfeedback"="Haptic feedback";
+"encoding"="Text encoding";
+"lineendings"="Line endings";
+
+"editor"="Editor"; // <-- Дублирует строку из General, используется в меню настроек.
+"aboutprogram"="About EasyHTML";
+
+"textsettings"="Text settings";
+"textsettingsdesc"="If the file can not be opened using the specified text encoding, the editor will fall back to the ASCII encoding";
+
+"keyboardheader"="KEYBOARD";
+"keyboarddarkmode"="Adjust keyboard appearance";
+"keyboarddarkmodewarn"="This option may work improperly on some devices";
+
+"helpermenupref"="Setup assistant menu";
+"helpermenu"="Assistant menu";
+"helpermenuon"="ENROLL";
+"helpermenumore"="MORE CONTROLS";
+"helpermenuitem0"="Undo";
+"helpermenuitem1"="Redo";
+"helpermenuitem2"="Save";
+"helpermenuitem3"="Open colorpicker";
+"helpermenuitem4"="Open gradient";
+"helpermenuitem5"="Search";
+"helpermenuitem6"="Replace";
+"helpermenuitem7"="Increase font size";
+"helpermenuitem8"="Decrease font size";
+"helpermenuitem9"= "Opening parenthesis";
+"helpermenuitem10"="Closing parenthesis";
+"helpermenuitem11"="Opening curly bracket";
+"helpermenuitem12"="Closing curly bracket";
+"helpermenuitem13"="Opening square bracket";
+"helpermenuitem14"="Closing square bracket";
+"helpermenuitem15"="Sign \"Greater than\"";
+"helpermenuitem16"="Sign \"Less than\"";
+"helpermenuitem17"="Double quote";
+"helpermenuitem18"="Cursor left";
+"helpermenuitem19"="Cursor right";
+"helpermenuitem20"="Tab imitation";
+"helpermenuitem21"="Auto-indent";
+"helpermenuitem22"="Single quote";
+"helpermenuitem23"="Jump to file start";
+"helpermenuitem24"="Jump to file end";
+"helpermenuitem25"="Comment line/selection";
+"helpermenuitemdelimiter"="Delimiter";

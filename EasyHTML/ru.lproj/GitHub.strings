@@ -1,0 +1,34 @@
+/* 
+  GitHub.strings
+  EasyHTML
+
+  Created by Артем on 26/05/2019.
+  Copyright © 2019 Артем. All rights reserved.
+*/
+
+"search"="ПОИСК";
+"searchrepo"="Искать в GitHub";
+
+"recentsearches"="НЕДАВНИЕ";
+"norecentitems"="Здесь будут находиться ваши недавние запросы, посещенные репозитории и пользователи";
+"repos"="РЕПОЗИТОРИИ";
+"users"="ПОЛЬЗОВАТЕЛИ";
+"more"="Еще #...";
+"repolastupdate"="Обновлено";
+"notfoundrepos"="Нет репозиториев";
+"notfoundusers"="Нет пользователей";
+"yousearched"="Вы искали:";
+"youvisitedrepo"="Вы посещали репозиторий:";
+"youvisiteduser"="Вы смотрели профиль:";
+"errorratelimitexceeded"="Превышен лимит обращения к API";
+"errorunkown"="Неизвестная ошибка";
+"errornotfound"="Файл не найден";
+"noreadme"="Репозиторий не содержит readme";
+"openinsafari"="Открыть в Safari";
+"clonerepo"="Клонировать репозиторий";
+"viewcode"="Показать код";
+"erroraccessdenied"="Недостаточно прав";
+
+
+"more-users"="Поиск '#'";
+"more-repos"="Поиск '#'";

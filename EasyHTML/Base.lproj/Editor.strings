@@ -1,0 +1,77 @@
+/* 
+  Editor.strings
+  EasyHTML
+
+  Created by Артем on 23/05/2019.
+  Copyright © 2019 Артем. All rights reserved.
+*/
+
+"loadingstep_downloading"="Downloading the file... (#%)";
+"loadingstep_booting"="Booting up the editor...";
+"loadingstep_processingfile"="Processing the file... (#%)";
+"loadingstep_loadingfile"="Loading the file...";
+
+"downloaderror"="An error occured while downloading the file. Please, check your internet connection and try again";
+
+"lowdiskspace"="Your device has only # of available storage space. To prevent information loss, you need to free up storage space";
+"search"="Search";
+"replace"="Replace";
+"copy"="Copy";
+"paste"="Paste";
+"cut"="Cut";
+"select"="Select";
+"selectall"="Select all";
+"replacewith"="Replace with";
+"undo"="Undo";
+"redo"="Redo";
+"commentOut"="Comment selection";
+"searchingerror"="Searching error";
+"save"="Save file";
+"insertlineafter"="Insert line after";
+"insertlinebefore"="Insert line before";
+"selectline"="Select line";
+"duplicateline"="Duplicate line";
+"jumptobracket"="Jump to bracket";
+"expandAbbreviation"="Expand abbreviation";
+"balanceOutward"="Balance outward";
+"balanceInward"="Balance inward";
+"wrapWithAbbreviation"="Wrap with abbreviation";
+"selectScope"="Select scope";
+"enterabbreviation"="Enter abbreviation";
+"togglefullscreen"="Toggle fullscreen";
+"reflectCSSValue"="Reflect CSS Value";
+"selectNextItem"="Select next item";
+"selectPrevItem"="Select previous item";
+"nextEditPoint"="Next edit point";
+"prevEditPoint"="Previous edit point";
+"solveMathExpression"="Solve math expession";
+
+"editorerror"="An error occured while opening this file in the editor. Would you like to send an error report to help developer fix this error faster?
+The following information will be sent:
+
+- Device model name and iOS version;
+- EasyHTML version
+- Error information;
+- Editor configuration
+
+The report information will be sent in encrypted form.";
+
+"encodingerror"="Failed to open this file using encoding \"{1}\". Falling back to \"{2}\"";
+
+"readonly"="File is read-only";
+
+"filemoved"="The file has been moved or renamed. The editor will save it to a new location.";
+
+"ue_desc"="Please specify exactly how to open this type of file (#0)";
+
+"noeditor"="No editor";
+"noeditorhint"="Select the file to edit in the list on the left";
+
+"replacesingle"="Replace";
+"replaceall"="All";
+"replacednumber"="Replaced # occurences";
+"occurencesfound"="Matches: #";
+"searching"="Searching...";
+"replacing"="Replacing...";
+"nooccurrencesfound"="Not found";
+

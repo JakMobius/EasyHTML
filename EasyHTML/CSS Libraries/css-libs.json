@@ -1,0 +1,28 @@
+ [
+  [
+   "Bootstrap", [
+                 ["Bootstrap 4.0.0", "https://github.com/twbs/bootstrap/releases/download/v4.0.0/bootstrap-4.0.0-dist.zip"],
+                 ["Bootstrap 4.0.0 source", "https://github.com/twbs/bootstrap/archive/v4.0.0.zip"],
+                 ["Bootstrap 3.3.7", "https://github.com/twbs/bootstrap/releases/download/v3.3.7/bootstrap-3.3.7-dist.zip"],
+                 ["Bootstrap 3.3.7 source", "https://github.com/twbs/bootstrap/archive/v3.3.7.zip"]
+                 ]
+   ], [
+       "FontAwesome", [
+                       ["FontAwesome 5.0.6", "https://use.fontawesome.com/releases/v5.0.6/fontawesome-free-5.0.6.zip"],
+                       ["FontAwesome 4.7.0", "https://fontawesome.com/v4.7.0/assets/font-awesome-4.7.0.zip"],
+                       ["FontAwesome 3.2.1", "https://fontawesome.com/v3.2.1/assets/font-awesome.zip"]
+                       ]
+       ], [
+           "Animate.css", [
+                           ["Animate.css master", "https://raw.github.com/daneden/animate.css/master/animate.css"]
+                           ]
+           ], [
+               "Normalize.css", [
+                                 ["Normalize.css master", "https://necolas.github.io/normalize.css/latest/normalize.css"]
+                                 ]
+               ], [
+                   "Pure.css", [
+                                ["Pure.css master", "https://unpkg.com/purecss@1.0.0/build/pure-min.css"]
+                                ]
+                   ]
+  ]

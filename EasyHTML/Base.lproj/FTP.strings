@@ -1,0 +1,29 @@
+/* 
+  FTP.strings
+  EasyHTML
+
+  Created by Артем on 24/05/2019.
+  Copyright © 2019 Артем. All rights reserved.
+*/
+
+"serverdeletealert"="Are you sure you want to delete this server?";
+"newserver"="New server";
+"servername"="Name";
+"serverhost"="Host";
+"serverport"="Port";
+"serverremotepath"="Remote path";
+"serverprotocol"="Protocol";
+"serverlogintype"="Account";
+"serverlogin"="Login";
+"serverpassword"="Password";
+"logintypeanonymous"="Anonymous";
+"logintypenormal"="Normal";
+"editserver"="Edit server";
+
+"noservers"="No servers";
+"noservershint"="Tap the '+' sign in the corner of the list to add a new server";
+"remoteserver"="Remote server";
+
+"connectiontype"="СONNECTION TYPE";
+"connectiontypeactive"="Active";
+"connectiontypepassive"="Passive";

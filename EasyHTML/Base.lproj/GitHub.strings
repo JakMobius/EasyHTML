@@ -1,0 +1,33 @@
+/* 
+  GitHub.strings
+  EasyHTML
+
+  Created by Артем on 26/05/2019.
+  Copyright © 2019 Артем. All rights reserved.
+*/
+
+"search"="SEARCH";
+"searchrepo"="Search users/repos";
+
+"recentsearches"="RECENT";
+"norecentitems"="Here you will find your recent requests, visited repositories and users";
+"repos"="REPOSITORIES";
+"users"="USERS";
+"more"="Еще #...";
+"repolastupdate"="Last updated";
+"notfoundrepos"="No repositories";
+"notfoundusers"="No users";
+"yousearched"="You were searching:";
+"youvisitedrepo"="You visited the repository:";
+"youvisiteduser"="You were watching the profile:";
+"errorratelimitexceeded"="API access rate limit exceeded";
+"errorunkown"="Unknown error";
+"errornotfound"="File not found";
+"noreadme"="No readme file";
+"openinsafari"="Open in Safari";
+"clonerepo"="Clone repository";
+"viewcode"="View code";
+"erroraccessdenied"="Access denied";
+
+"more-users"="Users for '#'";
+"more-repos"="Repos for '#'";

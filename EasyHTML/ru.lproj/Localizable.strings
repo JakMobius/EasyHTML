@@ -1,0 +1,211 @@
+"local"="ru";
+
+"yes"="Да";
+"no"="Нет";
+
+"editor"="Редактор";
+"console"="Консоль";
+"browser"="Браузер";
+"aboutfile"="О файле";
+"aboutfolder"="О папке";
+"ready"="Готово";
+"aboutfilename"="Название:";
+"aboutfilepath"="Расположение:";
+"aboutfilesize"="Размер:";
+"aboutfileobjects"="Объектов:";
+"aboutfilemodified"="Дата изменения:";
+"aboutfilecreated"="Дата создания:";
+"share"="Поделиться";
+"colorpick"="Выбор цвета";
+"gradientpick"="Выбор градиента";
+"movefile"="Переместить";
+"copyfile"="Копировать";
+"remove"="Убрать";
+
+"createfolder"="Создать папку";
+"createfile"="Создать файл";
+"newfolder"="Новая папка";
+"newfile"="Новый файл";
+/*# -tcanalyzerignore #*/ "filename"="Имя файла";
+/*# -tcanalyzerignore #*/ "foldername"="Имя папки";
+"file"="Файл";
+"folder"="Папка";
+"symlink"="Ярлык";
+"emptyfile"="Пустой файл";
+"objects"="Объектов";
+/*# -tcanalyzerignore #*/ "filedeletealert"="Вы действительно хотите удалить этот файл?";
+/*# -tcanalyzerignore #*/ "folderdeletealert"="Вы действительно хотите удалить эту папку?";
+"delete"="Удалить";
+
+"otherfiletype"="Другой...";
+
+"wrongfilename"="Недопустимое имя";
+"filenameisalreadyused"="Имя занято";
+
+// "goodnightmessagetitle"="Доброй ночи, кодер!";
+// "goodnightmessage"="Не желаете ли вы включить ночную тему?";
+
+"gradquestion"="Что Вы хотите сделать с кодом этого градиента?";
+"colorquestion"="Что Вы хотите сделать с кодом этого цвета?";
+"copy"="Скопировать";
+"pasteincode"="Вставить в код";
+
+"copyingerror"="Ошибка копирования";
+
+"welcometitle"="Добро пожаловать!";
+/*# -tcanalyzerignore #*/ "welcometitle0"="Реализуйте свои идеи!";
+/*# -tcanalyzerignore #*/ "welcometitle1"="Работайте где угодно и сколько угодно!";
+/*# -tcanalyzerignore #*/ "welcometitle2"="Встречайте EasyHTML!";
+
+"welcometext"="EasyHTML - самый удобный редактор кода для iOS";
+/*# -tcanalyzerignore #*/ "welcometext0"="С Помощью EasyHTML, Вы можете создавать любые веб-страницы: Сайты, HTML5-игры, веб-утилиты... Единственное, что может ограничить Вас - это Ваше воображение!";
+/*# -tcanalyzerignore #*/ "welcometext1"="EasyHTML не требует постоянного соединения с интернетом. Вы сможете заниматься разработкой своих любимых проектов где угодно, а правильная конфигурация приложения может дать Вам до 9 часов работы на одном заряде аккумулятора";
+/*# -tcanalyzerignore #*/ "welcometext2"="";
+
+/*# -tcanalyzerignore #*/ "welcome_btntxt1"="Приступим!";
+/*# -tcanalyzerignore #*/ "welcome_btntxt2"="Понял!";
+/*# -tcanalyzerignore #*/ "welcome_btntxt3"="Я готов!";
+
+"preferences"="Настройки";
+
+/* Тексты колорпикера */
+
+"rotationangle"="УГОЛ ПОВОРОТА";
+"linear"="Линейный";
+"radial"="Радиальный";
+"recent"="Недавние";
+"colorcode"="Цветовой код";
+"recentcolorsnumber"="Количество недавних цветов";
+"reset"="Сброс";
+
+"useHEX"="При возможности использовать HEX";
+"compressHEX"="По возможности сжимать HEX";
+"usecolorkeywords"="Использовать ключевые слова";
+"resetquestion"="Вы действительно хотите сбросить недавние цвета?";
+"cannotbeundone"="Это действие нельзя отменить";
+
+/* Всякое из MasterViewController */
+
+"fileisverybig"="Файл очень большой!";
+"fileisverybigmessage"="Файл, который вы собираетесь открыть, имеет размер, превышающий рекомендуемый (> 500 КБ). Открытие этого файла может привести к сбою или к медленной работе программы. Вы уверены, что хотите открыть этот файл?";
+"create"="Создать";
+"close"="Закрыть";
+"import"="Импорт";
+"cancel"="Отмена";
+
+/*# -tcanalyzerignore #*/ "gb"="ГБ";
+/*# -tcanalyzerignore #*/ "mb"="МБ";
+/*# -tcanalyzerignore #*/ "kb"="КБ";
+/*# -tcanalyzerignore #*/ "b"="Б";
+"bytes"="Байт";
+
+"clonefile"="Дублировать";
+"copyoffile"="Копия #";
+"browser"="Браузер";
+"console"="Консоль";
+
+"sharedfoldername"="Сохраненные";
+
+"librarypickertitle"="Импорт библиотеки";
+"findresults"="# совпадений";
+"importjslib"="JavaScript-библиотека";
+"importcsslib"="CSS-библиотека";
+"importphoto"="Фотография";
+"deleteconfirmforlibrary"="Вы действительно хотите удалить эту библиботеку с устройства?";
+"deleteconfirmforlibrarydesc"="Вы сможете снова загрузить эту библиботеку при наличии подключения к сети";
+"notloadedlibrary"="Коснитесь для загрузки";
+"libraryloading"="Загружается...";
+"libraryloadingerror"="Ошибка";
+
+"unarchivingerror"="Ошибка разархивации";
+"unarchivingtitle"="Разархивация...";
+"unarchivingerrordesc"="Вероятно, архив был поврежден или не поддерживается EasyHTML";
+
+"archivingerror"="Ошибка архивации";
+"archivingtitle"="Архивация...";
+"archivingerrordesc"="Попробуйте освободить дисковое пространство";
+
+"unarchivingenterpassword"="Введите пароль архива";
+"password"="Пароль";
+"unarchivingwrongpassword"="Неверный пароль";
+
+/*# -tcanalyzerignore #*/ "archive"="Архивировать...";
+/*# -tcanalyzerignore #*/ "unarchive"="Разархивировать";
+"archiving"="Архивация";
+
+"compressiontype"="Тип сжатия";
+"passwordoptional"="Пароль (Необязательно)";
+"zippasswordwarning"="Шифрованные архивы будет возможно открыть только в EasyHTML";
+
+/*# -tcanalyzerignore #*/ "ct_nocompression"="Очень быстро, без сжатия";
+/*# -tcanalyzerignore #*/ "ct_bestspeed"="Быстро, слабое сжатие";
+/*# -tcanalyzerignore #*/ "ct_defaultcompression"="Нормальный";
+/*# -tcanalyzerignore #*/ "ct_bestcompression"="Медленно, сильное сжатие";
+
+"beginarchiving"="Архивировать";
+
+"calculating"="Подсчет...";
+
+"open"="Открыть";
+"openinnewtab"="Открыть в новой вкладке";
+"showsource"="Показать исходный код";
+"showcontent"="Открыть в браузере";
+"quickzip"="Быстрая архивация";
+
+"send"="Отправить";
+
+"onthisphone"="На этом iPhone";
+"onthispad"="На этом iPad";
+"cloudservices"="Облачные сервисы";
+
+"dropboxerror"="Ошибка авторизации";
+"dropboxerrordesc"="Произошла ошибка во время получения ключа доступа";
+"tryagain"="Повторить попытку";
+
+"unknownerror"="Неизвестная ошибка";
+"saving"="Сохранение...";
+"savingerror"="Ошибка сохранения";
+"savingerrortryagain"="Ошибка сохранения. Коснитесь, чтобы повторить попытку";
+"savingerrorheader"="Ошибка сохранения";
+"savingerrordesc"="Сожалеем, но во время сохранения ваших последних изменений произошла непредвиденная ошибка. Файл не может быть сохранен повторно и ваши последние изменения потеряны безвозвратно
+Пожалуйста, свяжитесь с разработчиком через * или по почтовому адресу *
+";
+"savingerrorvkpage"="ВКонтакте";
+
+"imagedecodingerror"="Невозможно открыть изображение. Файл поврежден или не поддержвается EasyHTML";
+"unknown"="Неизвестно";
+"documents"="Документы";
+"deleting"="Удаление...";
+"error"="Ошибка";
+"downloadknownerror"="Произошла ошибка при загрузке файла";
+
+"next"="Далее";
+
+"skipfile"="Пропустить";
+"stopcopying"="Отменить";
+
+"failedtocopyfile"="Не удалось скопировать \"#\"";
+"failedtodeletefile"="Не удалось удалить \"#\"";
+
+"ftponlysupportascii"="Протокол FTP поддерживает только ASCII-совместимые названия файлов";
+"cannotunzipremotefile"="EasyHTML не позволяет разархивровать удаленные файлы";
+"couldnotreadfile"="Не удалось прочитать файл";
+
+"consoleplaceholder"="Выполнить скрипт...";
+
+"opening_symlink"="Открытие ярлыка";
+"cm_deletefile"="Удалить файл";
+"cm_deletelink"="Удалить ярлык";
+
+"autocompletion_enabled"="Автодополнение кода";
+"failedtogettargetfile"="Не удалось открыть файл-оригинал";
+
+"reload"="Обновить";
+
+"unabletopreviewexternalfile"="Предпросмотр возможен только для локальных файлов, находящихся в приложении";
+
+"unknownextension"="Неизвестный файл";
+"prevtab"="Предыдущая вкладка";
+"nexttab"="Следующая вкладка";
+
+"folders"="Папки";

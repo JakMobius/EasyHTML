@@ -1,0 +1,123 @@
+/* 
+  Preferences.strings
+  EasyHTML
+
+  Created by Артем on 24/05/2019.
+  Copyright © 2019 Артем. All rights reserved.
+*/
+
+"statistics"="Статистика";
+"stat_filescreated"="Всего создано файлов";
+"stat_filesdeleted"="Всего удалено файлов";
+"stat_filesopened"="Всего открыто файлов";
+"stat_folderscreated"="Всего создано папок";
+"stat_foldersdeleted"="Всего удалено папок";
+"stat_installdate"="Дата установки приложения";
+"stat_installversion"="Первая установленная версия";
+"stat_symbolswritten"="Всего символов введено";
+"stat_earlyversion"="1.3.1 или более ранняя";
+
+"codehighlightingpref"="Подсветка синтаксиса";
+"codehighlightingitem"="Настройки подсветки синтаксиса";
+"codehighlightingconf"="Конфигурация";
+"selecthighlightingmode"="Выбор режима";
+"newsyntaxhighlightingscheme"="Новый режим";
+"fileextension"="Расширение файла";
+"createsyntaxhighlightingscheme"="Создать";
+
+"consoleoptions"="ОПЦИИ КОНСОЛИ";
+"consoleshouldvanish"="Авто-очистка консоли";
+
+"searchsettings"="НАСТРОЙКИ ПОИСКА / ЗАМЕНЫ";
+"casesensitivesearch"="Регистрозависимый поиск";
+
+"language"="Язык";
+"langneedtoreboot"="Изменения вступят в силу после перезагрузки приложения";
+
+"byeditingdate"="По дате редактирования";
+"bycreationdate"="По дате создания";
+"byname"="По имени";
+"bytype"="По типу";
+"nosorting"="Нет";
+
+"byeditingdatedesc"="После редактирования, файл будет перемещен в самый верх списка. Этот тип сортировки не поддерживает сетевые расположения";
+"bycreationdatedesc"="В самом верху будут находиться файлы и папки, созданные позже остальных. Этот тип сортировки не поддерживает сетевые расположения";
+"bynamedesc"="Файлы и папки будут отсортированы исходя из их названия.";
+"bytypedesc"="Файлы, отсортированные по типу, будут находиться вверху, папки - внизу.";
+"nosortingdesc"="Список файлов не будет подвергаться сортировке";
+"files"="Файлы";
+
+"sortingtype"="ТИП СОРТИРОВКИ ФАЙЛОВ";
+"feedback"="Обратная связь";
+"vkpage"="Страница разработчика в VK";
+"bugmail"="Почтовый адрес разработчика";
+
+"layout"="Внешний вид";
+"theme0"="Зеленая";
+"theme1"="Красная";
+"theme2"="Темная";
+"theme3"="Синяя";
+"usageofblacktheme"="Используйте темную тему, если желаете сэкономить заряд батареи на устройстве с OLED-дисплеем";
+"themesectiontitle"="ЦВЕТОВАЯ ТЕМА";
+
+"autoCloseBrackets"="Автоматически закрывать скобки и кавычки";
+"lineNumbers"="Номера строк";
+"matchTags"="Выделять родственные XML-Тэги";
+"matchBrackets"="Выделять родственные скобки";
+"autoCloseTags"="Автоматически закрывать XML-тэги";
+"foldGutter"="Включить свертывание кода";
+"colorpicker"="Цветовые метки";
+"lineWrapping"="Перенос слов";
+"editoroptions"="ОПЦИИ РЕДАКТОРА";
+"fontsize"="РАЗМЕР ШРИФТА";
+"pluginsdescription"="Некоторые функции редактора можно отключить в целях экономии заряда батареи, либо в случаях, если Ваше устройство загружает файлы слишком долго или работает недостаточно плавно";
+"fontsizedescription"="Размер шрифта также можно изменить во время редактирования файла при помощи кнопок в дополнительной панели";
+
+"sortdescription"="Сортировка файлов возможна только в локальных и FTP и SFTP - расположениях.";
+
+"hapticfeedbackoptions"="ТАКТИЛЬНЫЙ ОТКЛИК";
+"hapticfeedback"="Тактильный отклик";
+"encoding"="Кодировка текста";
+"lineendings"="Символ переноса строки";
+
+"editor"="Редактор"; // <-- Дублирует строку из General, используется в меню настроек.
+"aboutprogram"="О программе";
+
+"textsettings"="Настройки отображения";
+"textsettingsdesc"="Если файл не удается открыть используя указанную кодировку, будет использована резервная кодировка ASCII";
+
+"keyboardheader"="КЛАВИАТУРА";
+"keyboarddarkmode"="Менять цвет клавиатуры в редакторе";
+"keyboarddarkmodewarn"="Эта опция может работать некорректно на некоторых устройствах";
+
+"helpermenupref"="Настроить вспомогательное меню";
+"helpermenu"="Вспомогательное меню";
+"helpermenuon"="ВКЛЮЧИТЬ";
+"helpermenumore"="ЕЩЕ ЭЛЕМ. УПРАВЛЕНИЯ";
+"helpermenuitem0"="Отменить";
+"helpermenuitem1"="Повторить";
+"helpermenuitem2"="Сохранить";
+"helpermenuitem3"="Открыть колорпикер";
+"helpermenuitem4"="Открыть градиентпикер";
+"helpermenuitem5"="Поиск";
+"helpermenuitem6"="Замена";
+"helpermenuitem7"="Увеличить шрифт";
+"helpermenuitem8"="Уменьшить шрифт";
+"helpermenuitem9"="Открывающая круглая скобка";
+"helpermenuitem10"="Закрывающая круглая скобка";
+"helpermenuitem11"="Открывающая фигурная скобка";
+"helpermenuitem12"="Закрывающая фигурная скобка";
+"helpermenuitem13"="Открывающая квадратная скобка";
+"helpermenuitem14"="Закрывающая квадратная скобка";
+"helpermenuitem15"="Знак \"больше\"";
+"helpermenuitem16"="Знак \"меньше\"";
+"helpermenuitem17"="Двойная кавычка";
+"helpermenuitem18"="Курсор влево";
+"helpermenuitem19"="Курсор вправо";
+"helpermenuitem20"="Имитация клавиши Tab";
+"helpermenuitem21"="Установить отступ";
+"helpermenuitem22"="Одинарная кавычка";
+"helpermenuitem23"="В начало файла";
+"helpermenuitem24"="В конец файла";
+"helpermenuitem25"="Комментировать строку";
+"helpermenuitemdelimiter"="Разделитель";

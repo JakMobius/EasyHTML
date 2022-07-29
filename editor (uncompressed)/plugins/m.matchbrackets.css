@@ -1,0 +1,10 @@
+.cm-s-monokai .CodeMirror-matchingbracket {
+    text-decoration: underline;
+    color: white !important;
+}
+div.CodeMirror span.CodeMirror-matchingbracket{
+    color:#0f0
+}
+div.CodeMirror span.CodeMirror-nonmatchingbracket{
+    color:#f22
+}

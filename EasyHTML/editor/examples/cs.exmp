@@ -1,0 +1,12 @@
+using System;
+
+namespace Main
+{
+  class Program
+    {
+      private static void Main(string[] arg)
+      {
+        // insert code here
+      }
+    }
+}

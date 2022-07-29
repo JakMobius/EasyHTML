@@ -1,0 +1,29 @@
+/* 
+  FTP.strings
+  EasyHTML
+
+  Created by Артем on 24/05/2019.
+  Copyright © 2019 Артем. All rights reserved.
+*/
+
+"serverdeletealert"="Вы действительно хотите удалить этот сервер?";
+"newserver"="Новый сервер";
+"servername"="Имя";
+"serverhost"="Хост";
+"serverport"="Порт";
+"serverremotepath"="Папка";
+"serverprotocol"="Протокол";
+"serverlogintype"="Учетная запись";
+"serverlogin"="Пользователь";
+"serverpassword"="Пароль";
+"logintypeanonymous"="Анонимный";
+"logintypenormal"="Нормальный";
+"editserver"="Редактировать сервер";
+
+"noservers"="Нет серверов";
+"noservershint"="Коснитесь значка '+' в углу списка, чтобы добавить новый сервер";
+"remoteserver"="Сервер";
+
+"connectiontype"="Тип соединения";
+"connectiontypeactive"="Активный";
+"connectiontypepassive"="Пассивный";

@@ -1,0 +1,75 @@
+/* 
+  Files.strings
+  EasyHTML
+
+  Created by Артем on 24/05/2019.
+  Copyright © 2019 Артем. All rights reserved.
+*/
+
+"errormalformedpath"="Malformed file path";
+"errornotfile"="Expected file, but the given path refers to something that isn't a file";
+"errornotfolder"="Expected folder, but the given path refers to something that isn't a folder";
+"errornotfound"="There is nothing at the given path";
+"errorrestrictedcontent"="The file cannot be transferred because the content is restricted";
+"internalservererror"="Internal server error";
+"badinputerror"="Bad input error";
+"autherror"="Authentication error";
+"accesserror"="Access error";
+"ratelimiterror"="Rate limit error";
+"httperror"="HTTP Error";
+"errorfileonpath"="There is a file on the way";
+"errorfolderonpath"="There is a folder on the way";
+"errordisallowedname"="Disallowed name";
+"errorinsufficientspace"="Insufficient space";
+"errornowritepermission"="You have not write permission";
+"errorteamfolder"="Cannot move or delete team folders.";
+"errortoomanywriteoperations"="Too many write operations. Please, try again later";
+"errortoomanyfiles"="Too many files to delete (>10000)";
+"errorpreviewinprogress"="This preview generation is still in progress";
+"errorpreviewunsupportedcontent"="Unsupported content";
+"errorpreviewunsupportedextension"="Unsupported extension";
+"errorrestoreinvalidrevision"="The revision is invalid";
+"errorthumbnailunsupportedextension"="Unsupported extension";
+"errorthumbnailunsupportedimage"="Unsupported image";
+"errorrelocationfromlookup"="Failed to lookup source path:";
+"errorrelocationfromwrite"="Failed to write to source path:";
+"errorrelocationtowrite"="Failed to write to destination path:";
+"errorcantcopysharedfolder"="Cannot copy shared folder";
+"errorcantnestsharedfolder"="Your move operation would result in nested shared folders. This is not allowed.";
+"errorrelocationtoomanyfiles"="Too many files to copy (>10000)";
+"errorduplicatedornestedpaths"="There are duplicated/nested paths among source and destination paths";
+"errorcantmovefolderintoitself"="Cannot move folder to itself";
+"errorthumbnailconversion"="An error occurs during thumbnail conversion";
+
+"remotefileopeningioswarning"="Remote HTML preview is only available in iOS 11.0 and newer";
+
+"emptyfolder"="Empty folder";
+"emptyfolderhint"="Tap the '+' sign in the corner of the list to add a new file, create folder or import media";
+
+"cloning"="Duplicating...";
+"renaming"="Renaming...";
+
+"foldererror"="Read error";
+"foldererrordesc"="An error occured while trying to read the contents of the folder";
+"uploadinglibrary"="Uploading library...";
+"dropboxziplibrarywarn"="Archived library";
+"dropboxziplibrarywarndesc"="# is a compressed archive. EasyHTML cannot unzip remote files. Are you sure want to upload this library?";
+
+"uploadingphoto"="Uploading photo...";
+
+"countingfiles"="Preparing (# files)";
+"deletingfiles"="Deleting files (#1 of #2)";
+"copyingfiles"="Copying files (#1 of #2)";
+
+"cannotmovefileshere"="Unable to move any files here";
+"cannotmovethisfilehere"="Unable to move this file here";
+"cannotmoveloadingisinprogress"="Unable to move files here because folder is not loaded yet";
+
+"movehint1"="Slide the deck up to move all the files to current directory";
+"movehint2"="Slide the deck right to copy files selectively";
+"movehint3"="Slide the deck left to cancel";
+"movehinthorizontal1"="Slide the card up to move the file to current directory";
+"movehinthorizontal2"="Slide down to return to grouped layout";
+"movehinthorizontal3"="Hold to remove files from list";
+
+"dndnotlocalfile"="You should download this file first";

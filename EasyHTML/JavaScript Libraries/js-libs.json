@@ -1,0 +1,54 @@
+ [
+  [
+   "jQuery", [
+              ["jQuery 3.3.1", "https://code.jquery.com/jquery-3.3.1.js"],
+              ["jQuery 3.3.1 minified", "https://code.jquery.com/jquery-3.3.1.min.js"],
+              ["jQuery 2.2.4", "https://code.jquery.com/jquery-2.2.4.js"],
+              ["jQuery 2.2.4 minified", "https://code.jquery.com/jquery-2.2.4.min.js"],
+              ["jQuery 1.12.4", "https://code.jquery.com/jquery-1.12.4.js"],
+              ["jQuery 1.12.4 minified", "https://code.jquery.com/jquery-1.12.4.min.js"]
+              ]
+   ], [
+       "jQuery UI", [
+                     ["jQuery UI 1.12.1", "https://code.jquery.com/ui/1.12.1/jquery-ui.js"],
+                     ["jQuery UI 1.12.1 minified", "https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"],
+                     ["jQuery UI 1.11.4", "https://code.jquery.com/ui/1.11.4/jquery-ui.js"],
+                     ["jQuery UI 1.11.4 minified", "https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"],
+                     ["jQuery UI 1.10.4", "https://code.jquery.com/ui/1.10.4/jquery-ui.js"],
+                     ["jQuery UI 1.10.4 minified", "https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"],
+                     ["jQuery UI 1.9.2", "https://code.jquery.com/ui/1.9.2/jquery-ui.js"],
+                     ["jQuery UI 1.9.2 minified", "https://code.jquery.com/ui/1.9.2/jquery-ui.min.js"],
+                     ["jQuery UI 1.8.24", "https://code.jquery.com/ui/1.8.24/jquery-ui.js"],
+                     ["jQuery UI 1.8.24 minified", "https://code.jquery.com/ui/1.8.24/jquery-ui.min.js"],
+                     ["jQuery UI 1.7.3", "https://code.jquery.com/ui/1.7.3/jquery-ui.js"],
+                     ["jQuery UI 1.7.3 minified", "https://code.jquery.com/ui/1.7.3/jquery-ui.min.js"]
+                     ]
+       ], [
+           "jQuery Mobile", [
+                             ["jQuery Mobile 1.4.5", "http://jquerymobile.com/resources/download/jquery.mobile-1.4.5.zip"],
+                             ["jQuery Mobile 1.3.2", "http://jquerymobile.com/resources/download/jquery.mobile-1.3.2.zip"],
+                             ["jQuery Mobile 1.2.1", "http://jquerymobile.com/resources/download/jquery.mobile-1.2.1.zip"],
+                             ["jQuery Mobile 1.1.2", "http://jquerymobile.com/resources/download/jquery.mobile-1.1.2.zip"],
+                             ["jQuery Mobile 1.0.1", "http://jquerymobile.com/resources/download/jquery.mobile-1.0.1.zip"]
+                             ]
+           ], [
+               "jQuery Color", [
+                                ["jQuery Color 2.1.1", "https://code.jquery.com/color/jquery.color.plus-names-2.1.2.js"],
+                                ["jQuery Color 2.1.1 minified", "https://code.jquery.com/color/jquery.color.plus-names-2.1.2.min.js"],
+                                ["jQuery Color 2.0.0", "https://code.jquery.com/color/jquery.color.plus-names-2.0.0.js"],
+                                ["jQuery Color 2.0.0 minified", "https://code.jquery.com/color/jquery.color.plus-names-2.0.0.min.js"]
+                                ]
+               ], [
+                   "Sizzle", [
+                              ["Sizzle", "https://raw.githubusercontent.com/jquery/sizzle/master/dist/sizzle.js"],
+                              ["Sizzle minified", "https://raw.githubusercontent.com/jquery/sizzle/master/dist/sizzle.min.js"]
+                              ]
+                   ], [
+                       "AngularJS", [
+                                     ["AngularJS 1.6.7", "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"],
+                                     ["AngularJS 1.6.7 minified", "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"],
+                                     ["AngularJS 1.2.32", "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.js"],
+                                     ["AngularJS 1.2.32 minified", "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"]
+                                     ]
+                       ]
+  ]

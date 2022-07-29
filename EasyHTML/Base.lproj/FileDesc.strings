@@ -1,0 +1,38 @@
+/* 
+  FileDesc.strings
+  EasyHTML
+
+  Created by Артем on 23/05/2019.
+  Copyright © 2019 Артем. All rights reserved.
+*/
+
+"text"="Text file";
+"webpage"="Webpage";
+"jsfile"="JavaScript";
+"plistfile"="Property List";
+"objcfile"="Objective-C Source";
+"cfile"="C Source";
+"cppfile"="C++ Source";
+"headerfile"="Header file";
+"csfile"="C# Source";
+"swiftfile"="Swift Source";
+"pythonfile"="Python Source";
+"pascalfile"="Pascal Source";
+"mdfile"="Markdown file";
+"forfile"="Fortran Source";
+"fsharpfile"="F# Source";
+"jpegimage"="JPEG Image";
+"bmpimage"="BMP Image";
+"tiffimage"="TIFF Image";
+"gifimage"="GIF Image";
+"pngimage"="PNG Image";
+"icoimage"="ICO Image";
+"pdf"="PDF Document";
+"audio"="Audio File";
+"film"="Film";
+"archive"="Archive";
+"general"="# File";
+"folder"="Folder";
+"emptyfolder"="Empty Folder";
+"folderwithfiles"="Folder with objects (#)";
+"unknown"="Unknown file";
