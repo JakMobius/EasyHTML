@@ -11,7 +11,7 @@ extension WKWebViewConfiguration {
     }
 }
 
-protocol EditorDelegate: class {
+protocol EditorDelegate: AnyObject {
     func editor(loaded editor: EditorViewController)
     func editor(shouldSaveFileNow editor: EditorViewController) -> Bool
     func editor(saveFile editor: EditorViewController)
@@ -1187,7 +1187,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate, WKScriptMess
     
     private var highlightingScheme: SyntaxHighlightScheme!
     
-    private func getEditorInitalizationScript(data: Data, progress: ((Double) -> ())? = nil, completion: @escaping ((String) -> ())) {
+    private func getEditorInitalizationScript(data: Data, progress: ((Double) -> ())? = nil, completion: @escaping (String) -> ()) {
         guard self.delegate != nil else { return }
         
         DispatchQueue.global().async {

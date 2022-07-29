@@ -1,7 +1,7 @@
 
 import UIKit
 
-@objc protocol EditorTabViewDelegate: class {
+@objc protocol EditorTabViewDelegate: AnyObject {
     @objc optional func tabWillClose(editorTabView: EditorTabView)
 }
 

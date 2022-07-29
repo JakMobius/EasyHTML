@@ -401,7 +401,7 @@ internal class FilesRelocationManager: NSObject, UIGestureRecognizerDelegate, UI
     
     static func createFileRelocationTask(source: SharedFileContainer, destination: SharedFileContainer, file: FSNode, on view: UIView) {
         
-        var task = FilesRelocationTask.getFor(controller: source)
+        let task = FilesRelocationTask.getFor(controller: source)
         task.source = source
         task.destination = destination
         task.of += 1
@@ -517,7 +517,7 @@ internal class FilesRelocationManager: NSObject, UIGestureRecognizerDelegate, UI
             }
             
             if let source = sourceContainer {
-                var task = FilesRelocationTask.getFor(controller: sourceContainer)
+                let task = FilesRelocationTask.getFor(controller: sourceContainer)
                 
                 var iterator = files.makeIterator()
                 
@@ -526,7 +526,7 @@ internal class FilesRelocationManager: NSObject, UIGestureRecognizerDelegate, UI
                 task.of += files.count
                 task.update()
                 
-                var copied = -1;
+                let copied = -1;
                 
                 var oldProgress: Float = 0
                 

@@ -25,7 +25,7 @@ internal enum FileCreationResult {
     }
 }
 
-internal protocol FileCreationDialogDelegate: class {
+internal protocol FileCreationDialogDelegate: AnyObject {
     
     /**
         Метод, вызывающийся при нажатии на кнопку "Создать файл".
@@ -120,7 +120,7 @@ internal class FileCreationDialog: NSObject {
     private var task: DispatchWorkItem? = nil
     
     private func create() {
-        var name = textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let name = textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         textField.isHidden = true
         activityIndicator.startAnimating()

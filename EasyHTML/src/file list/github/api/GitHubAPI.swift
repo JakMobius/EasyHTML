@@ -130,7 +130,7 @@ class GitHubAPI {
                     
                     self.accessToken = accessCode
                 } catch {
-                    self.errorOccured(error: OAuthError(description: error as! String))
+                    self.errorOccured(error: OAuthError(description: error.localizedDescription))
                 }
             }
         }).resume()
@@ -229,7 +229,7 @@ class GitHubAPI {
         
         request.httpBody = try! JSONSerialization.data(withJSONObject: query, options: [])
         
-        print(String(data: request.httpBody!, encoding: .utf8))
+//        print(String(data: request.httpBody!, encoding: .utf8))
         
         waitingRequest = true
         

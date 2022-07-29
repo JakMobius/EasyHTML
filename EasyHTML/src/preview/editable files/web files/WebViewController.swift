@@ -314,7 +314,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKUIDelegate,
             guard let type = body[1] as? Int else {return}
             guard let colorinfo = body[2] as? String else {return}
             
-            var attributedString = parseJavaScriptAttributedString(origin: message, colorInfo: colorinfo)
+            let attributedString = parseJavaScriptAttributedString(origin: message, colorInfo: colorinfo)
             
             dispatcher.consoleViewController?.addMessage(message: ConsoleMessage(body: attributedString, type: type))
         case WebViewActions.didFinishLoadAction:

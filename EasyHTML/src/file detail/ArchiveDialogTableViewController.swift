@@ -52,7 +52,7 @@ class ArchiveDialogPasswordCell: UITableViewCell {
     }
 }
 
-internal protocol ArchiveDialogDelegate: class {
+internal protocol ArchiveDialogDelegate: AnyObject {
     func archiveDialog(dialog controller: ArchiveDialogTableViewController, shouldArchive file: FSNode, with options: ArchivingOptions)
 }
 

@@ -226,7 +226,7 @@ internal class FTPUniversalSession: NSObject, NSCopying {
         case file(path: String, size: Int64), folder(path: String)
     }
     
-    private func getAllFolderResources(path: String, progress: @escaping ((UInt64) -> (Bool)), prefix: String = "") -> (error: Error?, result: [Resource]?) {
+    private func getAllFolderResources(path: String, progress: @escaping (UInt64) -> Bool, prefix: String = "") -> (error: Error?, result: [Resource]?) {
         
         var path = path
         var prefix = prefix
@@ -388,7 +388,7 @@ internal class FTPUniversalSession: NSObject, NSCopying {
                 return (error: newError, result: nil)
             }
             
-            return (result: result, error: nil)
+            return (error: nil, result: result)
         }
     }
     
@@ -533,7 +533,6 @@ internal class FTPUniversalSession: NSObject, NSCopying {
         
         var running = true
         var currentRequest: WRRequest! = nil
-        let sourcePath = folder.url.path
         guard let url = URL(string: path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) else { return nil }
         
         isolationQueue.async {
@@ -555,11 +554,10 @@ internal class FTPUniversalSession: NSObject, NSCopying {
             // Инвертируем список файлов, чтобы сначала создавать папки,
             // а затем копировать в них файлы.
             
-            guard var resources = result.result?.reversed() else {
+            guard let resources = result.result?.reversed() else {
                 return
             }
             
-            let totalCount = Float(resources.count)
             var copied: Float = 0
             var ignore: String? = nil
             
@@ -720,7 +718,7 @@ internal class FTPUniversalSession: NSObject, NSCopying {
             // Инвертируем список файлов, чтобы сначала создавать папки,
             // а затем копировать в них файлы.
             
-            guard var resources = result.result?.reversed() else {
+            guard let resources = result.result?.reversed() else {
                 return
             }
             var iterator = resources.makeIterator()
@@ -1070,7 +1068,7 @@ internal class FTPUniversalSession: NSObject, NSCopying {
                     progress?(.countingFiles(counted: 0))
                 }
                 
-                let result = self.getAllFolderResources(path: "", progress: { counted -> (Bool) in
+                let result = self.getAllFolderResources(path: "", progress: { counted -> Bool in
                     
                     DispatchQueue.main.async {
                         progress?(.countingFiles(counted: counted))
@@ -1472,7 +1470,7 @@ internal class FTPUniversalSession: NSObject, NSCopying {
                     progress?(.countingFiles(counted: 0))
                 }
                 
-                let result = self.getAllFolderResources(path: folder.url.path, progress: { counted -> (Bool) in
+                let result = self.getAllFolderResources(path: folder.url.path, progress: { counted -> Bool in
                     
                     DispatchQueue.main.async {
                         progress?(.countingFiles(counted: counted))
@@ -2078,7 +2076,7 @@ internal class FTPUniversalSession: NSObject, NSCopying {
         
     }
     
-    @discardableResult internal func listDirectoryAsync(path: String, sort: Bool = false, completion: @escaping (([FSNode]?, Error?) -> ())) -> CancellableRequest! {
+    @discardableResult internal func listDirectoryAsync(path: String, sort: Bool = false, completion: @escaping ([FSNode]?, Error?) -> ()) -> CancellableRequest! {
         switch proto {
         case .sftp:
             let session = sshSession!

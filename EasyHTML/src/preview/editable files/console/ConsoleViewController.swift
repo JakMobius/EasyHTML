@@ -6,7 +6,7 @@ private class FirstResponderTableView: UITableView {
     }
 }
 
-protocol ConsoleDelegate: class {
+protocol ConsoleDelegate: AnyObject {
     func console(executed command: String)
     func reloadConsole()
     func unreadMessagesCount(count: Int)

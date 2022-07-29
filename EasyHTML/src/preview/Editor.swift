@@ -130,7 +130,7 @@ internal class Editor : NSObject, EditorTabViewDelegate
         @discardableResult internal func readFileAt(url: URL, completion: ReadResult, progress: ((Progress) -> ())? = nil) -> CancellableRequest! {
             //print("reading file")
             
-            var url = URL(fileURLWithPath: url.path)
+            let url = URL(fileURLWithPath: url.path)
             
             var request: CancellableRequest!
             var workItem: DispatchWorkItem!
@@ -304,7 +304,7 @@ internal class Editor : NSObject, EditorTabViewDelegate
             return
         }
         
-        var switcherView = tabView.parentView!
+        let switcherView = tabView.parentView!
         
         let presentedView = switcherView.presentedView
         

@@ -776,7 +776,7 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
         if !isFullScreen { return }
         isFullScreen = false
         
-        var presentedView = self.presentedView!
+        let presentedView = self.presentedView!
         
         presentedView.blured()
         
@@ -913,7 +913,7 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
                     let instance = PrimarySplitViewController.instance(for: self)!
                     
                     if UIDevice.current.hasAnEyebrow {
-                        var roundLeftCorners = !UIDevice.current.hasAnEyebrow || instance.displayMode == .primaryHidden
+                        let roundLeftCorners = !UIDevice.current.hasAnEyebrow || instance.displayMode == .primaryHidden
 
                         let endPath = CAShapeLayer.getRoundedRectPath(size: view.bounds.size,
                                                                       lt: self.preferredCornerRadius,
@@ -1672,7 +1672,7 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
                     
                     let instance = PrimarySplitViewController.instance(for: self)!
                     
-                    var roundLeftCorners = !UIDevice.current.hasAnEyebrow || instance.displayMode == .primaryHidden
+                    let roundLeftCorners = !UIDevice.current.hasAnEyebrow || instance.displayMode == .primaryHidden
                     
                     let startpath = CAShapeLayer.getRoundedRectPath(size: view.bounds.size,
                                                                     lt: self.preferredCornerRadius,

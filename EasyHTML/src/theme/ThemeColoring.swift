@@ -59,7 +59,7 @@ class DeinitObserver : NSObject {
     }
 }
 
-@objc protocol NotificationHelper: class {
+@objc protocol NotificationHelper: AnyObject {
     @objc optional func deviceRotated()
     @objc optional func updateTheme()
     @objc optional func fileListUpdated(sender: NSNotification)

@@ -10,7 +10,7 @@ DEPENDENCIES:
   - Zip (~> 1.1.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Zip
 
 EXTERNAL SOURCES:
@@ -26,4 +26,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b747db1f4fb46b88c51127c97a3e8f610b428f20
 
-COCOAPODS: 1.7.1
+COCOAPODS: 1.11.3

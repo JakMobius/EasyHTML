@@ -187,7 +187,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             url = URL(fileURLWithPath: path)
         }
         
-        guard var file = FSNode.getLocalFile(globalURL: url) else {
+        guard let file = FSNode.getLocalFile(globalURL: url) else {
             print("[EasyHTML] [AppDelegate] receivedFile(at:) File not exist!")
             return
         }
@@ -201,9 +201,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             
             if let file = file as? FSNode.File {
                 let editor = Editor.getEditor(configuration: [:], file: file, in: switcherView)
-                let controller: FileEditorController
+                let _: FileEditorController
                 
-                var config: EditorConfiguration = [.ioManager : Editor.IOManager()]
+                let config: EditorConfiguration = [.ioManager : Editor.IOManager()]
                 
                 if(Editor.imageExtensions.contains(e)) {
                     if editor.focusIf(fileIs: file, controllerIs: ImagePreviewController.self, animated: true) {

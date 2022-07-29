@@ -452,7 +452,7 @@ class PredictiveTextField: UIScrollView, UIScrollViewDelegate {
     
 }
 
-protocol EditorPredictiveTextFieldDelegate: class {
+protocol EditorPredictiveTextFieldDelegate: AnyObject {
     func tappedSuggestion(_ suggestion: PredictiveTextItem)
 }
 

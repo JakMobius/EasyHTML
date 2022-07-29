@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol NewFileDialogDelegate: class {
+protocol NewFileDialogDelegate: AnyObject {
     func newFileDialog(dialog: NewFileDialog, hasPicked image: UIImage)
 }
 

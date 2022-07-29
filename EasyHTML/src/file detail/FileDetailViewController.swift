@@ -60,7 +60,7 @@ struct FileAction {
      - parameter callback: Функция, которая должна быть вызвана по завершению кэширования. Первый аргумент является бинарным флагом, обозначающим необходимость удаления файла после его отправки в случае если он был кеширован во временную папку. Второй аргумент должен содержать в себе URL-указатель на локально-кешированный файл. Если в процессе кеширования произошла ошибка, функция может быть не вызвана.
      */
     
-    @objc optional func fileDetail(controller: FileDetailViewController, objectsToShare file: FSNode, callback: ((Bool, URL) -> ()))
+    @objc optional func fileDetail(controller: FileDetailViewController, objectsToShare file: FSNode, callback: (Bool, URL) -> ())
 }
 
 internal class FileDetailViewController: AlternatingColorTableView, UITextFieldDelegate, ArchiveDialogDelegate
@@ -154,10 +154,6 @@ internal class FileDetailViewController: AlternatingColorTableView, UITextFieldD
     }
     
     private func deleteItem(cell: UITableViewCell) {
-        
-        let fileName = file.name
-        let path = self.path
-        
         let isfile = file is FSNode.File
         
         func delete(action: UIAlertAction) -> Void

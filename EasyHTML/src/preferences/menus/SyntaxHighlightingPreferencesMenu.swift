@@ -243,7 +243,7 @@ class SyntaxHighlightingPreferencesMenu: AlternatingColorTableView, SyntaxHighli
     
 }
 
-protocol SyntaxHighlightSchemeCreationDialogDelegate: class {
+protocol SyntaxHighlightSchemeCreationDialogDelegate: AnyObject {
     func syntaxHighlightSchemeDialog(createSchemeWith ext: String)
 }
 

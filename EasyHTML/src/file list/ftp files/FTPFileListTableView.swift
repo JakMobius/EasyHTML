@@ -736,8 +736,6 @@ class FTPFileListTableView: FileListController, FileListDelegate, FileListDataSo
             return
         }
         
-        var done: Float = 0
-        
         // В данном случае можно обойтись рекурсивным путём, т.к каждый запрос возвращает completion
         // асинхронно в DispatchQueue.main.async. StackOverflow не вылезет.
         
