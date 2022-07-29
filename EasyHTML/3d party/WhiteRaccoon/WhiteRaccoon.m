@@ -46,10 +46,10 @@ static NSMutableDictionary *folders;
 
 + (void)initialize
 {    
-    static BOOL isCacheInitalized = NO;
-    if(!isCacheInitalized)
+    static BOOL isCacheInitialized = NO;
+    if(!isCacheInitialized)
     {
-        isCacheInitalized = YES;
+        isCacheInitialized = YES;
         folders = [[NSMutableDictionary alloc] init];
     }
 }
@@ -60,7 +60,7 @@ static NSMutableDictionary *folders;
 }
 
 +(void) addFoldersToCache:(NSArray *) foldersArray forParentFolderPath:(NSString *) key {
-    [folders setObject:foldersArray forKey:key];
+    folders[key] = foldersArray;
 }
 
 
@@ -115,23 +115,18 @@ static NSMutableDictionary *folders;
     switch (self.schemeId) {
         case kWRFTP:
             return @"ftp";
-            break;
-            
         default:
             InfoLog(@"The scheme id was not recognized! Default FTP set!");
             return @"ftp";
-            break;
     }
-    
-    return @"";
 }
 
 -(NSString *) hostname {
     return [hostname stringByStandardizingPath];
 }
 
--(void)setHostname:(NSString *)hostnamelocal {
-    hostname = hostnamelocal;
+-(void)setHostname:(NSString *)hostnameLocal {
+    hostname = hostnameLocal;
 }
 
 -(NSString *) credentials {    
@@ -213,11 +208,11 @@ static NSMutableDictionary *folders;
     
     assert(hostname != nil);
     
-    // a little bit of C because I was not able to make NSInputStream play nice
+    // a bit of C because I was not able to make NSInputStream play nice
     CFReadStreamRef readStreamRef = CFReadStreamCreateWithFTPURL(NULL, (__bridge CFURLRef)self.fullURL);
     self.streamInfo.readStream = (NSInputStream *)CFBridgingRelease(readStreamRef);
     
-    [self.streamInfo.readStream setProperty:(id)(self.passive ? kCFBooleanTrue : kCFBooleanFalse) forKey:(id)kCFStreamPropertyFTPUsePassiveMode];
+    [self.streamInfo.readStream setProperty:(__bridge id)(self.passive ? kCFBooleanTrue : kCFBooleanFalse) forKey:(id)kCFStreamPropertyFTPUsePassiveMode];
     
     if (self.streamInfo.readStream==nil) {
         InfoLog(@"Can't open the read stream! Possibly wrong URL");
@@ -231,15 +226,15 @@ static NSMutableDictionary *folders;
         
         NSMutableString * fileName = [[NSUUID UUID] UUIDString].mutableCopy;
         
-        NSMutableString * path = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName].mutableCopy;
+        NSMutableString * receivedFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName].mutableCopy;
         
-        self.receivedFile = [NSURL fileURLWithPath:path];
+        self.receivedFile = [NSURL fileURLWithPath:receivedFilePath];
     }
     
     [NSFileManager.defaultManager createFileAtPath:self.receivedFile.path contents:nil attributes:nil];
     self.outputStream = [NSOutputStream outputStreamToFileAtPath:receivedFile.path
                                                           append:true];
-    [self.outputStream setProperty:(id)(self.passive ? kCFBooleanTrue : kCFBooleanFalse) forKey:(id)kCFStreamPropertyFTPUsePassiveMode];
+    [self.outputStream setProperty:(__bridge id)(self.passive ? kCFBooleanTrue : kCFBooleanFalse) forKey:(id)kCFStreamPropertyFTPUsePassiveMode];
     
     [self.outputStream open];
     
@@ -389,7 +384,7 @@ static NSMutableDictionary *folders;
 @end
 
 @implementation WRRequestUpload
-@synthesize listrequest, dataStream;
+@synthesize listRequest, dataStream;
 
 
 
@@ -400,7 +395,7 @@ static NSMutableDictionary *folders;
     CFWriteStreamRef writeStreamRef = CFWriteStreamCreateWithFTPURL(NULL, (__bridge CFURLRef)self.fullURL);
     self.streamInfo.writeStream = (NSOutputStream *)CFBridgingRelease(writeStreamRef);
     
-    [self.streamInfo.writeStream setProperty:(id)(self.passive ? kCFBooleanTrue : kCFBooleanFalse) forKey:(id)kCFStreamPropertyFTPUsePassiveMode];
+    [self.streamInfo.writeStream setProperty:(__bridge id)(self.passive ? kCFBooleanTrue : kCFBooleanFalse) forKey:(id)kCFStreamPropertyFTPUsePassiveMode];
     
     if (self.streamInfo.writeStream==nil) {
         InfoLog(@"Can't open the write stream! Possibly wrong URL!");
@@ -529,7 +524,7 @@ static NSMutableDictionary *folders;
     CFWriteStreamRef writeStreamRef = CFWriteStreamCreateWithFTPURL(NULL, (__bridge CFURLRef)self.fullURL);
     self.streamInfo.writeStream = (NSOutputStream *)CFBridgingRelease(writeStreamRef);
     
-    [self.streamInfo.writeStream setProperty:(id)(self.passive ? kCFBooleanTrue : kCFBooleanFalse) forKey:(id)kCFStreamPropertyFTPUsePassiveMode];
+    [self.streamInfo.writeStream setProperty:(__bridge id)(self.passive ? kCFBooleanTrue : kCFBooleanFalse) forKey:(id)kCFStreamPropertyFTPUsePassiveMode];
     
     if (self.streamInfo.writeStream==nil) {
         InfoLog(@"Can't open the write stream! Possibly wrong URL!");
@@ -630,11 +625,11 @@ static NSMutableDictionary *folders;
     
     self.listData = [NSMutableData data];
 
-    // a little bit of C because I was not able to make NSInputStream play nice
+    // a bit of C because I was not able to make NSInputStream play nice
     CFReadStreamRef readStreamRef = CFReadStreamCreateWithFTPURL(NULL, (__bridge CFURLRef)self.fullURL);
     self.streamInfo.readStream = (NSInputStream *)CFBridgingRelease(readStreamRef);
     
-    [self.streamInfo.readStream setProperty:(id)(self.passive ? kCFBooleanTrue : kCFBooleanFalse) forKey:(id)kCFStreamPropertyFTPUsePassiveMode];
+    [self.streamInfo.readStream setProperty:(__bridge id)(self.passive ? kCFBooleanTrue : kCFBooleanFalse) forKey:(id)kCFStreamPropertyFTPUsePassiveMode];
     
     if (self.streamInfo.readStream==nil) {
         InfoLog(@"Can't open the read stream! Possibly wrong URL!");
@@ -752,7 +747,7 @@ static NSMutableDictionary *folders;
     return self;
 }
 
--(NSError *) nserror {
+-(NSError *) nsError {
     
     return [NSError errorWithDomain:@"whiteracoon"
                                code:errorCode
@@ -815,7 +810,7 @@ static NSMutableDictionary *folders;
 
 -(WRErrorCodes) errorCodeWithError:(NSError *) error {
 
-    WRErrorCodes code = [[error.userInfo objectForKey:(NSString*)kCFFTPStatusCodeKey] intValue];
+    WRErrorCodes code = [error.userInfo[(NSString *) kCFFTPStatusCodeKey] intValue];
     
     return code;
 }

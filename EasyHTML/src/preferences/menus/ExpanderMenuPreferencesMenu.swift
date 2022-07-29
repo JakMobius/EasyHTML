@@ -21,24 +21,24 @@ class ExpanderMenuPreferencesMenu: AlternatingColorTableView {
             }
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tableView = UITableView(frame: self.tableView.frame, style: .grouped)
-        self.title = localize("helpermenupref", .preferences)
-        self.tableView.register(ExpanderMenuPreferencesMenuCell.self, forCellReuseIdentifier: "cell")
-        self.tableView.register(BasicCell.self, forCellReuseIdentifier: "basic")
-        self.tableView.isEditing = true
-        
+
+        tableView = UITableView(frame: tableView.frame, style: .grouped)
+        title = localize("helpermenupref", .preferences)
+        tableView.register(ExpanderMenuPreferencesMenuCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(BasicCell.self, forCellReuseIdentifier: "basic")
+        tableView.isEditing = true
+
         refreshUnusedButtons()
-        
+
         updateStyle()
     }
-    
+
     private func refreshUnusedButtons() {
         unusedButtons.removeAll()
-        
+
         for button in ExpanderButtonItem.ButtonType.allButtons {
             if !userPreferences.expanderButtonsList.contains(where: {
                 if case .button(let type) = $0 {
@@ -54,11 +54,11 @@ class ExpanderMenuPreferencesMenu: AlternatingColorTableView {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        2
     }
-    
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if(section == 0) {
+        if (section == 0) {
             return localize("helpermenuon", .preferences)
         } else {
             return localize("helpermenumore", .preferences)
@@ -66,21 +66,22 @@ class ExpanderMenuPreferencesMenu: AlternatingColorTableView {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if(section == 0) {
+
+        if (section == 0) {
             return userPreferences.expanderButtonsList.count
         } else {
             return unusedButtons.count + 1
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.section == 0
+        indexPath.section == 0
     }
+
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        true
     }
-    
+
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         if indexPath.section == 0 {
             return .delete
@@ -88,7 +89,7 @@ class ExpanderMenuPreferencesMenu: AlternatingColorTableView {
             return .insert
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             if editingStyle == .delete {
@@ -111,7 +112,7 @@ class ExpanderMenuPreferencesMenu: AlternatingColorTableView {
                     let button = unusedButtons.remove(at: indexPath.row - 1)
                     tableView.deleteRows(at: [indexPath], with: .fade)
                     userPreferences.expanderButtonsList.append(ExpanderButtonItem.button(.init(type: button)))
-                    
+
                     tableView.insertRows(at: [
                         IndexPath(row: userPreferences.expanderButtonsList.count - 1, section: 0)
                     ], with: .fade)
@@ -127,17 +128,17 @@ class ExpanderMenuPreferencesMenu: AlternatingColorTableView {
             }
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        
+
         if sourceIndexPath == destinationIndexPath {
-            return // Зачем ты вообще вызвал эту функцию тогда, UIKit?
+            return
         }
-        
+
         if sourceIndexPath.section == 0 {
-            
+
             let element = userPreferences.expanderButtonsList.remove(at: sourceIndexPath.row)
-            
+
             if destinationIndexPath.section == 0 {
                 userPreferences.expanderButtonsList.insert(element, at: destinationIndexPath.row)
             } else {
@@ -147,76 +148,76 @@ class ExpanderMenuPreferencesMenu: AlternatingColorTableView {
                     tableView.deleteRows(at: [destinationIndexPath], with: .fade)
                 }
             }
-            
+
             shouldRefresh = true
         }
     }
-    
+
     var backgroundColor: UIColor = {
         let sourceColor = userPreferences.currentTheme.tabBarSelectedItemColor
         var hue: CGFloat = 0
         var saturation: CGFloat = 0
         var brightness: CGFloat = 0
         sourceColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: nil)
-        
+
         return UIColor(hue: hue, saturation: saturation, brightness: brightness * 0.95, alpha: 1)
-        
+
     }()
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         if indexPath.section == 0 {
             let item = userPreferences.expanderButtonsList[indexPath.row]
             switch item {
             case .button(let factory):
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ExpanderMenuPreferencesMenuCell
-                
+
                 cell.label.textColor = userPreferences.currentTheme.cellTextColor
                 cell.label.text = localize("helpermenuitem\(factory.type.rawValue)", .preferences)
                 cell.imageContainer.image = factory.type.image
                 cell.imageBackgroundView.backgroundColor = backgroundColor
-                
+
                 return cell
             case .delimiter:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "basic", for: indexPath) as! BasicCell
-                
+
                 cell.label.text = localize("helpermenuitemdelimiter", .preferences)
                 cell.label.textColor = userPreferences.currentTheme.secondaryTextColor
                 cell.label.font = UIFont.systemFont(ofSize: 14)
                 return cell
             }
-            
-            
+
+
         } else {
-            if(indexPath.row == 0) {
+            if (indexPath.row == 0) {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "basic", for: indexPath) as! BasicCell
-                
+
                 cell.label.textColor = userPreferences.currentTheme.cellTextColor
                 cell.label.text = localize("helpermenuitemdelimiter", .preferences)
                 cell.label.font = UIFont.systemFont(ofSize: 14)
-                
+
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ExpanderMenuPreferencesMenuCell
-                
+
                 cell.label.textColor = userPreferences.currentTheme.cellTextColor
                 let unusedItem = unusedButtons[indexPath.row - 1]
                 cell.label.text = localize("helpermenuitem\(unusedItem.rawValue)", .preferences)
                 cell.imageContainer.image = unusedItem.image
                 cell.imageBackgroundView.backgroundColor = backgroundColor
-                
+
                 return cell
             }
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return false
+        false
     }
-    
+
     func refresh() {
         NotificationCenter.default.post(name: .TCUpdateExpanderMenu, object: nil)
-        
+
         let config: [Int] = userPreferences.expanderButtonsList.map { (item) -> Int in
             if case .button(let factory) = item {
                 return factory.type.rawValue
@@ -224,10 +225,10 @@ class ExpanderMenuPreferencesMenu: AlternatingColorTableView {
                 return -1
             }
         }
-        
+
         Defaults.set(config, forKey: DKey.expanderConfig)
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         if shouldRefresh {
             refresh()

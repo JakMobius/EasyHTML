@@ -19,13 +19,11 @@
 "share"="Share";
 "clonefile"="Duplicate";
 "copyoffile"="Copy of #";
-"colorpick"="Colorpicker";
+"colorpick"="Color picker";
 "gradientpick"="Gradient";
 "movefile"="Move file";
 "copyfile"="Copy file";
 "remove"="Delete";
-
-"files"="Files";
 
 "createfolder"="Create Folder";
 "createfile"="Create File";
@@ -68,11 +66,9 @@
 /*# -tcanalyzerignore #*/ "welcome_btntxt2"="Got it";
 /*# -tcanalyzerignore #*/ "welcome_btntxt3"="I'm ready!";
 
-"cancel"="Cancel";
-
 "preferences"="Preferences";
 
-/* Тексты колорпикера */
+/* Color picker texts */
 
 "rotationangle"="ROTATION ANGLE";
 "linear"="Linear";
@@ -89,7 +85,7 @@
 "resetquestion"="Are you sure want to reset recent colors?";
 "cannotbeundone"="This cannot be undone";
 
-/* Всякое из MasterViewController */
+/* Texts from MasterViewController */
 
 "fileisverybig"="This file is very big!";
 "fileisverybigmessage"="The file you are about to open is too large (> 500 KB). Opening this file may cause the program to crash or slow the device. Are you sure you want to open this file?";
@@ -105,7 +101,6 @@
 
 "sharedfoldername"="Shared files";
 
-"replacewith"="With";
 "librarypickertitle"="Import library...";
 "findresults"="# matches found";
 "importjslib"="JavaScript-library";

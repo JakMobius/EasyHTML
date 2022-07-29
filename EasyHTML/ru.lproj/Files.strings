@@ -13,7 +13,7 @@
 "errorrestrictedcontent"="Файл не может быть передан, поскольку его содержимое заблокировано";
 "internalservererror"="Внутренняя ошибка сервера";
 "badinputerror"="Некорректный запрос";
-"autherror"="Ошибка аунтефикации";
+"autherror"="Ошибка аутентификации";
 "accesserror"="Ошибка доступа";
 "ratelimiterror"="Превышена допустимая частота запросов";
 "httperror"="Ошибка HTTP";
@@ -41,7 +41,7 @@
 "errorcantmovefolderintoitself"="Невозможно переместить папку в саму себя";
 "errorthumbnailconversion"="Произошла ошибка при создании предпросмотра";
 
-"remotefileopeningioswarning"="Предпросмотр удалённых HTML файлов доступен только c iOS 11";
+"remotefileopeningioswarning"="Предпросмотр HTML файлов, расположенных удалённо, доступен только c iOS 11";
 
 "emptyfolder"="Пустая папка";
 "emptyfolderhint"="Коснитесь значка '+' в углу списка, чтобы добавить новый файл, создать папку или импортировать медиафайлы";

@@ -1,55 +1,55 @@
- //
- //  AnotherFilePreviewController.swift
- //  EasyHTML
- //
- //  Created by Артем on 10.03.2018.
- //  Copyright © 2018 Артем. All rights reserved.
- //
- 
- import UIKit
- import WebKit
- 
- class CacheNeededFilePreviewController: AnotherFilePreviewController {
-    
-    private var temproraryFileURL: URL! = nil
-    
-    @objc override func loadData() {
+//
+//  AnotherFilePreviewController.swift
+//  EasyHTML
+//
+//  Created by Артем on 10.03.2018.
+//  Copyright © 2018 Артем. All rights reserved.
+//
+
+import UIKit
+import WebKit
+
+class CacheNeededFilePreviewController: AnotherFilePreviewController {
+
+    private var temporaryFileURL: URL! = nil
+
+    override func loadData() {
         loadingInfoView.fade()
-        
+
         messageManager.reset()
-        
-        if self.file!.url.isFileURL && false {
-            
+
+        if file!.url.isFileURL && false {
+
             let path = NSString(string: applicationPath).deletingLastPathComponent
-            
-            webView.loadFileURL(self.file!.url, allowingReadAccessTo: URL(fileURLWithPath: path))
+
+            webView.loadFileURL(file!.url, allowingReadAccessTo: URL(fileURLWithPath: path))
         } else {
-            
+
             let tempDirPath = NSTemporaryDirectory()
-            
+
             var fileDir: String
             repeat {
                 fileDir = tempDirPath + UUID().uuidString
-            } while(fileOrFolderExist(name: fileDir))
-            
+            } while (fileOrFolderExist(name: fileDir))
+
             if !file!.url.pathExtension.isEmpty {
-                fileDir += "." + self.file!.url.pathExtension
+                fileDir += "." + file!.url.pathExtension
             }
-            
-            self.temproraryFileURL = URL(fileURLWithPath: fileDir)
-            
+
+            temporaryFileURL = URL(fileURLWithPath: fileDir)
+
             let loadingInfo = localize("loadingstep_downloading", .editor)
-            
+
             loadingInfoView.infoLabel.text = loadingInfo.replacingOccurrences(of: "#", with: "0")
-            
-            self.ioManager.readFileAt(url: self.file!.url, completion: {
+
+            ioManager.readFileAt(url: file!.url, completion: {
                 (data, error) in
                 self.loadingInfoView.hide()
                 self.webView.isHidden = false
                 if let data = data {
-                    try? data.write(to: self.temproraryFileURL!, options: Data.WritingOptions.atomic)
-                    
-                    self.webView.loadFileURL(self.temproraryFileURL!, allowingReadAccessTo: URL(fileURLWithPath: tempDirPath))
+                    try? data.write(to: self.temporaryFileURL!, options: Data.WritingOptions.atomic)
+
+                    self.webView.loadFileURL(self.temporaryFileURL!, allowingReadAccessTo: URL(fileURLWithPath: tempDirPath))
                 } else {
                     self.loadingErrorHandler(error: error)
                 }
@@ -59,17 +59,17 @@
             })
         }
     }
-    
+
     deinit {
         webView?.stopLoading()
         webView?.uiDelegate = nil
         webView?.navigationDelegate = nil
         webView?.loadHTMLString("", baseURL: nil)
         webView = nil
-        
-        if let url = temproraryFileURL {
+
+        if let url = temporaryFileURL {
             try? FileManager.default.removeItem(at: url)
         }
     }
- }
+}
 

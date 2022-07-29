@@ -9,42 +9,41 @@
 import Foundation
 
 extension GitHubAPI {
-    
+
     static func handleRedirectURL(_ url: URL) -> Bool? {
-        // Проверяем, адресовано ли это нам
-        
+        // Check if this request should be handled by this
+        // function
+
         if url.scheme != oAuthResultScheme {
             return nil
         }
-        
-        // Хитрый способ преобразовывания query-строки в словарь
-        
+
+        // Parse query string
+
         var components = URLComponents()
         components.query = url.query
-        var query = [String : String]()
-        
+        var query = [String: String]()
+
         guard let queryItems = components.queryItems else {
             return false
         }
-        
+
         for entry in queryItems where entry.value != nil {
             query[entry.name] = entry.value
         }
-        
-        // Секьюрити чек
-        
-        if(query["state"] != self.state) {
+
+        if (query["state"] != state) {
             return false
         }
-        
+
         guard let code = query["code"] else {
             return false
         }
-        
-        self.accessCode = code
-        
+
+        accessCode = code
+
         fetchAccessCode()
-        
+
         return true
     }
 }

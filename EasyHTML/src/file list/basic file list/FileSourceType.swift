@@ -2,7 +2,7 @@ import UIKit
 
 internal enum FileSourceType: Hashable, Codable {
     case unknown, local, ftp(server: FTPServer), dropbox, github(repo: String, commit: String);
-    
+
     static func ==(a: FileSourceType, b: FileSourceType) -> Bool {
         switch (a, b) {
         case (.local, .local): return true
@@ -12,16 +12,16 @@ internal enum FileSourceType: Hashable, Codable {
         default: return false
         }
     }
-    
+
     private enum CodingKeys: String, CodingKey {
         case type
         case a
         case b
     }
-    
+
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
+
         switch self {
         case .unknown:
             try container.encode(0, forKey: .type)
@@ -39,34 +39,34 @@ internal enum FileSourceType: Hashable, Codable {
             try container.encode(commit, forKey: .b)
         }
     }
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        
+
         let type = try container.decode(Int.self, forKey: .type)
-        
+
         switch type {
         case 1:
             self = .local
         case 2:
             let data = try container.decode(Data.self, forKey: .a)
             let server = NSKeyedUnarchiver.unarchiveObject(with: data) as! FTPServer
-            
+
             self = .ftp(server: server)
         case 3:
             self = .dropbox
         case 4:
             let repo = try container.decode(String.self, forKey: .a)
             let commit = try container.decode(String.self, forKey: .b)
-            
+
             self = .github(repo: repo, commit: commit)
         default:
             self = .unknown
         }
     }
-    
+
     static func !=(a: FileSourceType, b: FileSourceType) -> Bool {
-        return !(a == b)
+        !(a == b)
     }
 }
 

@@ -10,53 +10,70 @@ enum GeneralizedCallError {
     case accessError(Auth.AccessError, String?, String?, String?)
     case routeError(Any, String?, String?, String?)
     case clientError(Error?)
-    
+
     internal var localizedDescription: String {
         switch self {
         case .internalServerError(let code, let userMessage, _):
             var message = localize("internalservererror", .files) + " (\(code))"
-            
-            if let userMessage = userMessage, !userMessage.isEmpty { message += ": " + userMessage }
-            
+
+            if let userMessage = userMessage, !userMessage.isEmpty {
+                message += ": " + userMessage
+            }
+
             return message
         case .badInputError(let userMessage, _):
             var message = localize("badinputerror", .files)
-            
-            if let userMessage = userMessage, !userMessage.isEmpty { message += ": " + userMessage }
-            
+
+            if let userMessage = userMessage, !userMessage.isEmpty {
+                message += ": " + userMessage
+            }
+
             return message
         case .authError(_, let userMessage, _, _):
             var message = localize("autherror", .files)
-            
-            if let userMessage = userMessage, !userMessage.isEmpty { message += ": " + userMessage }
-            
+
+            if let userMessage = userMessage, !userMessage.isEmpty {
+                message += ": " + userMessage
+            }
+
             return message
         case .accessError(_, let userMessage, _, _):
             var message = localize("accesserror", .files)
-            
-            if let userMessage = userMessage, !userMessage.isEmpty { message += ": " + userMessage }
-            
+
+            if let userMessage = userMessage, !userMessage.isEmpty {
+                message += ": " + userMessage
+            }
+
             return message
         case .rateLimitError(_, let userMessage, _, _):
             var message = localize("ratelimiterror", .files)
-            
-            if let userMessage = userMessage, !userMessage.isEmpty { message += ": " + userMessage }
-            
+
+            if let userMessage = userMessage, !userMessage.isEmpty {
+                message += ": " + userMessage
+            }
+
             return message
         case .httpError(let code, let userMessage, _):
             var message = localize("httperror", .files)
-            
-            if let code = code { message += " (\(code)" }
-            if let userMessage = userMessage, !userMessage.isEmpty { message += ": " + userMessage }
-            
+
+            if let code = code {
+                message += " (\(code)"
+            }
+            if let userMessage = userMessage, !userMessage.isEmpty {
+                message += ": " + userMessage
+            }
+
             return message
         case .clientError(let error):
-            
-            if let error = error { return error.localizedDescription }
-            else { return localize("unknownerror") }
-            
+
+            if let error = error {
+                return error.localizedDescription
+            } else {
+                return localize("unknownerror")
+            }
+
         case .routeError(let unboxed, _, _, _):
-            
+
             if let error = unboxed as? Files.DeleteError {
                 return error.localizedDescription
             } else if let error = unboxed as? Files.WriteError {
@@ -232,26 +249,26 @@ extension Files.RelocationError {
             switch self {
             case .internalError: return localize("internalservererror", .files)
             case .fromLookup(let lookupError): return localize("errorrelocationfromlookup", .files) + ": " + lookupError.localizedDescription
-            /// An unspecified error.
+                /// An unspecified error.
             case .fromWrite(let writeError): return localize("errorrelocationfromwrite", .files) + ": " + writeError.localizedDescription
-            /// An unspecified error.
+                /// An unspecified error.
             case .to(let writeError): return localize("errorrelocationtowrite", .files) + ": " + writeError.localizedDescription
-            /// Shared folders can't be copied.
+                /// Shared folders can't be copied.
             case .cantCopySharedFolder: return localize("errorcantcopysharedfolder", .files)
-            /// Your move operation would result in nested shared folders.  This is not allowed.
+                /// Your move operation would result in nested shared folders.  This is not allowed.
             case .cantNestSharedFolder: return localize("errorcantnestsharedfolder", .files)
-            /// You cannot move a folder into itself.
+                /// You cannot move a folder into itself.
             case .cantMoveFolderIntoItself: return localize("errorcantmovefolderintoitself", .files)
-            /// The operation would involve more than 10,000 files and folders.
+                /// The operation would involve more than 10,000 files and folders.
             case .tooManyFiles: return localize("errorrelocationtoomanyfiles", .files)
-            /// There are duplicated/nested paths among fromPath in RelocationArg and toPath in RelocationArg.
+                /// There are duplicated/nested paths among fromPath in RelocationArg and toPath in RelocationArg.
             case .duplicatedOrNestedPaths: return localize("errorduplicatedornestedpaths", .files)
                 /// Your move operation would result in an ownership transfer. You may reissue the request with the field
-            /// allowOwnershipTransfer in RelocationArg to true.
+                /// allowOwnershipTransfer in RelocationArg to true.
             case .cantTransferOwnership: return ""
-            /// The current user does not have enough space to move or copy the files.
+                /// The current user does not have enough space to move or copy the files.
             case .insufficientQuota: return localize("errorinsufficientspace", .files)
-            /// An unspecified error.
+                /// An unspecified error.
             case .other: return localize("unknownerror")
             }
         }
@@ -279,7 +296,7 @@ extension Files.UploadSessionLookupError {
     internal var localizedDescription: String {
         get {
             switch self {
-                
+
             case .notFound:
                 return localize("errornotfound", .files)
             default:
@@ -291,18 +308,18 @@ extension Files.UploadSessionLookupError {
 
 internal struct DropboxError: LocalizedError {
     var callError: GeneralizedCallError
-    
+
     var errorDescription: String? {
-        return localizedDescription
+        localizedDescription
     }
-    
+
     var localizedDescription: String {
-        return callError.localizedDescription
+        callError.localizedDescription
     }
-    
+
     internal init?(error: GeneralizedCallError?) {
         if let error = error {
-            self.callError = error
+            callError = error
         } else {
             return nil
         }

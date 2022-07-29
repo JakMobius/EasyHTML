@@ -13,91 +13,99 @@ typealias OldClosureType = @convention(c) (Any, Selector, UnsafeRawPointer, Bool
 typealias NewClosureType = @convention(c) (Any, Selector, UnsafeRawPointer, Bool, Bool, Bool, Any?) -> Void
 
 class SwizzledWebView: WKWebView {
-    
+
     override func selectAll(_ sender: Any?) {
         evaluateJavaScript("editor.execCommand('selectAll')", completionHandler: nil)
     }
-    
+
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        
+
         if
-            action == #selector(UIResponderStandardEditActions.select(_:)) ||
-            action == #selector(UIResponderStandardEditActions.selectAll(_:)) ||
-            action == #selector(UIResponderStandardEditActions.copy(_:)) ||
-            action == #selector(UIResponderStandardEditActions.paste(_:)) ||
-            action == #selector(UIResponderStandardEditActions.cut(_:))  {
+                action == #selector(UIResponderStandardEditActions.select(_:)) ||
+                        action == #selector(UIResponderStandardEditActions.selectAll(_:)) ||
+                        action == #selector(UIResponderStandardEditActions.copy(_:)) ||
+                        action == #selector(UIResponderStandardEditActions.paste(_:)) ||
+                        action == #selector(UIResponderStandardEditActions.cut(_:)) {
             return super.canPerformAction(action, withSender: sender) // super.canPerformAction
         }
-        
+
         if
-            action == #selector(searchOccurrences) ||
-            action == #selector(replaceOccurrences) {
+                action == #selector(searchOccurrences) ||
+                        action == #selector(replaceOccurrences) {
             return super.canPerformAction(#selector(UIResponderStandardEditActions.copy), withSender: sender)
         }
-        
+
         return false
     }
-    
+
     @objc func searchOccurrences() {
         evaluateJavaScript("editor.getSelection()") { (result, error) in
-            guard let result = result as? String else { return }
-            
-            guard let controller = self.parentViewController as? EditorViewController else { return }
-            
+            guard let result = result as? String else {
+                return
+            }
+
+            guard let controller = self.parentViewController as? EditorViewController else {
+                return
+            }
+
             controller.searchInCode(text: result)
         }
     }
-    
+
     @objc func replaceOccurrences() {
         evaluateJavaScript("editor.getSelection()") { (result, error) in
-            guard let result = result as? String else { return }
-            
-            guard let controller = self.parentViewController as? EditorViewController else { return }
-            
+            guard let result = result as? String else {
+                return
+            }
+
+            guard let controller = self.parentViewController as? EditorViewController else {
+                return
+            }
+
             controller.replaceInCode(text: result)
         }
     }
-    
+
     @objc func customSelect(sender: Any?) {
-        self.select(sender)
+        select(sender)
     }
-    
+
     @objc func customSelectAll(sender: Any?) {
-        self.selectAll(sender)
+        selectAll(sender)
     }
-    
+
     @objc func customCopy(sender: Any?) {
         self.copy(sender)
     }
-    
+
     @objc func customPaste(sender: Any?) {
         self.paste(sender)
     }
-    
+
     @objc func customCut(sender: Any?) {
-        self.cut(sender)
+        cut(sender)
     }
-    
-    private var _keyboardDisplayRequiresUseraction = true
-    
+
+    private var _keyboardDisplayRequiresUserAction = true
+
     var keyboardDisplayRequiresUserAction: Bool? {
         get {
-            return _keyboardDisplayRequiresUseraction
+            _keyboardDisplayRequiresUserAction
         }
         set {
-            _keyboardDisplayRequiresUseraction = newValue ?? true
-            setKeyboardRequiresUserInteraciton(_keyboardDisplayRequiresUseraction)
+            _keyboardDisplayRequiresUserAction = newValue ?? true
+            setKeyboardRequiresUserInteraction(_keyboardDisplayRequiresUserAction)
         }
     }
-    
-    private func setKeyboardRequiresUserInteraciton(_ value: Bool) {
+
+    private func setKeyboardRequiresUserInteraction(_ value: Bool) {
         guard let WKContentViewClass: AnyClass = NSClassFromString("WKContentView") else {
             return print("Cannot find WKContentView class")
         }
-        
+
         let oldSelector: Selector = sel_getUid("_startAssistingNode:userIsInteracting:blurPreviousNode:userObject:")
         let newSelector: Selector = sel_getUid("_startAssistingNode:userIsInteracting:blurPreviousNode:changingActivityState:userObject:")
-        
+
         if let method = class_getInstanceMethod(WKContentViewClass, oldSelector) {
             let originalImp: IMP = method_getImplementation(method)
             let original: OldClosureType = unsafeBitCast(originalImp, to: OldClosureType.self)

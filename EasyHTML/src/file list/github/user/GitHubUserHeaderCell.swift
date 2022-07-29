@@ -37,13 +37,17 @@ extension GitHubUserController {
         }
 
         func loadAvatar(link: String?, nick: String?) {
-            guard link != nil else { return }
-            guard nick != nil else { return }
+            guard link != nil else {
+                return
+            }
+            guard nick != nil else {
+                return
+            }
 
             cancelAvatarLoading()
 
             if let cachedImage = GitHubUtils.userImageCache[nick!] {
-                self.avatar.image = UIImage(data: cachedImage as Data)
+                avatar.image = UIImage(data: cachedImage as Data)
                 return
             }
 
@@ -54,7 +58,7 @@ extension GitHubUserController {
             }
 
             if let url = URL(string: link!) {
-                self.loadTask = GitHubUtils.avatarLoadingTask(url: url, callback: { data in
+                loadTask = GitHubUtils.avatarLoadingTask(url: url, callback: { data in
                     if let data = data {
                         self.avatar.image = UIImage(data: data)
                         GitHubUtils.userImageCache[nick!] = NSData(data: data)
@@ -62,7 +66,7 @@ extension GitHubUserController {
                     self.loadTask = nil
                     self.avatar.backgroundColor = nil
                 })
-                self.loadTask?.resume()
+                loadTask?.resume()
             }
         }
 
@@ -92,7 +96,7 @@ extension GitHubUserController {
             avatar.layer.masksToBounds = true
 
             userName.lineBreakMode = .byTruncatingHead
-            
+
             setupThemeChangedNotificationHandling()
             updateTheme()
 
@@ -128,13 +132,13 @@ extension GitHubUserController {
             bio.backgroundColor = .clear
             bio.textColor = userPreferences.currentTheme.cellTextColor
             bio.isScrollEnabled = false
-            
+
             bioHeightConstraint = bio.heightAnchor.constraint(equalToConstant: 0)
 
             realName.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 10).isActive = true
             realName.topAnchor.constraint(equalTo: avatar.topAnchor, constant: 0).isActive = true
             realName.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -44).isActive = true
-            
+
             statusLabel.leftAnchor.constraint(equalTo: avatar.rightAnchor, constant: 10).isActive = true
             statusLabel.topAnchor.constraint(equalTo: avatar.topAnchor, constant: 45).isActive = true
             statusLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5).isActive = true

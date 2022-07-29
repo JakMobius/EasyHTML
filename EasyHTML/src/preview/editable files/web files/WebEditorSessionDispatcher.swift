@@ -9,14 +9,14 @@
 import Foundation
 
 class WebEditorSessionDispatcher: SourceCodeEditorSessionDispatcher, ConsoleDelegate {
-    
+
     internal var isWebpage = false
     internal var isScript = false
     internal var isBrowser = false
-    
+
     override var session: SourceCodeEditorSession? {
         didSet {
-            
+
             if let file = session?.file {
                 let ext = file.url.pathExtension
                 isWebpage = ext == "html" || ext == "htm"
@@ -29,31 +29,31 @@ class WebEditorSessionDispatcher: SourceCodeEditorSessionDispatcher, ConsoleDele
             }
         }
     }
-    
+
     func console(executed command: String) {
         browserViewController?.webView?.evaluateJavaScript("""
-            !function(){
-            try {
-            var r = eval(\"\(command)\")
-            EasyHTML._s([r],5)
-            } catch(e) {
-            EasyHTML._s([e],2)
-            }
-            }()
-            
-            """)
+                                                           !function(){
+                                                           try {
+                                                           var r = eval(\"\(command)\")
+                                                           EasyHTML._s([r],5)
+                                                           } catch(e) {
+                                                           EasyHTML._s([e],2)
+                                                           }
+                                                           }()
+
+                                                           """)
     }
-    
+
     func reloadConsole() {
         browserViewController?.reload()
     }
-    
+
     func unreadMessagesCount(count: Int) {
         let string = count == 0 ? nil : String(count)
-        
+
         for observer in observers {
             observer.tabBar.items?.last?.badgeValue = string
         }
     }
-    
+
 }

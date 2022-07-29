@@ -11,18 +11,18 @@ import UIKit
 class LabelCell: BasicCell {
 
     var rightLabel = UILabel()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        
+
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         rightLabel.translatesAutoresizingMaskIntoConstraints = false
         rightLabel.textAlignment = .right
-        
+
         label.setContentCompressionResistancePriority(.required, for: .horizontal)
-        
-        self.contentView.addSubview(rightLabel);
-        
+
+        contentView.addSubview(rightLabel);
+
         rightLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         rightLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
         rightLabel.leftAnchor.constraint(equalTo: label.rightAnchor, constant: 10).isActive = true
@@ -32,9 +32,9 @@ class LabelCell: BasicCell {
             label.accessibilityIdentifier = "Left"
             rightLabel.accessibilityIdentifier = "Right"
         }
-        
+
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
