@@ -84,8 +84,7 @@ class LanguagePreferencesMenu: PreferencesMenu {
 
         alert.animation = TCAnimation(animations: [.scale(0.8, 0.8), .opacity], duration: 0.5, delay: 0.0, usingSpringWithDamping: 0.6)
 
-        let window = UIApplication.shared.delegate!.window!!
-        window.addSubview(alert.view)
+        view.window!.addSubview(alert.view)
     }
 
     override func viewDidLoad() {
