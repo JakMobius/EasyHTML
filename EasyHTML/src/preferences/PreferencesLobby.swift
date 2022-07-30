@@ -36,6 +36,7 @@ class PreferencesLobby: UICollectionViewController, NotificationHandler {
         // Do any additional setup after loading the view.
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: localize("close"), style: .plain, target: self, action: #selector(closeButtonAction(_:)))
         collectionView.register(PreferencesLobbyCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.delaysContentTouches = false
 
         NotificationCenter.default.post(name: NSNotification.Name.TCPreferencesOpened, object: nil)
         updateTheme()
@@ -63,6 +64,11 @@ class PreferencesLobby: UICollectionViewController, NotificationHandler {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        openMenu(tag: indexPath.row)
+        collectionView.deselectItem(at: indexPath, animated: false)
+    }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         names.count
@@ -74,10 +80,6 @@ class PreferencesLobby: UICollectionViewController, NotificationHandler {
         cell.image.image = UIImage(named: images[indexPath.row])?.withRenderingMode(.alwaysTemplate)
         cell.image.contentMode = .scaleAspectFit
         cell.image.tintColor = UIColor.gray
-        cell.collectionView = self
-        cell.number = indexPath.row
-
-        // Configure the cell
 
         return cell
     }
@@ -127,7 +129,6 @@ class PreferencesLobby: UICollectionViewController, NotificationHandler {
     }
 
     func updateTheme() {
-
         collectionView.backgroundColor = userPreferences.currentTheme.background
     }
 
@@ -141,9 +142,6 @@ class PreferencesLobbyCollectionViewCell: UICollectionViewCell, NotificationHand
     var shadowView = UIView()
     var label = UILabel()
     var image = UIImageView()
-
-    internal weak var collectionView: PreferencesLobby? = nil;
-    internal var number = -1
 
     override init(frame: CGRect) {
 
@@ -163,16 +161,11 @@ class PreferencesLobbyCollectionViewCell: UICollectionViewCell, NotificationHand
         label.textAlignment = .center
 
         contentView.clipsToBounds = false
-        let tap = UILongPressGestureRecognizer(target: self, action: #selector(gesture(_:)))
-        tap.minimumPressDuration = 0.0
-        shadowView.addGestureRecognizer(tap)
 
         updateTheme()
     }
 
     func updateTheme() {
-
-
         shadowView.layer.backgroundColor = userPreferences.currentTheme.secondaryTextColor.withAlphaComponent(0.1).cgColor
 
         label.textColor = userPreferences.currentTheme.secondaryTextColor.withAlphaComponent(0.7)
@@ -181,16 +174,15 @@ class PreferencesLobbyCollectionViewCell: UICollectionViewCell, NotificationHand
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    @objc func gesture(_ sender: UITapGestureRecognizer) {
-        if (sender.state == .began) {
-            shadowView.alpha = 0.4
-        } else {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.shadowView.alpha = 1.0
-            })
-            if sender.state == .ended {
-                collectionView?.openMenu(tag: number)
+    
+    override var isHighlighted: Bool {
+        didSet {
+            if(isHighlighted) {
+                shadowView.alpha = 0.4
+            } else {
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.shadowView.alpha = 1.0
+                })
             }
         }
     }
