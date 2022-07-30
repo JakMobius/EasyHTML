@@ -14,16 +14,16 @@ class ExpanderButton: UIButton {
 
 class ExpanderButtonFactory: NSObject {
     var type: ExpanderButtonItem.ButtonType
-    
+
     var customImage: UIImage?
-    
+
     init(type: ExpanderButtonItem.ButtonType) {
         self.type = type
     }
-    
+
     func getButton(xPosition: CGFloat) -> ExpanderButton {
         let button = ExpanderButton()
-        
+
         button.imageView!.tintColor = userPreferences.currentTheme.buttonDarkColor
         button.imageView!.contentMode = .scaleAspectFit
         button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
@@ -31,10 +31,10 @@ class ExpanderButtonFactory: NSObject {
         button.isEnabled = type.isEnabledByDefault
         button.frame = CGRect(x: xPosition, y: 0, width: max(button.imageView!.image!.size.width + 8, 10), height: 40)
         button.type = type
-        
+
         return button
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
@@ -43,9 +43,9 @@ class ExpanderButtonFactory: NSObject {
 enum ExpanderButtonItem {
     case button(_ button: ExpanderButtonFactory)
     case delimiter
-    
+
     enum ButtonType: Int {
-        
+
         case undo = 0
         case redo = 1
         case save = 2
@@ -72,7 +72,7 @@ enum ExpanderButtonItem {
         case goToDocumentStart = 23
         case goToDocumentEnd = 24
         case commentLine = 25
-        
+
         static let allButtons: [ExpanderButtonItem.ButtonType] = [
             .undo,
             .redo,
@@ -101,7 +101,7 @@ enum ExpanderButtonItem {
             .goToDocumentStart,
             .commentLine
         ]
-        
+
         static let typeImages: [UIImage] = {
             var imageNames = [
                 "undo",
@@ -131,14 +131,14 @@ enum ExpanderButtonItem {
                 "goToDocumentEnd",
                 "commentLine"
             ]
-            
-            return imageNames.map({ return UIImage(named: $0)?.withRenderingMode(.alwaysTemplate) ?? UIImage()})
+
+            return imageNames.map({ UIImage(named: $0)?.withRenderingMode(.alwaysTemplate) ?? UIImage() })
         }()
-        
+
         var image: UIImage? {
-            return ExpanderButtonItem.ButtonType.typeImages[rawValue]
+            ExpanderButtonItem.ButtonType.typeImages[rawValue]
         }
-        
+
         var isEnabledByDefault: Bool {
             switch self {
             case .save: return false

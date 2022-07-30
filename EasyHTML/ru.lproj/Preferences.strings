@@ -62,9 +62,9 @@
 
 "autoCloseBrackets"="Автоматически закрывать скобки и кавычки";
 "lineNumbers"="Номера строк";
-"matchTags"="Выделять родственные XML-Тэги";
+"matchTags"="Выделять родственные XML-Тeги";
 "matchBrackets"="Выделять родственные скобки";
-"autoCloseTags"="Автоматически закрывать XML-тэги";
+"autoCloseTags"="Автоматически закрывать XML-теги";
 "foldGutter"="Включить свертывание кода";
 "colorpicker"="Цветовые метки";
 "lineWrapping"="Перенос слов";

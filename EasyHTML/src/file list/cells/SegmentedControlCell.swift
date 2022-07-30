@@ -9,25 +9,25 @@
 import UIKit
 
 class SegmentedControlCell: BasicCell {
-    
+
     var segmentedControl = UISegmentedControl()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        
+
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        
+
         segmentedControl.setContentCompressionResistancePriority(.required, for: .horizontal)
-        
-        self.contentView.addSubview(segmentedControl);
-        
-        segmentedControl.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 5).isActive = true;
-        segmentedControl.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true;
-        segmentedControl.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10).isActive = true;
-        segmentedControl.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -5).isActive = true;
+
+        contentView.addSubview(segmentedControl);
+
+        segmentedControl.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5).isActive = true;
+        segmentedControl.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true;
+        segmentedControl.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true;
+        segmentedControl.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5).isActive = true;
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

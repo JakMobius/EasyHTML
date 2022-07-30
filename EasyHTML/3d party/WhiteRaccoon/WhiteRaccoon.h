@@ -153,7 +153,7 @@ typedef enum {
 
 @property (nonatomic, strong) NSURL * receivedFile;
 @property (nonatomic, strong) NSOutputStream * outputStream;
-@property (nonatomic, copy) void (^progress)(long bytesReaden);
+@property (nonatomic, copy) void (^progress)(long bytesRead);
 
 @end
 
@@ -172,7 +172,7 @@ typedef enum {
     
 }
 
-@property (nonatomic, strong) WRRequestListDirectory * listrequest;
+@property (nonatomic, strong) WRRequestListDirectory * listRequest;
 @property (nonatomic, strong) NSInputStream * dataStream;
 
 @end
@@ -264,11 +264,9 @@ typedef NS_ENUM(int32_t) {
     
 }
 
-@property (weak, nonatomic, readonly) NSError * nserror;
+@property (weak, nonatomic, readonly) NSError * nsError;
 @property (nonatomic, assign) WRErrorCodes errorCode;
 @property (weak, nonatomic, readonly) NSString * message;
 
 -(WRErrorCodes) errorCodeWithError:(NSError *) error;
 @end
-
-NSString * escapeJavaScript(NSString * source);

@@ -22,22 +22,22 @@ extension FilesRelocationManager {
         replicationViewsContainer.translatesAutoresizingMaskIntoConstraints = false
         replicationViewsContainer.clipsToBounds = false
         replicationViewsContainer.delegate = self
-        
+
         parent.view.addSubview(replicationViewsContainer)
-        
+
         let bottomAnchor: NSLayoutYAxisAnchor
-        
+
         if #available(iOS 11.0, *) {
             bottomAnchor = parent.view.safeAreaLayoutGuide.bottomAnchor
         } else {
             bottomAnchor = parent.view.bottomAnchor
         }
-        
+
         replicationViewsContainer.leftAnchor.constraint(equalTo: parent.view.leftAnchor).isActive = true
         replicationViewsContainer.rightAnchor.constraint(equalTo: parent.view.rightAnchor).isActive = true
         replicationViewsContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40).isActive = true
         replicationViewsContainer.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        
+
         parent.view.layoutSubviews()
     }
 }

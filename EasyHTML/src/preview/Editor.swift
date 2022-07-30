@@ -10,42 +10,41 @@ import UIKit
 
 internal typealias FileEditorController = UIViewController & FileEditor
 
-internal class Editor : NSObject, EditorTabViewDelegate
-{
+internal class Editor: NSObject, EditorTabViewDelegate {
     static var openedEditors: [Editor] = []
-    
+
     static func getEditor(configuration: EditorConfiguration!, file: FSNode.File, in switcherView: EditorSwitcherView) -> Editor {
-        
+
         for editor in Editor.openedEditors {
             if editor.file == file && editor.tabView.parentView == switcherView {
                 return editor
             }
         }
-        
+
         if let newTab = configuration?[.openInNewTab] as? Bool, newTab {
             return Editor()
         } else if let presentedTabView = switcherView.presentedView {
-            
+
             let hasPrimaryTab = switcherView.hasPrimaryTab
-            
+
             var vacantIndex: Int
-            
+
             if hasPrimaryTab && presentedTabView.index == 0 {
                 vacantIndex = switcherView.lastOpenedView?.index ?? 0
             } else {
                 vacantIndex = presentedTabView.index
             }
-            
+
             for editor in Editor.openedEditors {
-                
+
                 if hasPrimaryTab && editor.tabView.index == 0 {
                     continue
                 }
-                
+
                 if editor.tabView.parentView != switcherView {
                     continue
                 }
-                
+
                 if editor.tabView.index == vacantIndex {
                     return editor
                 }
@@ -53,136 +52,117 @@ internal class Editor : NSObject, EditorTabViewDelegate
         }
         return Editor()
     }
+
     static var imageExtensions = ["jpg", "jpeg", "bmp", "png", "gif", "ico", "heic"]
-    
+
     static func syntaxHighlightingSchemeFor(ext: String) -> SyntaxHighlightScheme? {
-        
+
         let ext = ext.lowercased()
-        
+
         for type in userPreferences.syntaxHighlightingConfiguration where type.ext == ext {
             return type
         }
-        
+
         return nil
     }
-    
+
     static var cacheNeededExtensions = ["doc", "dot", "docx", "dotx", "docm", "dotm", "xls", "xlt", "xla", "xlsx", "xltx", "xlsm", "xltm", "xlam", "xlsb", "ppt", "pot", "pps", "ppa", "pptx", "potx", "ppsx", "ppam", "pptm", "potm", "ppsm", "rtf", "key", "numbers", "pdf", "mp3", "mp4", "m4a"]
     static var notCacheNeededExtensions = ["html", "htm"]
-    
-    /**
-        Менеджер ввода / вывода для редактора
-     */
-    
+
     internal class IOManager {
-        
+
         internal typealias ReadResult = ((Data?, Error?) -> ())?
         internal typealias WriteResult = ((Error?) -> ())?
-        
+
         private final var requests = [CancellableRequest]()
-        
-        /**
-            Завершить все действующие запросы
-         */
-        
+
+        /// Cancel all ongoing requests
         final func stopActivity() {
             for request in requests {
                 request.cancel()
             }
-            
+
             requests = []
         }
-        
+
         @discardableResult final func requestCompleted(_ request: CancellableRequest!) -> Bool {
             if request == nil {
                 return false
             }
-            
-            //print("request completed")
-            
-            //Thread.callStackSymbols.forEach{print($0)}
-            
+
             if let index = requests.firstIndex(of: request) {
                 requests.remove(at: index)
                 return true
             }
-            
+
             return false
         }
-        
+
         final func requestStarted(_ request: CancellableRequest!) {
             if request == nil {
                 return
             }
             requests.append(request)
         }
-        
-        
+
+
         /**
-         Асинхронная отправка запроса загрузки файла на локальную или удаленную файловую систему.
+         Asynchronously send a file download request to a local or remote file system.
          
-         - parameter url: URL файла, который необходимо скачать
-         - parameter completion: Блок, вызывающийся по завершению операции.
-         - parameter progress: Вызывается периодически, аргумент хранит прогресс скачивания
+         - parameter url: URL of the file you want to download
+         - parameter completion: Completion callback
+         - parameter progress: Progress callback
          
-         - returns: Объект отменяемого запроса. Если в процессе загрузки пользователь закрыл окно редактора, чтение файла можно отменить
+         - returns: A `CancellableRequest` instance. If editor window is closed before
+            download is complete, it can be interrupted.
          */
-        
+
         @discardableResult internal func readFileAt(url: URL, completion: ReadResult, progress: ((Progress) -> ())? = nil) -> CancellableRequest! {
-            //print("reading file")
-            
-            var url = URL(fileURLWithPath: url.path)
-            
+
+            let url = URL(fileURLWithPath: url.path)
+
             var request: CancellableRequest!
             var workItem: DispatchWorkItem!
-            
+
             workItem = DispatchWorkItem(qos: .userInitiated) {
-                //print("workitem started")
                 func completeRequest(data: Data?, error: Error?) {
                     DispatchQueue.main.async {
                         if self.requestCompleted(request) {
                             completion?(data, error)
-                            //if(completion == nil) {
-                            //    print("completion is nil, wtf?")
-                            //}
-                        } else {
-                            //print("request completed twice")
                         }
                     }
                 }
-                
+
                 do {
-                    
                     let data = try Data(contentsOf: url, options: [])
-                    //print("fetched data")
                     completeRequest(data: data, error: nil)
                 } catch {
                     completeRequest(data: nil, error: error)
                 }
             }
-            
+
             request = CancellableRequest {
                 [weak workItem] request in
-                //print("CANCELLING REQUEST!!")
                 self.requestCompleted(request)
                 workItem?.cancel()
             }
-            
+
             DispatchQueue(label: "easyhtml.iomanager.readingtask").async(execute: workItem)
-            
+
             requestStarted(request)
-            
+
             return request
         }
-        
+
         /**
-         Асинхронная отправка запроса сохранения файла на локальную или удаленную файловую систему. Операция неотменяемая
+         Asynchronously sends a file saving request to a local or remote file system. The operation is irrevocable
          
-         - parameter url: URL файла, который необходимо сохранить
-         - parameter completion: Блок, вызывающийся по завершению операции.
+         - parameter url: URL of the file to be saved
+         - parameter completion: Completion callback
          */
-        
+
         internal func saveFileAt(url: URL, data: Data, completion: WriteResult = nil) {
-            
+
             DispatchQueue(label: "easyhtml.iomanager.writingtask").async {
                 do {
                     try data.write(to: url)
@@ -197,39 +177,39 @@ internal class Editor : NSObject, EditorTabViewDelegate
             }
         }
     }
-    
+
     internal enum ConfigKey: String {
         case
-        ioManager = "ioManager",
-        isReadonly = "isReadonly",
-        textEncoding = "textEncoding",
-        editor = "editor",
-        openInNewTab = "newtab"
+                ioManager = "ioManager",
+                isReadonly = "isReadonly",
+                textEncoding = "textEncoding",
+                editor = "editor",
+                openInNewTab = "newtab"
     }
-    
+
     var tabView: EditorTabView! = nil
-    
+
     internal func present(animated: Bool = true, in editorSwitcherView: EditorSwitcherView) {
         guard tabView == nil else {
             return
         }
-        
+
         Editor.openedEditors.append(self)
-        
+
         let nc = PreviewNavigationController()
-        
+
         let editorTabView = EditorTabView(frame: editorSwitcherView.frame, navigationController: nc)
         tabView = editorTabView
         tabView.delegate = self
 
         UIView.setAnimationsEnabled(false)
-        self.tabView.navController.editorViewController = self.controller!
-        self.tabView.navController.presentView()
-        
-        if(animated) {
+        tabView.navController.editorViewController = controller!
+        tabView.navController.presentView()
+
+        if (animated) {
             UIView.setAnimationsEnabled(true)
         }
-        
+
         if editorSwitcherView.hasPrimaryTab && editorSwitcherView.containerViews.count == 1 {
             editorSwitcherView.addContainerViewsSilently([editorTabView])
             editorSwitcherView.animateBottomViewIn()
@@ -239,110 +219,107 @@ internal class Editor : NSObject, EditorTabViewDelegate
                 editorTabView.layoutSubviews()
             }
         }
-        
-        if(!animated) {
+
+        if (!animated) {
             UIView.setAnimationsEnabled(true)
         }
     }
-    
+
     final func didBlur() {
-        if let controller = self.controller, controller.canHandleMessage(message: .blur) {
+        if let controller = controller, controller.canHandleMessage(message: .blur) {
             controller.handleMessage(message: .blur, userInfo: nil)
         }
     }
-    
+
     static var focusedByShortcutKey = "focused_by_shortcut"
-    
+
     final func didFocus(byShortcut: Bool = false) {
-        if let controller = self.controller, controller.canHandleMessage(message: .focus) {
+        if let controller = controller, controller.canHandleMessage(message: .focus) {
             let userInfo = [
                 Editor.focusedByShortcutKey: byShortcut
             ]
             controller.handleMessage(message: .focus, userInfo: userInfo)
         }
     }
-    
-    /**
-        Закрывает редактор. Удаляет его из списка открытых редакторов. Отправляет редактору сообщение о закрытии.
-     */
-    
+
+    /// Closes the editor. Deletes it from the list of open editors. Sends a closing message to the editor.
     func closeEditor() {
         if controller?.canHandleMessage(message: .close) == true {
             controller!.handleMessage(message: .close, userInfo: nil)
         }
-        
+
         if let index = Editor.openedEditors.firstIndex(where: { $0 == self }) {
             Editor.openedEditors.remove(at: index)
         }
-        
+
         tabView = nil
         file = nil
         controller = nil
     }
-    
+
     final func tabWillClose(editorTabView: EditorTabView) {
         save()
         closeEditor()
     }
-    
+
     final func focusIf(fileIs file: FSNode, controllerIs editor: FileEditorController.Type, animated: Bool = true) -> Bool {
-        
-        if  controller != nil &&
-            file == self.file &&
-            editor.identifier == type(of: controller!).identifier {
-            self.focus(animated: animated)
+
+        if controller != nil &&
+                   file == self.file &&
+                   editor.identifier == type(of: controller!).identifier {
+            focus(animated: animated)
             return false
         }
-        
+
         return true
     }
-    
+
     final func focus(animated: Bool, in switcherView: EditorSwitcherView! = nil) {
-        
+
         if tabView == nil {
             present(animated: animated, in: switcherView!)
             return
         }
-        
-        var switcherView = tabView.parentView!
-        
+
+        let switcherView = tabView.parentView!
+
         let presentedView = switcherView.presentedView
-        
+
         let mustAnimateToAnotherEditor = presentedView != tabView
         let canUseBottomViewAnimation =
-            switcherView.hasPrimaryTab &&
-            switcherView.containerViews.count == 2 &&
-            switcherView.presentedView.index == 0
-        
+                switcherView.hasPrimaryTab &&
+                        switcherView.containerViews.count == 2 &&
+                        switcherView.presentedView.index == 0
+
         if canUseBottomViewAnimation {
             switcherView.animateBottomViewIn()
         } else if mustAnimateToAnotherEditor {
-            
+
             func presentSelf() {
-                
+
                 let scrollView = tabView!.parentView.scrollView!
                 let rect = tabView!.convert(tabView!.bounds, to: scrollView)
-                
+
                 if tabView.parentView.isCompact {
                     tabView.parentView.locked = true
-                    
+
                     scrollView.scrollRectToCenter(rect, animated: animated, completion: {
                         self.tabView.parentView.locked = false
                         self.tabView.parentView.animateIn(animated: animated, view: self.tabView)
                     })
                 } else {
-                    
+
                     if rect.maxY >= scrollView.bounds.height + scrollView.contentOffset.y ||
-                        rect.minY <= scrollView.contentOffset.y {
+                               rect.minY <= scrollView.contentOffset.y {
                         tabView.parentView.locked = true
-                        
+
                         scrollView.scrollRectToVisible(rect, animated: animated)
-                        
+
                         func complete() {
-                            self.tabView.parentView.locked = false
-                            self.tabView.parentView.animateIn(animated: animated, view: self.tabView)
+                            tabView.parentView.locked = false
+                            tabView.parentView.animateIn(animated: animated, view: tabView)
                         }
-                        
+
                         if animated {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
                                 complete()
@@ -351,12 +328,12 @@ internal class Editor : NSObject, EditorTabViewDelegate
                             complete()
                         }
                     } else {
-                        self.tabView.parentView.animateIn(animated: animated, view: self.tabView)
-                        AppDelegate.updateSceneTitle(for: self.tabView.parentView.window!)
+                        tabView.parentView.animateIn(animated: animated, view: tabView)
+                        AppDelegate.updateSceneTitle(for: tabView.parentView.window!)
                     }
                 }
             }
-            
+
             if tabView.parentView.isFullScreen {
                 tabView!.parentView.animateOut(animated: animated, force: false, completion: presentSelf)
             } else {
@@ -368,149 +345,151 @@ internal class Editor : NSObject, EditorTabViewDelegate
             }
         }
     }
-    
+
     /**
-     Открывает файл в редакторе
+     Opens file in this editor
      
-     - parameter file: Файл, который необходимо открыть
-     - parameter using: Контроллер редактора
-     - parameter config: Конфигурация редактора
-     - parameter animated: Флаг, обозначающий стоит ли анимировать открытие файла
+     - parameter file: File to open
+     - parameter using: Editor controller
+     - parameter config: Editor configuration
+     - parameter animated: Flag indicating whether to animate the opening of a file
      */
-    
+
     internal func openFile(file: FSNode.File!, using editor: FileEditorController, with config: EditorConfiguration? = nil, animated: Bool = true, in switcherView: EditorSwitcherView! = nil) {
-        
+
         if tabView?.parentView?.locked == true {
             return
         }
-            
+
         var config = config
-        
-        // Сохраняем файл, который уже открыт в этой вкладке
-        
+
+        // Save file that was already opened in this tab
+
         save()
         if controller?.canHandleMessage(message: .close) == true {
             controller!.handleMessage(message: .close, userInfo: nil)
         }
-        
-        // Как говорится, It's now safe to turn off your editor.
-        // Удаляем старый контроллер и заменяем новым.
-        
+
+        // Delete old controller and create a new one
+
         controller = editor
-        
+
         self.file = file
-        
+
         if config == nil {
             config = [:]
         }
-        
+
         config![.editor] = self
-        
+
         editor.applyConfiguration(config: config!)
-        
+
         focus(animated: animated, in: switcherView)
-        
-        guard tabView != nil else { return }
-        
+
+        guard tabView != nil else {
+            return
+        }
+
         tabView.navController.editorViewController = controller!
         tabView.navController.presentView()
-        
+
         tabView.isRemovable = true
-        
+
         let window = switcherView.window
-        
+
         AppDelegate.updateSceneTitle(for: window!)
-        
+
         userPreferences.statistics.filesOpened += 1
     }
-    
-    /**
-        Текущий редактируемый файл
-     */
-    
+
+    /// File that is being edited
     internal var file: FSNode.File?
-    
-    /**
-        Текущий контроллер редактора
-     */
-    
+
+    /// Current editor controller
     internal var controller: FileEditorController?
-    
-    /**
-        Закрывает редактор, не сохраняя файл.
-     */
-    
+
+    /// Closes the editor without saving the file
     internal func closeTab() {
         guard let tabView = tabView, let switcher = tabView.parentView else {
             return
         }
-        
+
         self.tabView = nil
-        
+
         closeEditor()
-        
+
         if switcher.presentedView == tabView {
             switcher.animateOut(animated: true, force: false) {
                 tabView.closeTab()
             }
         } else {
-            
+
             var shouldAnimateRemoval = false
-            
+
             if switcher.hasPrimaryTab && switcher.presentedView.index == 0 {
-                if tabView.index >= 1 && tabView.index <= 4  {
+                if tabView.index >= 1 && tabView.index <= 4 {
                     shouldAnimateRemoval = true
                 }
             }
-            
+
             tabView.closeTab(animated: shouldAnimateRemoval, completion: nil)
-            
+
             tabView.parentView.layoutSubviews()
         }
     }
-    
+
     func save() {
         if controller?.canHandleMessage(message: .save) == true {
             controller!.handleMessage(message: .save, userInfo: nil)
         }
     }
-    
+
     internal static func fileDeleted(file: FSNode) {
-        
+
         for editor in Editor.openedEditors {
-            guard let editorfile = editor.file else { continue }
-            
+            guard let editorfile = editor.file else {
+                continue
+            }
+
             if file is FSNode.File ? editorfile == file : editorfile.url.path.hasPrefix(file.url.path) {
                 editor.closeTab()
             }
         }
     }
-    
+
     internal static func fileMoved(file: FSNode, to destinationURL: URL) {
-        
+
         let destinationPathComponents = destinationURL.pathComponents
-        
+
         for editor in Editor.openedEditors {
-        
-            guard let controller = editor.controller else { continue }
-            guard controller.canHandleMessage(message: .fileMoved) else { continue }
-            guard let editorfile = editor.file else { continue }
-            guard editorfile.sourceType == file.sourceType else { continue }
-            
+
+            guard let controller = editor.controller else {
+                continue
+            }
+            guard controller.canHandleMessage(message: .fileMoved) else {
+                continue
+            }
+            guard let editorfile = editor.file else {
+                continue
+            }
+            guard editorfile.sourceType == file.sourceType else {
+                continue
+            }
+
             if file is FSNode.Folder {
                 if editorfile.url.path.hasPrefix(file.url.path) {
                     var filePathComponents = editorfile.url.pathComponents
                     let oldComponents = file.url.pathComponents
-                    
-                    filePathComponents.removeSubrange(0 ..< oldComponents.count)
+
+                    filePathComponents.removeSubrange(0..<oldComponents.count)
                     filePathComponents.insert(contentsOf: destinationPathComponents, at: 0)
-                    
-                    if(filePathComponents.first == "/") {
+
+                    if (filePathComponents.first == "/") {
                         filePathComponents.removeFirst()
                     }
-                    
+
                     let newFileURL = URL(fileURLWithPath: filePathComponents.joined(separator: "/"))
-                    
+
                     controller.handleMessage(message: .fileMoved, userInfo: newFileURL)
                     controller.editor.tabView.navController.updateTitle()
                 }
@@ -520,11 +499,13 @@ internal class Editor : NSObject, EditorTabViewDelegate
             }
         }
     }
-    
+
     internal static func sendMessageToAllEditors(message: EditorMessage, userInfo: Any?) {
         for editor in Editor.openedEditors {
-            guard editor.controller?.canHandleMessage(message: message) == true else { continue }
-            
+            guard editor.controller?.canHandleMessage(message: message) == true else {
+                continue
+            }
+
             editor.controller!.handleMessage(message: message, userInfo: userInfo)
         }
     }

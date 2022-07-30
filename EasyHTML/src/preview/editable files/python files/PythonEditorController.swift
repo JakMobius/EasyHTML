@@ -121,9 +121,6 @@
 //    override func enableLowEnergyMode() {
 //        guard lastSelectedController == nil else { return }
 //        
-//        // Это нужно для того, чтобы WKWebView
-//        // перешел в режим энергосбережения.
-//        
 //        view.isHidden = true
 //        
 //        viewControllers?.append(emptyViewController)

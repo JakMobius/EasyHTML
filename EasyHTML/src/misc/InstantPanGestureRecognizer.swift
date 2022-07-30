@@ -9,9 +9,11 @@
 import UIKit
 
 class InstantTapGestureRecognizer: UITapGestureRecognizer {
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
-        if self.state == .began { return }
+        if state == .began {
+            return
+        }
         super.touchesBegan(touches, with: event)
         self.state = .began
     }

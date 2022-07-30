@@ -9,31 +9,31 @@
 import Foundation
 
 class JSONParser {
-    typealias Object = [String : Any]
+    typealias Object = [String: Any]
     var object: Object!
-    
+
     func valueByKey<T>(key: [String], value: T.Type, object: Object? = nil) -> T? {
         var value: Any? = object ?? self.object
-        
-        if(value == nil) {
+
+        if (value == nil) {
             return nil
         }
-        
+
         for item in key {
             value = (value as? Object)?[item]
-            
-            if(value == nil) {
+
+            if (value == nil) {
                 return nil
             }
         }
-        
+
         return value as? T
     }
-    
+
     func jumpTo(field: String) {
-        self.object = self.object[field] as? Object
+        object = object[field] as? Object
     }
-    
+
     init(object: Object!) {
         self.object = object
     }

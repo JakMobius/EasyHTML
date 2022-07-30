@@ -1,5 +1,5 @@
 //
-//  ImageInvertor.swift
+//  Extensions.swift
 //  EasyHTML
 //
 //  Created by Артем on 11.10.2017.
@@ -13,19 +13,19 @@ import AudioToolbox
 extension UIImage {
     func maskWithColor(color: UIColor) -> UIImage? {
         let maskImage = cgImage!
-        
+
         let width = size.width * scale
         let height = size.height * scale
         let bounds = CGRect(x: 0, y: 0, width: width, height: height)
-        
+
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
         let context = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
-        
+
         context.clip(to: bounds, mask: maskImage)
         context.setFillColor(color.cgColor)
         context.fill(bounds)
-        
+
         if let cgImage = context.makeImage() {
             let coloredImage = UIImage(cgImage: cgImage)
             return coloredImage
@@ -33,20 +33,28 @@ extension UIImage {
             return nil
         }
     }
-    
+
     func invertedImage() -> UIImage? {
-        guard let cgImage = self.cgImage else { return nil }
+        guard let cgImage = cgImage else {
+            return nil
+        }
         let ciImage = CoreImage.CIImage(cgImage: cgImage)
-        guard let filter = CIFilter(name: "CIColorInvert") else { return nil }
+        guard let filter = CIFilter(name: "CIColorInvert") else {
+            return nil
+        }
         filter.setDefaults()
         filter.setValue(ciImage, forKey: kCIInputImageKey)
         let context = CIContext(options: nil)
-        guard let outputImage = filter.outputImage else { return nil }
-        guard let outputImageCopy = context.createCGImage(outputImage, from: outputImage.extent) else { return nil }
+        guard let outputImage = filter.outputImage else {
+            return nil
+        }
+        guard let outputImageCopy = context.createCGImage(outputImage, from: outputImage.extent) else {
+            return nil
+        }
         return UIImage(cgImage: outputImageCopy)
     }
-    
-    static func getImageFilledWithColor(color: UIColor, width: CGFloat = 1, height: CGFloat = 1) -> UIImage{
+
+    static func getImageFilledWithColor(color: UIColor, width: CGFloat = 1, height: CGFloat = 1) -> UIImage {
         UIGraphicsBeginImageContext(CGSize(width: width, height: height))
         UIGraphicsGetCurrentContext()!.setFillColor(color.cgColor)
         UIGraphicsGetCurrentContext()!.fill(CGRect(x: 0, y: 0, width: width, height: height))
@@ -54,23 +62,23 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return colorImage!
     }
-    
+
     func resized(to size: CGSize, opaque: Bool = false) -> UIImage {
-        
-        let widthRatio  = size.width  / self.size.width
+
+        let widthRatio = size.width / self.size.width
         let heightRatio = size.height / self.size.height
-        
+
         var width: CGFloat
         var height: CGFloat
-        
-        if(widthRatio > heightRatio) {
+
+        if (widthRatio > heightRatio) {
             width = self.size.width * heightRatio
             height = self.size.height * heightRatio
         } else {
             width = self.size.width * widthRatio
             height = self.size.height * widthRatio
         }
-        
+
         if #available(iOS 10.0, *) {
             let renderFormat = UIGraphicsImageRendererFormat.default()
             renderFormat.opaque = opaque
@@ -90,15 +98,16 @@ extension UIImage {
 }
 
 extension UITextField {
-    func setLeftPaddingPoints(_ amount:CGFloat){
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-        self.leftView = paddingView
-        self.leftViewMode = .always
+    func setLeftPaddingPoints(_ amount: CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: frame.size.height))
+        leftView = paddingView
+        leftViewMode = .always
     }
-    func setRightPaddingPoints(_ amount:CGFloat) {
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-        self.rightView = paddingView
-        self.rightViewMode = .always
+
+    func setRightPaddingPoints(_ amount: CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: frame.size.height))
+        rightView = paddingView
+        rightViewMode = .always
     }
 }
 
@@ -160,21 +169,23 @@ extension BootUtils {
             var systemInfo = utsname()
             uname(&systemInfo)
             let machineMirror = Mirror(reflecting: systemInfo.machine)
-            
+
             let identifier = machineMirror.children.reduce("") { identifier, element in
-                guard let value = element.value as? Int8, value != 0 else { return identifier }
+                guard let value = element.value as? Int8, value != 0 else {
+                    return identifier
+                }
                 return identifier + String(UnicodeScalar(UInt8(value)))
             }
             return identifier
         }()
-        
+
         if _modelType.hasPrefix("iPhone") {
-            
+
             let modelWithoutPrefix = String(_modelType.suffix(_modelType.count - 6))
-            
+
             if let iPhoneVersion = Version(parsing: modelWithoutPrefix.replacingOccurrences(of: ",", with: ".")) {
-                
-                /*var eyebrowedDevices = [
+
+                /*var devicesWithEyebrow = [
                  iPhone10,1 : iPhone 8
                  iPhone10,2 : iPhone 8 Plus
                  -> iPhone10,3 : iPhone X Global
@@ -186,9 +197,9 @@ extension BootUtils {
                  -> iPhone11,6 : iPhone XS Max Global
                  -> iPhone11,8 : iPhone XR
                  ]*/
-                
+
                 _isIPhone6S = modelWithoutPrefix == "8,1" || modelWithoutPrefix == "8,2"
-                
+
                 if iPhoneVersion.majorVersion == 10 {
                     _hasAnEyebrow = iPhoneVersion.minorVersion == 3 || iPhoneVersion.minorVersion == 6
                 } else {
@@ -213,9 +224,11 @@ fileprivate var _hasAnEyebrow: Bool = false
 
 fileprivate var _isHapticFeedbackSupported: Bool {
     if #available(iOS 10.0, *) {
-        if(_isIPhone6S) { return true }
+        if (_isIPhone6S) {
+            return true
+        }
         let model = _modelType
-        if(model.hasPrefix("iPhone")) {
+        if (model.hasPrefix("iPhone")) {
             if let commaIndex = model.firstIndex(of: ",") {
                 let model = model.prefix(upTo: commaIndex)
                 if let modelNumber = Int(model.suffix(model.count - 6)) {
@@ -240,28 +253,28 @@ fileprivate var _isHapticFeedbackSupported: Bool {
             }
             return false
         }*/
-        
+
         return false
     }
-    
+
     return false
 }
 
 extension UIDevice {
-    
-    
+
+
     var hasAnEyebrow: Bool {
-        return _hasAnEyebrow
+        _hasAnEyebrow
     }
-    
+
     var isIPhone6S: Bool {
-        return _isIPhone6S
+        _isIPhone6S
     }
-    
+
     var modelType: String {
-        return _modelType
+        _modelType
     }
-    
+
 //    1000    new-mail.caf              MailReceived
 //    1001    mail-sent.caf             MailSent
 //    1002    Voicemail.caf             VoicemailReceived
@@ -390,47 +403,49 @@ extension UIDevice {
 //    1519    -                             Actuate `Peek` feedback (weak boom)
 //    1520    -                             Actuate `Pop` feedback (strong boom)
 //    1521    -                             Actuate `Nope` feedback (series of three weak boom)
-    
+
     func produceSimpleHapticFeedback(level: UInt32 = 1519) -> Bool {
-        
-        if(userPreferences.hapticFeedbackEnabled) {
-            if(isIPhone6S) {
+
+        if (userPreferences.hapticFeedbackEnabled) {
+            if (isIPhone6S) {
                 AudioServicesPlaySystemSound(level)
-                
+
                 return false
             }
             return true
         }
         return false
     }
-    
+
     var isHapticFeedbackSupported: Bool {
-        return _isHapticFeedbackSupported
-            
+        _isHapticFeedbackSupported
+
     }
-    
+
     var systemSize: Int64? {
         guard let systemAttributes = try? FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory() as String),
-            let totalSize = (systemAttributes[.systemSize] as? NSNumber)?.int64Value else {
-                return nil
+              let totalSize = (systemAttributes[.systemSize] as? NSNumber)?.int64Value
+        else {
+            return nil
         }
-        
+
         return totalSize
     }
-    
+
     var systemFreeSize: Int64? {
         guard let systemAttributes = try? FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory() as String),
-            let freeSize = (systemAttributes[.systemFreeSize] as? NSNumber)?.int64Value else {
-                return nil
+              let freeSize = (systemAttributes[.systemFreeSize] as? NSNumber)?.int64Value
+        else {
+            return nil
         }
-        
+
         return freeSize
     }
 }
 
 extension FileManager {
     func clearTempDirectory() {
-        
+
         func clearFolder(path: String) {
             do {
                 let contents = try contentsOfDirectory(atPath: path)
@@ -441,36 +456,34 @@ extension FileManager {
                 print(error)
             }
         }
-        
+
         clearFolder(path: NSTemporaryDirectory())
         clearFolder(path: applicationPath + "/inbox")
     }
 }
 
 extension UIScrollView {
-    
+
     func scrollRectToCenter(_ rect: CGRect, animated: Bool = true, completion: (() -> ())! = nil) {
-        
-        var x = rect.midX - self.bounds.width / 2
-        var y = rect.midY - self.bounds.height / 2
-        
-        // Простая проверка на переход через край.
-        // Отступы не учитываются, но если это где-нибудь
-        // когда-нибудь понадобится, TODO
-        
-        y = max(min(y, self.contentSize.height - self.bounds.height), 0)
-        x = max(min(x, self.contentSize.width - self.bounds.width), 0)
-        
+
+        var x = rect.midX - bounds.width / 2
+        var y = rect.midY - bounds.height / 2
+
+        // TODO: Indents are not taken into account here
+
+        y = max(min(y, contentSize.height - bounds.height), 0)
+        x = max(min(x, contentSize.width - bounds.width), 0)
+
         if contentOffset.x == x && contentOffset.y == y {
             completion?()
             return
         }
-        
+
         UIView.animate(withDuration: 0.35, animations: {
-            
+
             self.contentOffset = CGPoint(
-                x: x,
-                y: y
+                    x: x,
+                    y: y
             )
         }) { _ in
             completion?()
@@ -479,46 +492,46 @@ extension UIScrollView {
 }
 
 extension CAShapeLayer {
-    
+
     static func getRoundedRectPath(frame: CGRect, roundingCorners corners: UIRectCorner, withRadius radius: CGFloat) -> CGPath {
-        return UIBezierPath(roundedRect: frame,
-                            byRoundingCorners: corners,
-                            cornerRadii: CGSize(width: radius, height: radius)).cgPath
+        UIBezierPath(roundedRect: frame,
+                byRoundingCorners: corners,
+                cornerRadii: CGSize(width: radius, height: radius)).cgPath
     }
-    
+
     static func getRoundedRectShape(frame: CGRect, roundingCorners corners: UIRectCorner, withRadius radius: CGFloat) -> CAShapeLayer {
-        
+
         let maskLayer = CAShapeLayer()
-        
+
         maskLayer.path = getRoundedRectPath(
-            frame: frame,
-            roundingCorners: corners,
-            withRadius: radius
+                frame: frame,
+                roundingCorners: corners,
+                withRadius: radius
         )
-        
+
         return maskLayer
     }
-    
+
     static func getRoundedRectPath(size: CGSize, lt: CGFloat, rt: CGFloat, lb: CGFloat, rb: CGFloat) -> CGPath {
 
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: lt , y: 0))
-        path.addLine(to: CGPoint(x: size.width - rt , y: 0))
-        path.addQuadCurve(to: CGPoint(x: size.width , y: rt), controlPoint: CGPoint(x: size.width, y: 0))
-        path.addLine(to: CGPoint(x: size.width , y: size.height - rb))
-        path.addQuadCurve(to: CGPoint(x: size.width - rb , y: size.height), controlPoint: CGPoint(x: size.width, y: size.height))
-        path.addLine(to: CGPoint(x: lb , y: size.height))
-        path.addQuadCurve(to: CGPoint(x: 0 , y: size.height - lb), controlPoint: CGPoint(x: 0, y: size.height))
-        path.addLine(to: CGPoint(x: 0 , y: lt))
-        path.addQuadCurve(to: CGPoint(x: 0 + lt , y: 0), controlPoint: CGPoint(x: 0, y: 0))
+        path.move(to: CGPoint(x: lt, y: 0))
+        path.addLine(to: CGPoint(x: size.width - rt, y: 0))
+        path.addQuadCurve(to: CGPoint(x: size.width, y: rt), controlPoint: CGPoint(x: size.width, y: 0))
+        path.addLine(to: CGPoint(x: size.width, y: size.height - rb))
+        path.addQuadCurve(to: CGPoint(x: size.width - rb, y: size.height), controlPoint: CGPoint(x: size.width, y: size.height))
+        path.addLine(to: CGPoint(x: lb, y: size.height))
+        path.addQuadCurve(to: CGPoint(x: 0, y: size.height - lb), controlPoint: CGPoint(x: 0, y: size.height))
+        path.addLine(to: CGPoint(x: 0, y: lt))
+        path.addQuadCurve(to: CGPoint(x: 0 + lt, y: 0), controlPoint: CGPoint(x: 0, y: 0))
         path.close()
-        
+
         return path.cgPath
     }
 }
 
 extension UIAlertController {
-    
+
     /// Creates a `UIAlertController` with a custom `UIView` instead the message text.
     /// - Note: In case anything goes wrong during replacing the message string with the custom view, a fallback message will
     /// be used as normal message string.
@@ -529,17 +542,17 @@ extension UIAlertController {
     ///   - fallbackMessage: An optional fallback message string, which will be displayed in case something went wrong with inserting the custom view.
     ///   - preferredStyle: The preferred style of the `UIAlertController`.
     convenience init(title: String?, customView: UIView, fallbackMessage: String?, preferredStyle: UIAlertController.Style) {
-        
+
         let marker = "__CUSTOM_CONTENT_MARKER__"
         self.init(title: title, message: marker, preferredStyle: preferredStyle)
-        
+
         // Try to find the message label in the alert controller's view hierarchie
-        if let customContentPlaceholder = self.view.findLabel(withText: marker),
-            let customContainer =  customContentPlaceholder.superview {
-            
+        if let customContentPlaceholder = view.findLabel(withText: marker),
+           let customContainer = customContentPlaceholder.superview {
+
             // The message label was found. Add the custom view over it and fix the autolayout...
             customContainer.addSubview(customView)
-            
+
             customView.translatesAutoresizingMaskIntoConstraints = false
             customContainer.heightAnchor.constraint(equalTo: customView.heightAnchor).isActive = true
             customContainer.topAnchor.constraint(equalTo: customView.topAnchor).isActive = true
@@ -547,13 +560,13 @@ extension UIAlertController {
             customContainer.rightAnchor.constraint(equalTo: customView.rightAnchor).isActive = true
             customContentPlaceholder.text = ""
         } else { // In case something fishy is going on, fall back to the standard behaviour and display a fallback message string
-            self.message = fallbackMessage
+            message = fallbackMessage
         }
     }
 }
 
 private extension UIView {
-    
+
     /// Searches a `UILabel` with the given text in the view's subviews hierarchy.
     ///
     /// - Parameter text: The label text to search
@@ -562,13 +575,13 @@ private extension UIView {
         if let label = self as? UILabel, label.text == text {
             return label
         }
-        
-        for subview in self.subviews {
+
+        for subview in subviews {
             if let found = subview.findLabel(withText: text) {
                 return found
             }
         }
-        
+
         return nil
     }
 }

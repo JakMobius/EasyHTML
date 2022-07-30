@@ -1,5 +1,5 @@
 //
-//  FileReceiveability.swift
+//  FileRelocationManager.swift
 //  EasyHTML
 //
 //  Created by Артем on 15/12/2018.
@@ -8,7 +8,7 @@
 
 
 extension FilesRelocationManager {
-    enum FileReceiveability {
+    enum FileReceiveAbility {
         case yes, no(reason: RelocationForbiddenReason)
     }
 }

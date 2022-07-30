@@ -1,4 +1,3 @@
-
 internal struct MimeTypes {
     static let DEFAULT_MIME_TYPE = "application/octet-stream"
     static let mimeTypes = [

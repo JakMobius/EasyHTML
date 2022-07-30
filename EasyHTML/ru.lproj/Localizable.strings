@@ -68,7 +68,7 @@
 
 "preferences"="Настройки";
 
-/* Тексты колорпикера */
+/* Color picker texts */
 
 "rotationangle"="УГОЛ ПОВОРОТА";
 "linear"="Линейный";
@@ -84,7 +84,7 @@
 "resetquestion"="Вы действительно хотите сбросить недавние цвета?";
 "cannotbeundone"="Это действие нельзя отменить";
 
-/* Всякое из MasterViewController */
+/* Texts from MasterViewController */
 
 "fileisverybig"="Файл очень большой!";
 "fileisverybigmessage"="Файл, который вы собираетесь открыть, имеет размер, превышающий рекомендуемый (> 500 КБ). Открытие этого файла может привести к сбою или к медленной работе программы. Вы уверены, что хотите открыть этот файл?";
@@ -101,8 +101,6 @@
 
 "clonefile"="Дублировать";
 "copyoffile"="Копия #";
-"browser"="Браузер";
-"console"="Консоль";
 
 "sharedfoldername"="Сохраненные";
 
@@ -187,7 +185,6 @@
 "failedtocopyfile"="Не удалось скопировать \"#\"";
 "failedtodeletefile"="Не удалось удалить \"#\"";
 
-"ftponlysupportascii"="Протокол FTP поддерживает только ASCII-совместимые названия файлов";
 "cannotunzipremotefile"="EasyHTML не позволяет разархивровать удаленные файлы";
 "couldnotreadfile"="Не удалось прочитать файл";
 

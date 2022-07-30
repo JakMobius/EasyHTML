@@ -40,7 +40,7 @@ static void *BABFrameObservingContext = &BABFrameObservingContext;
 
 #pragma mark - Setters & Getters
 
-- (CGRect)inputAcesssorySuperviewFrame {
+- (CGRect)inputAccessorySuperviewFrame {
     
     return self.superview.frame;
 }
@@ -69,10 +69,10 @@ static void *BABFrameObservingContext = &BABFrameObservingContext;
     
     if (object == self.superview && ([keyPath isEqualToString:@"frame"] || [keyPath isEqualToString:@"center"])) {
         
-        if(self.inputAcessoryViewFrameChangedBlock) {
+        if(self.inputAccessoryViewFrameChangedBlock) {
             
             CGRect frame = self.superview.frame;
-            self.inputAcessoryViewFrameChangedBlock(frame);
+            self.inputAccessoryViewFrameChangedBlock(frame);
         }
     }
 }
@@ -82,7 +82,7 @@ static void *BABFrameObservingContext = &BABFrameObservingContext;
     [super layoutSubviews];
     
     CGRect frame = self.superview.frame;
-    self.inputAcessoryViewFrameChangedBlock(frame);
+    self.inputAccessoryViewFrameChangedBlock(frame);
 }
 
 @end

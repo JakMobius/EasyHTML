@@ -36,7 +36,7 @@ open class TaskDelegate: NSObject {
     /// The data returned by the server.
     public var data: Data? { return nil }
 
-    /// The error generated throughout the lifecyle of the task.
+    /// The error generated throughout the lifecycle of the task.
     public var error: Error?
 
     var task: URLSessionTask? {

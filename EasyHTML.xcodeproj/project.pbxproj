@@ -44,7 +44,7 @@
 		893295D41FFD078A00F63705 /* ConsoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893295791FFD078A00F63705 /* ConsoleViewController.swift */; };
 		893295D81FFD078A00F63705 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8932957D1FFD078A00F63705 /* Defaults.swift */; };
 		893295E61FFD078A00F63705 /* EditorPreferencesMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8932958C1FFD078A00F63705 /* EditorPreferencesMenu.swift */; };
-		893295E71FFD078A00F63705 /* EdtorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8932958D1FFD078A00F63705 /* EdtorViewController.swift */; };
+		893295E71FFD078A00F63705 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8932958D1FFD078A00F63705 /* EditorViewController.swift */; };
 		893295E91FFD078A00F63705 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893295901FFD078A00F63705 /* Extensions.swift */; };
 		893295EA1FFD078A00F63705 /* FeedbackPreferencesMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893295911FFD078A00F63705 /* FeedbackPreferencesMenu.swift */; };
 		893295EB1FFD078A00F63705 /* FileBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893295921FFD078A00F63705 /* FileBrowser.swift */; };
@@ -313,7 +313,7 @@
 		893295791FFD078A00F63705 /* ConsoleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleViewController.swift; sourceTree = "<group>"; };
 		8932957D1FFD078A00F63705 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		8932958C1FFD078A00F63705 /* EditorPreferencesMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorPreferencesMenu.swift; sourceTree = "<group>"; };
-		8932958D1FFD078A00F63705 /* EdtorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EdtorViewController.swift; sourceTree = "<group>"; tabWidth = 4; wrapsLines = 1; };
+		8932958D1FFD078A00F63705 /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EditorViewController.swift; sourceTree = "<group>"; tabWidth = 4; wrapsLines = 1; };
 		893295901FFD078A00F63705 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		893295911FFD078A00F63705 /* FeedbackPreferencesMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackPreferencesMenu.swift; sourceTree = "<group>"; };
 		893295921FFD078A00F63705 /* FileBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileBrowser.swift; sourceTree = "<group>"; };
@@ -877,7 +877,7 @@
 			isa = PBXGroup;
 			children = (
 				8968EC8B2164F8670030418E /* expander */,
-				8932958D1FFD078A00F63705 /* EdtorViewController.swift */,
+				8932958D1FFD078A00F63705 /* EditorViewController.swift */,
 				8937765C21490935004010CA /* FindReplaceDialog.swift */,
 				89AC1D7B214F8B3F0073847F /* EditorPredictiveTextMenu.swift */,
 				8968EC892164F62B0030418E /* EditorHelperFunctions.swift */,
@@ -1318,7 +1318,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1000;
-				ORGANIZATIONNAME = "Темыч";
+				ORGANIZATIONNAME = "Артем";
 				TargetAttributes = {
 					893294DF1FFD05F200F63705 = {
 						CreatedOnToolsVersion = 9.2;
@@ -1568,7 +1568,7 @@
 				89ABAF9B20DF8E9300B53ABD /* SyntaxHighlightingPreferencesMenu.swift in Sources */,
 				893295F01FFD078A00F63705 /* FileSystem.swift in Sources */,
 				896ACD4720AD9AD4006DCD93 /* FTPServerDetailViewController.swift in Sources */,
-				893295E71FFD078A00F63705 /* EdtorViewController.swift in Sources */,
+				893295E71FFD078A00F63705 /* EditorViewController.swift in Sources */,
 				89443E80229F25950072C07F /* GitHubUtils.swift in Sources */,
 				895D974C22A1CFA000CF272E /* GitHubRepositoryReadmeCell.swift in Sources */,
 				894594FE21C5271C0010F743 /* FileReceiveability.swift in Sources */,

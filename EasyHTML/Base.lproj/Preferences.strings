@@ -25,7 +25,6 @@
 "fileextension"="File extension";
 "createsyntaxhighlightingscheme"="Create";
 
-"consoleplaceholder"="Code to execute...";
 "consoleoptions"="CONSOLE OPTIONS";
 "consoleshouldvanish"="Clear console automatically";
 
@@ -121,3 +120,5 @@
 "helpermenuitem24"="Jump to file end";
 "helpermenuitem25"="Comment line/selection";
 "helpermenuitemdelimiter"="Delimiter";
+
+"files"="Files";

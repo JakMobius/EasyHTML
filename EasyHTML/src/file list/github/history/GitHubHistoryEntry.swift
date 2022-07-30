@@ -10,14 +10,14 @@ import UIKit
 
 extension GitHubHistory {
     enum Entry: Codable, Equatable {
-        
+
         enum CodingKeys: CodingKey {
             case type
             case value
             case displayName
             case id
         }
-        
+
         static public func ==(lhs: Entry, rhs: Entry) -> Bool {
             switch (lhs, rhs) {
             case let (.searched(a), .searched(b)):
@@ -30,13 +30,13 @@ extension GitHubHistory {
                 return false
             }
         }
-        
+
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
+
             let type = try container.decode(Int.self, forKey: .type)
             let value = try container.decode(String.self, forKey: .value)
-            
+
             switch type {
             case 0:
                 self = .searched(name: value)
@@ -48,10 +48,10 @@ extension GitHubHistory {
                 self = .visitedUser(nick: value, id: id)
             }
         }
-        
+
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
+
             switch self {
             case .searched(let name):
                 try container.encode(0, forKey: .type)
@@ -69,7 +69,7 @@ extension GitHubHistory {
                 break
             }
         }
-        
+
         case searched(name: String)
         case visitedRepo(name: String)
         case visitedUser(nick: String, id: Int)

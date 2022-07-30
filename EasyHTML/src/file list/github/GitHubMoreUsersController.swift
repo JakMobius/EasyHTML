@@ -10,13 +10,13 @@ import UIKit
 
 class GitHubMoreUsersController: GitHubPreviewController {
     public var query: String!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         precondition(query != nil, "Expected query")
-        
+
         tableView.register(GitHubLobby.UserCell.self, forCellReuseIdentifier: "cell")
-        
+
         title = localize("more-users", .github).replacingOccurrences(of: "#", with: query)
     }
 }
