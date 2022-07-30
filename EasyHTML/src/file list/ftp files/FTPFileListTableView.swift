@@ -998,7 +998,7 @@ class FTPFileListTableView: FileListController, FileListDelegate, FileListDataSo
                         callback(.stop)
                     }, shouldCloseAlert: true))
 
-                    view.window!.addSubview(alert.view)
+                    self.view.window!.addSubview(alert.view)
 
                 }, completion: { error in
                     label.removeFromSuperview()
@@ -1159,7 +1159,7 @@ class FTPFileListTableView: FileListController, FileListDelegate, FileListDataSo
                         callback(.stop)
                     }, shouldCloseAlert: true))
 
-                    view.window!.addSubview(alert.view)
+                    self.view.window!.addSubview(alert.view)
                 }, completion: {
                     error in
                     callback(error)

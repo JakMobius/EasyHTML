@@ -146,7 +146,7 @@ class ImagePreviewController: UIViewController, UIScrollViewDelegate, FileEditor
         ioManager.readFileAt(url: file.url, completion: { (data, error) in
 
             if let data = data {
-                loadingInfoView.infoLabel.text = localize("loadingstep_loadingfile", .editor)
+                self.loadingInfoView.infoLabel.text = localize("loadingstep_loadingfile", .editor)
                 DispatchQueue(label: "easyhtml.imagedecodingtask").async {
 
                     var image: UIImage! = nil
@@ -188,8 +188,8 @@ class ImagePreviewController: UIViewController, UIScrollViewDelegate, FileEditor
                     }
                 }
             } else {
-                loadingInfoView.hide()
-                loadingErrorHandler(error: error)
+                self.loadingInfoView.hide()
+                self.loadingErrorHandler(error: error)
             }
         }, progress: {
             progress in

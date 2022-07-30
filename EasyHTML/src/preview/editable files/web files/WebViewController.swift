@@ -79,7 +79,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKUIDelegate,
         request = dispatcher.ioManager.readFileAt(url: url, completion: {
             data, error in
 
-            activeRequests.removeValue(forKey: url)
+            self.activeRequests.removeValue(forKey: url)
 
             let mimeType = MimeTypes.mimeTypes[url.pathExtension.lowercased()] ?? MimeTypes.DEFAULT_MIME_TYPE
             if let data = data {
@@ -94,8 +94,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKUIDelegate,
                 urlSchemeTask.didReceive(data)
                 urlSchemeTask.didFinish()
             } else {
-                if (url.path == dispatcher.session!.file.url.path) {
-                    handleLoadingError(error: error)
+                if (url.path == self.dispatcher.session!.file.url.path) {
+                    self.handleLoadingError(error: error)
                 }
                 if let error = error {
                     urlSchemeTask.didFailWithError(error)

@@ -91,7 +91,7 @@ extension FTPFileListTableView: FileDetailDelegate, FileDetailDataSource {
                     callback(.stop)
                 }, shouldCloseAlert: true))
 
-                view.window!.addSubview(alert.view)
+                self.view.window!.addSubview(alert.view)
             }) { error in
                 if error == nil {
                     alert.operationCompleted()

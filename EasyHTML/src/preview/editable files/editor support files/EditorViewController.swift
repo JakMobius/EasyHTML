@@ -1235,7 +1235,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate, WKScriptMess
         fileReadingRequest = dispatcher.ioManager.readFileAt(url: file.url, completion: {
             data, error in
             //print("iomanager called back!")
-            fileReadingRequest = nil
+            self.fileReadingRequest = nil
             completion?(data, error)
         }, progress: {
             prog in
@@ -1535,7 +1535,7 @@ class EditorViewController: UIViewController, UIScrollViewDelegate, WKScriptMess
             func getInitScript(data: Data) {
                 let localizedString = localize("loadingstep_processingfile", .editor)
 
-                self.getEditorInitalizationScript(data: data, progress: {
+                self.getEditorInitializationScript(data: data, progress: {
                     prog in
                     DispatchQueue.main.async {
                         self.loadingInfoView.infoLabel.text = localizedString.replacingOccurrences(of: "#", with: String(Int(prog * 100)))

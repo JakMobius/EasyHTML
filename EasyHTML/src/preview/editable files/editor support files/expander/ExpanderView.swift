@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ExpanderViewDelegate: class {
+protocol ExpanderViewDelegate: AnyObject {
     func expanderViewButtonTapped(type: ExpanderButtonItem.ButtonType, repeating: Bool)
 }
 

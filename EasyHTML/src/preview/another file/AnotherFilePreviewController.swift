@@ -136,13 +136,13 @@ class AnotherFilePreviewController: UIViewController, WKUIDelegate, WKScriptMess
                 urlSchemeTask.didReceive(data)
                 urlSchemeTask.didFinish()
 
-                if url.path == file.url.path {
-                    loadingInfoView.hide()
+                if url.path == self.file.url.path {
+                    self.loadingInfoView.hide()
                     self.webView.isHidden = false
                 }
             } else {
-                if (url.path == file.url.path) {
-                    loadingErrorHandler(error: error)
+                if (url.path == self.file.url.path) {
+                    self.loadingErrorHandler(error: error)
                 }
                 if let error = error {
                     urlSchemeTask.didFailWithError(error)
