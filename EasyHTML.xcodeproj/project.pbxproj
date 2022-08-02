@@ -523,6 +523,14 @@
 		89FE346E236DBE7400E78640 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8275C2FE67C16A295D85FDC /* Pods-EasyHTML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyHTML.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EasyHTML/Pods-EasyHTML.debug.xcconfig"; sourceTree = "<group>"; };
 		ABE2697B43CC9A52F744F229 /* Pods-EasyHTML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyHTML.release.xcconfig"; path = "Pods/Target Support Files/Pods-EasyHTML/Pods-EasyHTML.release.xcconfig"; sourceTree = "<group>"; };
+		AC8E432E2899546A00F9F235 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		AC8E432F2899546D00F9F235 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GitHub.strings"; sourceTree = "<group>"; };
+		AC8E43302899547100F9F235 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Files.strings"; sourceTree = "<group>"; };
+		AC8E43312899547600F9F235 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Preferences.strings"; sourceTree = "<group>"; };
+		AC8E43322899547D00F9F235 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FTP.strings"; sourceTree = "<group>"; };
+		AC8E43332899548100F9F235 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Copyrights.strings"; sourceTree = "<group>"; };
+		AC8E43342899548500F9F235 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Editor.strings"; sourceTree = "<group>"; };
+		AC8E43352899548900F9F235 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FileDesc.strings"; sourceTree = "<group>"; };
 		B95C9817282D960F841B559B /* Pods-EasyHTML Share.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyHTML Share.release.xcconfig"; path = "Pods/Target Support Files/Pods-EasyHTML Share/Pods-EasyHTML Share.release.xcconfig"; sourceTree = "<group>"; };
 		CEF7AC4FD26E2CCBE660B0C1 /* Pods_EasyHTML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EasyHTML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1356,6 +1364,7 @@
 				Base,
 				ru,
 				en,
+				"zh-Hans",
 			);
 			mainGroup = 89AAD9B11E1C1F3F000B14DA;
 			productRefGroup = 89AAD9BB1E1C1F3F000B14DA /* Products */;
@@ -1720,6 +1729,7 @@
 			children = (
 				893E431D2296C45000B912EA /* ru */,
 				893E43252296C88200B912EA /* Base */,
+				AC8E43342899548500F9F235 /* zh-Hans */,
 			);
 			name = Editor.strings;
 			sourceTree = "<group>";
@@ -1729,6 +1739,7 @@
 			children = (
 				893E43222296C61700B912EA /* ru */,
 				893E43262296C89100B912EA /* Base */,
+				AC8E43352899548900F9F235 /* zh-Hans */,
 			);
 			name = FileDesc.strings;
 			sourceTree = "<group>";
@@ -1738,6 +1749,7 @@
 			children = (
 				893E432C2296D21300B912EA /* ru */,
 				893E432D2296D22B00B912EA /* Base */,
+				AC8E43332899548100F9F235 /* zh-Hans */,
 			);
 			name = Copyrights.strings;
 			sourceTree = "<group>";
@@ -1747,6 +1759,7 @@
 			children = (
 				893E4333229831EA00B912EA /* ru */,
 				893E4334229831FC00B912EA /* Base */,
+				AC8E43322899547D00F9F235 /* zh-Hans */,
 			);
 			name = FTP.strings;
 			sourceTree = "<group>";
@@ -1756,6 +1769,7 @@
 			children = (
 				893E433A2298328400B912EA /* ru */,
 				893E433B2298329F00B912EA /* Base */,
+				AC8E43302899547100F9F235 /* zh-Hans */,
 			);
 			name = Files.strings;
 			sourceTree = "<group>";
@@ -1765,6 +1779,7 @@
 			children = (
 				893E433D2298347200B912EA /* ru */,
 				893E433F2298347F00B912EA /* Base */,
+				AC8E43312899547600F9F235 /* zh-Hans */,
 			);
 			name = Preferences.strings;
 			sourceTree = "<group>";
@@ -1782,6 +1797,7 @@
 			children = (
 				89E7EE8A20133D1000B6EFD3 /* Base */,
 				89E7EE982013483D00B6EFD3 /* ru */,
+				AC8E432E2899546A00F9F235 /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1807,6 +1823,7 @@
 			children = (
 				89FB32B3229A8E8A00947238 /* ru */,
 				89FB32B4229A8E9C00947238 /* Base */,
+				AC8E432F2899546D00F9F235 /* zh-Hans */,
 			);
 			name = GitHub.strings;
 			sourceTree = "<group>";

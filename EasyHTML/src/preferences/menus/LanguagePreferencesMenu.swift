@@ -10,24 +10,13 @@ import UIKit
 
 class LanguagePreferencesMenu: PreferencesMenu {
 
-    private struct Language {
-        let name: String
-        let code: String
-    }
-
-    private let languages = [
-        Language(name: "Русский", code: "ru"),
-        Language(name: "English", code: "Base"),
-        //Language(name: "Deutsch", code: "de")
-    ]
-
-    var selectedLanguage = ""
+    var selectedLanguage: Language = userPreferences.language
     var deviceLocale: String! = ""
     var bundle: Bundle! = nil
 
     func getBundle() {
         bundle = nil
-        if let path = Bundle.main.path(forResource: selectedLanguage, ofType: "lproj") {
+        if let path = Bundle.main.path(forResource: selectedLanguage.code, ofType: "lproj") {
             bundle = Bundle(path: path)
         }
 
@@ -44,7 +33,7 @@ class LanguagePreferencesMenu: PreferencesMenu {
             return
         }
 
-        for language in languages {
+        for language in applicationLanguages {
             if (language.code == deviceLocale) {
                 return
             }
@@ -54,13 +43,13 @@ class LanguagePreferencesMenu: PreferencesMenu {
     }
 
     override func exit(_ sender: UIBarButtonItem) {
-        if (selectedLanguage == deviceLocale) {
+        if (selectedLanguage.code == deviceLocale) {
             Defaults.set(nil, forKey: DKey.language)
         } else {
-            Defaults.set(selectedLanguage, forKey: DKey.language)
+            Defaults.set(selectedLanguage.code, forKey: DKey.language)
         }
 
-        if (selectedLanguage == userPreferences.language) {
+        if (selectedLanguage === userPreferences.language) {
             dismiss(animated: true, completion: nil)
             return
         }
@@ -114,9 +103,9 @@ class LanguagePreferencesMenu: PreferencesMenu {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let code = languages[indexPath.row].code
+        let language = applicationLanguages[indexPath.row]
 
-        if (selectedLanguage == code) {
+        if (selectedLanguage === language) {
             return
         }
 
@@ -128,7 +117,7 @@ class LanguagePreferencesMenu: PreferencesMenu {
             }
         }
 
-        selectedLanguage = code
+        selectedLanguage = language
 
         updateCellColors(delay: 0)
         getBundle()
@@ -142,7 +131,7 @@ class LanguagePreferencesMenu: PreferencesMenu {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        languages.count
+        applicationLanguages.count
     }
 
     private let font = UIFont.systemFont(ofSize: 14)
@@ -150,7 +139,7 @@ class LanguagePreferencesMenu: PreferencesMenu {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-        let language = languages[indexPath.row]
+        let language = applicationLanguages[indexPath.row]
 
         cell.textLabel!.textColor = userPreferences.currentTheme.cellTextColor
 
@@ -160,7 +149,7 @@ class LanguagePreferencesMenu: PreferencesMenu {
             cell.textLabel!.text = language.name
         }
 
-        cell.accessoryType = language.code == selectedLanguage ? .checkmark : .none
+        cell.accessoryType = language === selectedLanguage ? .checkmark : .none
         cell.tintColor = userPreferences.currentTheme.tabBarSelectedItemColor
         cell.textLabel!.font = font
 

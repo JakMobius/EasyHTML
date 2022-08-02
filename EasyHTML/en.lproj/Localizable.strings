@@ -1,0 +1,204 @@
+"local"="en";
+
+"yes"="Yes";
+"no"="No";
+
+"editor"="Editor";
+"console"="Console";
+"browser"="Browser";
+"aboutfile"="About this file";
+"aboutfolder"="About this folder";
+"ready"="Done";
+"aboutfilename"="Name:";
+"aboutfilepath"="Path:";
+"aboutfilesize"="Size:";
+"aboutfileobjects"="Objects:";
+"aboutfilemodified"="Editing date:";
+"aboutfilecreated"="Creation date:";
+"documents"="Documents";
+"share"="Share";
+"clonefile"="Duplicate";
+"copyoffile"="Copy of #";
+"colorpick"="Color picker";
+"gradientpick"="Gradient";
+"movefile"="Move file";
+"copyfile"="Copy file";
+"remove"="Delete";
+
+"createfolder"="Create Folder";
+"createfile"="Create File";
+"newfolder"="New Folder";
+"newfile"="New File";
+"filename"="File Name";
+"foldername"="Folder Name";
+"file"="File";
+"folder"="Folder";
+"symlink"="Symbolic Link";
+"emptyfile"="Empty File";
+"objects"="Objects";
+"filedeletealert"="Are you sure you want to delete this file?";
+"folderdeletealert"="Are you sure you want to delete this folder?";
+"delete"="Delete";
+
+"otherfiletype"="Other...";
+
+"wrongfilename"="Invalid Name";
+"filenameisalreadyused"="Name is used";
+
+"gradquestion"="How would you like to use the code of this gradient?";
+"colorquestion"="How would you like to use the code of this color?";
+"copy"="Copy to clipboard";
+"pasteincode"="Paste in editor";
+
+"copyingerror"="Copying error";
+
+"welcometitle"="Welcome!";
+/*# -tcanalyzerignore #*/ "welcometitle0"="Implement your ideas!";
+/*# -tcanalyzerignore #*/ "welcometitle1"="Work anywhere for as long as you want";
+/*# -tcanalyzerignore #*/ "welcometitle2"="Presenting EasyHTML!";
+
+"welcometext"="EasyHTML is the most convenient code editor for iOS";
+/*# -tcanalyzerignore #*/ "welcometext0"="Using EasyHTML, you can create any web pages: Sites, HTML5-games, web utilities... The only thing that can limit you is your imagination!";
+/*# -tcanalyzerignore #*/ "welcometext1"="EasyHTML does not require a permanent connection to the Internet. You can develop your favorite projects anywhere. Proper configuration of the application can give you up to 9 hours of work on one battery charge";
+/*# -tcanalyzerignore #*/ "welcometext2"="";
+
+/*# -tcanalyzerignore #*/ "welcome_btntxt1"="Let's start!";
+/*# -tcanalyzerignore #*/ "welcome_btntxt2"="Got it";
+/*# -tcanalyzerignore #*/ "welcome_btntxt3"="I'm ready!";
+
+"preferences"="Preferences";
+
+/* Color picker texts */
+
+"rotationangle"="ROTATION ANGLE";
+"linear"="Linear";
+"radial"="Radial";
+"recent"="Recent";
+"colorcode"="Color code";
+"recentcolorsnumber"="Recent colors count";
+"reset"="Reset";
+"cancel"="Cancel";
+
+"useHEX"="Use HEX code when possible";
+"compressHEX"="If possible, abbreviate the HEX code";
+"usecolorkeywords"="Use keywords";
+"resetquestion"="Are you sure want to reset recent colors?";
+"cannotbeundone"="This cannot be undone";
+
+/* Texts from MasterViewController */
+
+"fileisverybig"="This file is very big!";
+"fileisverybigmessage"="The file you are about to open is too large (> 500 KB). Opening this file may cause the program to crash or slow the device. Are you sure you want to open this file?";
+"create"="Create";
+"close"="Close";
+"import"="Import";
+
+"gb"="GB";
+"mb"="MB";
+"kb"="KB";
+"b"="B";
+"bytes"="Bytes";
+
+"sharedfoldername"="Shared files";
+
+"librarypickertitle"="Import library...";
+"findresults"="# matches found";
+"importjslib"="JavaScript-library";
+"importcsslib"="CSS-library";
+"importphoto"="Photo";
+"deleteconfirmforlibrary"="Are you sure you want to delete this library from the device?";
+"deleteconfirmforlibrarydesc"="You can download this library again if you have an internet connection";
+"notloadedlibrary"="Tap to download";
+"libraryloading"="Downloading...";
+"libraryloadingerror"="Error";
+
+"unarchivingerror"="Unarchiving error";
+"unarchivingtitle"="Unarchiving...";
+"unarchivingerrordesc"="Perhaps, the file is damaged";
+
+"archivingerror"="Archiving error";
+"archivingtitle"="Archiving...";
+"archivingerrordesc"="Try to emphasize free space on the device";
+
+"archive"="Archive...";
+"unarchive"="Unarchive";
+"archiving"="Archiving";
+
+"compressiontype"="Compression type";
+"passwordoptional"="Password (Optional)";
+"zippasswordwarning"="Encrypted archives will only be possible to open in EasyHTML";
+"beginarchiving"="Archive";
+
+"unarchivingenterpassword"="Enter password";
+"password"="Password";
+"unarchivingwrongpassword"="Invalid password";
+
+"calculating"="Calculating...";
+
+"send"="Send";
+"open"="Open";
+
+"openinnewtab"="Open in New Tab";
+"showsource"="Show source code";
+"showcontent"="Open in browser";
+"quickzip"="Quick zip";
+
+"ct_nocompression"="Very fast, no compression";
+"ct_bestspeed"="Fast, less compression";
+"ct_defaultcompression"="Normal";
+"ct_bestcompression"="Slow, more compression";
+
+"onthisphone"="On this iPhone";
+"onthispad"="On this iPad";
+"cloudservices"="Cloud services";
+
+"dropboxerror"="Authorization error";
+"dropboxerrordesc"="An error occured while trying to get the key-token";
+"tryagain"="Try again";
+
+"unknownerror"="Unknown error";
+"saving"="Saving...";
+"savingerror"="Saving error";
+"savingerrortryagain"="Saving error. Tap to try again";
+"savingerrorheader"="Saving error";
+"savingerrordesc"="We apologize, but an unexpected error occurred while saving your recent changes of this file. The file can not be saved again and your last changes are lost permanently
+Please contact the developer via * or email *. In your mail write down what have you done before this error appears, your device and your version of iOS and EasyHTML
+";
+"savingerrorvkpage"="VK";
+
+"imagedecodingerror"="Failed to decode image. The file is corrupted or not suppprted by EasyHTML";
+"unknown"="Unknown";
+"deleting"="Deleting...";
+"error"="Error";
+"downloadknownerror"="An error occured while downloading the file";
+
+"next"="Next";
+
+"skipfile"="Skip";
+"stopcopying"="Stop";
+"failedtocopyfile"="Failed to copy \"#\"";
+"failedtodeletefile"="Failed to delete \"#\"";
+
+"cannotunzipremotefile"="EasyHTML cannot unarchive remote files";
+"couldnotreadfile"="Failed to read file";
+
+"consoleplaceholder"="Code to execute...";
+
+"opening_symlink"="Opening symbolic link";
+"cm_deletefile"="Delete file";
+"cm_deletelink"="Delete link";
+
+"autocompletion_enabled"="Code autocompletion";
+"failedtogettargetfile"="Failed to get target file";
+
+"reload"="Reload";
+
+"unabletopreviewexternalfile"="Preview is only possible for local application files";
+
+"unknownextension"="Unknown file type";
+
+
+"prevtab"="Previous tab";
+"nexttab"="Next tab";
+
+"folders"="Folders";

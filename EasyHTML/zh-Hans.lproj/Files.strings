@@ -1,0 +1,67 @@
+"errormalformedpath"="异常的文件路径";
+"errornotfile"="预期是文件，但给定的路径指的不是文件";
+"errornotfolder"="预期是文件夹，但给定的路径指的不是文件夹";
+"errornotfound"="在给定的路径上什么都没有";
+"errorrestrictedcontent"="由于内容受到限制，无法传输文件";
+"internalservererror"="内部服务器错误";
+"badinputerror"="错误输入错误";
+"autherror"="授权错误";
+"accesserror"="访问错误";
+"ratelimiterror"="速率限制错误";
+"httperror"="HTTP错误";
+"errorfileonpath"="有文件在此位置";
+"errorfolderonpath"="有文件夹在此位置";
+"errordisallowedname"="无效的名称";
+"errorinsufficientspace"="空间不足";
+"errornowritepermission"="您没有写入的权限";
+"errorteamfolder"="无法移动或删除团队文件夹。";
+"errortoomanywriteoperations"="写入操作太多。请稍后再试";
+"errortoomanyfiles"="需要删除的文件太多(>10000)";
+"errorpreviewinprogress"="此预览生成仍在进行中";
+"errorpreviewunsupportedcontent"="不支持的内容";
+"errorpreviewunsupportedextension"="不支持的扩展";
+"errorrestoreinvalidrevision"="修订无效";
+"errorthumbnailunsupportedextension"="不支持的扩展";
+"errorthumbnailunsupportedimage"="不支持的图片";
+"errorrelocationfromlookup"="查找源路径失败:";
+"errorrelocationfromwrite"="写入源路径失败:";
+"errorrelocationtowrite"="写入目标路径失败:";
+"errorcantcopysharedfolder"="无法复制共享文件夹";
+"errorcantnestsharedfolder"="您的移动操作将导致嵌套的共享文件夹。这是不允许的。";
+"errorrelocationtoomanyfiles"="需要复制的文件太多 (>10000)";
+"errorduplicatedornestedpaths"="源路径和目标路径之间存在重复/嵌套路径";
+"errorcantmovefolderintoitself"="无法将文件夹移动到自身";
+"errorthumbnailconversion"="缩略图转换过程中发生错误";
+
+"remotefileopeningioswarning"="远程HTML预览仅在iOS 11.0及更新版本中可用";
+
+"emptyfolder"="空的文件夹";
+"emptyfolderhint"="点击列表角落的“+”号，可以添加新文件、创建文件夹或导入媒体";
+
+"cloning"="复制中...";
+"renaming"="重命名中...";
+
+"foldererror"="读取错误";
+"foldererrordesc"="试图读取文件夹内容时出错";
+"uploadinglibrary"="上传库中...";
+"dropboxziplibrarywarn"="被压缩的库";
+"dropboxziplibrarywarndesc"="# 是一个压缩的归档文件。EasyHTML无法解压缩远程文件。您确定要上传这个库吗?";
+
+"uploadingphoto"="上传照片中...";
+
+"countingfiles"="准备中 (# 个文件)";
+"deletingfiles"="删除文件中 (#2 的 #1)";
+"copyingfiles"="拷贝文件中 (#2 的 #1)";
+
+"cannotmovefileshere"="无法在此移动任何文件";
+"cannotmovethisfilehere"="无法将此文件移动到此";
+"cannotmoveloadingisinprogress"="无法在此移动文件，因为文件夹尚未加载";
+
+"movehint1"="向上滑动面板，将所有文件移动到当前目录";
+"movehint2"="向右滑动面板可以选择性地复制文件";
+"movehint3"="将面板向左滑动以取消";
+"movehinthorizontal1"="向上滑动面板以将文件移动到当前目录";
+"movehinthorizontal2"="向下滑动可返回到分组布局";
+"movehinthorizontal3"="按住可从列表中删除文件";
+
+"dndnotlocalfile"="你应该先下载这个文件";
