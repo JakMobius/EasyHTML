@@ -132,7 +132,7 @@ internal class UserPreferences {
     var lineEndingSymbol: LineEndingSymbol = .lf
     var editorEncoding: String.Encoding = .utf8
     var emmetEnabled = true
-    var language = "Base"
+    var language = Language.base
     var hapticFeedbackEnabled = true
     var bundle = Bundle.main
     var searchIsCaseSensitive = true
@@ -301,19 +301,11 @@ internal class UserPreferences {
             currentTheme = Theme.themes[Defaults.int(forKey: DKey.theme, def: 3)]
         }
 
-        var locale: String! = Defaults.object(forKey: DKey.language) as? String
-        if (locale == nil) {
-            locale = NSLocale.current.languageCode
-        }
-        if (locale == "ru") {
-            language = "ru"
-            //} else if(locale == "de") {
-            //    language = "de"
-        } else {
-            language = "Base"
-        }
+        let locale = Defaults.object(forKey: DKey.language) as? String ?? NSLocale.current.languageCode ?? "en"
+        
+        language = applicationLanguages.first(where: { $0.deviceCodes.contains(locale)}) ?? Language.base
 
-        let path = Bundle.main.path(forResource: userPreferences.language, ofType: "lproj")
+        let path = Bundle.main.path(forResource: userPreferences.language.code, ofType: "lproj")
         bundle = Bundle(path: path!)!
 
         for (i, arg) in UserPreferences.plugins.enumerated() {
