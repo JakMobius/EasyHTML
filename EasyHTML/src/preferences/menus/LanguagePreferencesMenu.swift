@@ -46,7 +46,7 @@ class LanguagePreferencesMenu: PreferencesMenu {
         if (selectedLanguage.code == deviceLocale) {
             Defaults.set(nil, forKey: DKey.language)
         } else {
-            Defaults.set(selectedLanguage, forKey: DKey.language)
+            Defaults.set(selectedLanguage.code, forKey: DKey.language)
         }
 
         if (selectedLanguage === userPreferences.language) {
