@@ -228,9 +228,11 @@ internal class AlternatingColorTableView: UITableViewController, NotificationHan
 
                 tableView.contentOffset.y += 1
                 tableView.contentOffset.y -= 1
+                tableView.tableFooterView = footerViewActivityIndicator
             } else {
                 footerViewActivityIndicator?.removeFromSuperview()
                 footerViewActivityIndicator = nil
+                tableView.tableFooterView = nil
             }
         }
     }
@@ -248,30 +250,19 @@ internal class AlternatingColorTableView: UITableViewController, NotificationHan
 
     private var footerView: UITableViewHeaderFooterView!
 
-    internal override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if section == numberOfSections(in: tableView) - 1 {
-            if let footerView = footerView {
-                return footerView
-            }
-
-            let view = UITableViewHeaderFooterView()
-
-            footerView = view
-
-            view.textLabel?.isHidden = shouldShowActivityIndicatorAtBottom
-
-            if shouldShowActivityIndicatorAtBottom {
-                addActivityIndicatorToFooterView(footerView: view)
-            }
-
-            return view
+    override internal func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            let view = UIView(frame: headerView.bounds)
+            view.backgroundColor = userPreferences.currentTheme.background
+            headerView.backgroundView = view
+            headerView.textLabel?.textColor = userPreferences.currentTheme.secondaryTextColor
         }
-
-        return nil
     }
 
     override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        (view as? UITableViewHeaderFooterView)?.textLabel?.text = tableView.dataSource?.tableView?(tableView, titleForFooterInSection: section)
+        if let footerView = view as? UITableViewHeaderFooterView, let textLabel = footerView.textLabel {
+            textLabel.textColor = userPreferences.currentTheme.secondaryTextColor
+        }
     }
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -300,6 +291,14 @@ extension UITableViewCell {
     }
 }
 
+class ThemedNavigationBar: UINavigationBar {
+
+}
+
+class ThemedToolbar: UIToolbar {
+
+}
+
 internal class ThemeColoredNavigationController: UINavigationController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         userPreferences.currentTheme.statusBarStyle
@@ -310,15 +309,15 @@ internal class ThemeColoredNavigationController: UINavigationController {
     }
 
     override init(navigationBarClass: AnyClass?, toolbarClass: AnyClass?) {
-        super.init(navigationBarClass: ThemedNavigationBar.self, toolbarClass: toolbarClass)
+        super.init(navigationBarClass: ThemedNavigationBar.self, toolbarClass: ThemedToolbar.self)
     }
 
     init() {
-        super.init(navigationBarClass: ThemedNavigationBar.self, toolbarClass: nil)
+        super.init(navigationBarClass: ThemedNavigationBar.self, toolbarClass: ThemedToolbar.self)
     }
 
     override init(rootViewController: UIViewController) {
-        super.init(navigationBarClass: ThemedNavigationBar.self, toolbarClass: nil)
+        super.init(navigationBarClass: ThemedNavigationBar.self, toolbarClass: ThemedToolbar.self)
         viewControllers = [rootViewController]
     }
 

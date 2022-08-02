@@ -509,14 +509,6 @@ class GitHubFileListController: FileListController, FileListDataSource, FileList
         true
     }
 
-    override internal func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let headerView = view as? UITableViewHeaderFooterView {
-            let view = UIView(frame: headerView.bounds)
-            view.backgroundColor = userPreferences.currentTheme.background
-            headerView.backgroundView = view
-        }
-    }
-
     // MARK: NewFileDialog delegate
 
     func newFileDialog(dialog: NewFileDialog, hasPicked image: UIImage) {
