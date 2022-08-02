@@ -1356,6 +1356,7 @@
 				Base,
 				ru,
 				en,
+				"zh-Hans",
 			);
 			mainGroup = 89AAD9B11E1C1F3F000B14DA;
 			productRefGroup = 89AAD9BB1E1C1F3F000B14DA /* Products */;

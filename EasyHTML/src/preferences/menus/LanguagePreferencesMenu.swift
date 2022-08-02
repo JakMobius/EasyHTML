@@ -18,6 +18,7 @@ class LanguagePreferencesMenu: PreferencesMenu {
     private let languages = [
         Language(name: "Русский", code: "ru"),
         Language(name: "English", code: "Base"),
+        Language(name: "中文", code: "zh-Hans"),
         //Language(name: "Deutsch", code: "de")
     ]
 
