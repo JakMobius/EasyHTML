@@ -1,3 +1,5 @@
 screenshots/
 .DS_Store
 xcuserdata/
+Pods/Target Support Files/
+.idea/
