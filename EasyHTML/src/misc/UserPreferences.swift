@@ -119,10 +119,6 @@ internal struct UserStatistics {
     }
 }
 
-class ThemedNavigationBar: UINavigationBar {
-
-}
-
 internal class UserPreferences {
 
     var codeAutocompletionEnabled = true
@@ -146,12 +142,44 @@ internal class UserPreferences {
 
     internal func applyTheme(window: UIWindow? = nil) {
 
-        let app = ThemedNavigationBar.appearance()
-        app.barTintColor = currentTheme.themeColor
-        app.tintColor = currentTheme.buttonColor
-        app.titleTextAttributes = [.foregroundColor: userPreferences.currentTheme.navigationTitle]
-        app.isTranslucent = true
-        app.barStyle = .blackTranslucent
+        let themedNavigationBarAppearance = ThemedNavigationBar.appearance()
+        let themedToolBarAppearance = ThemedToolbar.appearance()
+
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.titleTextAttributes = [.foregroundColor: userPreferences.currentTheme.navigationTitle]
+            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: userPreferences.currentTheme.navigationTitle]
+            navBarAppearance.backgroundColor = currentTheme.themeColor
+
+            let toolbarAppearance = UIToolbarAppearance()
+            toolbarAppearance.configureWithOpaqueBackground()
+            toolbarAppearance.backgroundColor = currentTheme.tabBarBackgroundColor
+
+            themedNavigationBarAppearance.standardAppearance = navBarAppearance
+            themedNavigationBarAppearance.scrollEdgeAppearance = navBarAppearance
+            if #available(iOS 15.0, *) {
+                themedNavigationBarAppearance.compactScrollEdgeAppearance = navBarAppearance
+            }
+
+            themedToolBarAppearance.standardAppearance = toolbarAppearance
+
+            if #available(iOS 15.0, *) {
+                themedToolBarAppearance.scrollEdgeAppearance = toolbarAppearance
+                themedToolBarAppearance.compactScrollEdgeAppearance = toolbarAppearance
+            }
+        }
+
+        themedNavigationBarAppearance.barTintColor = currentTheme.themeColor
+        themedNavigationBarAppearance.tintColor = currentTheme.buttonColor
+        themedNavigationBarAppearance.titleTextAttributes = [.foregroundColor: userPreferences.currentTheme.navigationTitle]
+        themedNavigationBarAppearance.isTranslucent = true
+        themedNavigationBarAppearance.barStyle = .blackTranslucent
+
+        themedToolBarAppearance.barTintColor = currentTheme.themeColor
+        themedToolBarAppearance.tintColor = currentTheme.buttonColor
+        themedToolBarAppearance.isTranslucent = true
+        themedToolBarAppearance.barStyle = .black
 
         UIApplication.shared.statusBarStyle = .lightContent
 
@@ -302,8 +330,8 @@ internal class UserPreferences {
         }
 
         let locale = Defaults.object(forKey: DKey.language) as? String ?? NSLocale.current.languageCode ?? "en"
-        
-        language = applicationLanguages.first(where: { $0.deviceCodes.contains(locale)}) ?? Language.base
+
+        language = applicationLanguages.first(where: { $0.deviceCodes.contains(locale) }) ?? Language.base
 
         let path = Bundle.main.path(forResource: userPreferences.language.code, ofType: "lproj")
         bundle = Bundle(path: path!)!

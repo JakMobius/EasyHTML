@@ -107,7 +107,6 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
     }
 
     override func layoutSubviews() {
-
         updateLayoutSpecificConstants()
 
         super.layoutSubviews()
@@ -350,9 +349,6 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
     }
 
     private func standardInitialize() {
-
-        backgroundColor = .darkGray
-
         scrollView = UIScrollView(frame: bounds)
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never

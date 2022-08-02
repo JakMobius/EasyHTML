@@ -4,13 +4,13 @@ public class Language {
     let name: String
     let code: String
     let deviceCodes: [String]
-    
+
     init(name: String, code: String, deviceCodes: [String] = []) {
         self.name = name
         self.code = code
         self.deviceCodes = deviceCodes
     }
-    
+
     static let base = Language(name: "English", code: "Base", deviceCodes: [])
 }
 

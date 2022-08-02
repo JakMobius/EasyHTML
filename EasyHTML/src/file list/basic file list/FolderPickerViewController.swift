@@ -143,6 +143,7 @@ class FolderPickerViewController: BasicMasterController, UINavigationControllerD
 
         if (indexPath.section == 0) {
             cell.textLabel!.text = localize("documents")
+            cell.imageView!.image = nil
         } else if (indexPath.row == 0) {
             cell.textLabel!.text = "Dropbox"
             cell.imageView!.image = #imageLiteral(resourceName: "dropbox")

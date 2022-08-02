@@ -13,20 +13,12 @@ class FileListNavigationController: TabNavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        toolbar.isTranslucent = false
         isToolbarHidden = false
         shouldHideBackButton = false
     }
 
     override func updateTheme() {
         super.updateTheme()
-
-        updateToolbarStyle()
-    }
-
-    private func updateToolbarStyle() {
-        toolbar.barStyle = userPreferences.currentTheme.isDark ? .black : .default
-        toolbar.setBackgroundImage(UIImage.getImageFilledWithColor(color: userPreferences.currentTheme.tabBarBackgroundColor), forToolbarPosition: .any, barMetrics: .default)
     }
 
     var folderPicker: FolderPickerViewController!
@@ -48,6 +40,5 @@ class FileListNavigationController: TabNavigationController {
         _ = folderPicker.view
 
         folderPicker.setup(parent: self)
-        updateToolbarStyle()
     }
 }

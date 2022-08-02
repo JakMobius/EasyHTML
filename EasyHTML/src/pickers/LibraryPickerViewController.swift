@@ -464,15 +464,6 @@ internal class LibraryPickerViewController: AlternatingColorTableView, UISearchR
         }
     }
 
-    override internal func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let headerView = view as? UITableViewHeaderFooterView {
-            let view = UIView(frame: headerView.bounds)
-            view.backgroundColor = userPreferences.currentTheme.background
-            headerView.backgroundView = view
-            headerView.textLabel?.textColor = userPreferences.currentTheme.cellTextColor
-        }
-    }
-
     override internal func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         isFiltering() ? localize("findresults").replacingOccurrences(of: "#", with: "\(filteredLibraries.count)") : librarySections[section].name
     }
