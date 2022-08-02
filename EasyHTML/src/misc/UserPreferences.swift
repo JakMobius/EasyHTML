@@ -330,8 +330,8 @@ internal class UserPreferences {
         }
 
         let locale = Defaults.object(forKey: DKey.language) as? String ?? NSLocale.current.languageCode ?? "en"
-        
-        language = applicationLanguages.first(where: { $0.deviceCodes.contains(locale)}) ?? Language.base
+
+        language = applicationLanguages.first(where: { $0.deviceCodes.contains(locale) }) ?? Language.base
 
         let path = Bundle.main.path(forResource: userPreferences.language.code, ofType: "lproj")
         bundle = Bundle(path: path!)!

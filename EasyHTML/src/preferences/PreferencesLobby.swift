@@ -64,7 +64,7 @@ class PreferencesLobby: UICollectionViewController, NotificationHandler {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         openMenu(tag: indexPath.row)
         collectionView.deselectItem(at: indexPath, animated: false)
@@ -174,10 +174,10 @@ class PreferencesLobbyCollectionViewCell: UICollectionViewCell, NotificationHand
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override var isHighlighted: Bool {
         didSet {
-            if(isHighlighted) {
+            if (isHighlighted) {
                 shadowView.alpha = 0.4
             } else {
                 UIView.animate(withDuration: 0.3, animations: {

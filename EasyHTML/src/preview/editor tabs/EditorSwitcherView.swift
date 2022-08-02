@@ -107,7 +107,6 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
     }
 
     override func layoutSubviews() {
-
         updateLayoutSpecificConstants()
 
         super.layoutSubviews()
