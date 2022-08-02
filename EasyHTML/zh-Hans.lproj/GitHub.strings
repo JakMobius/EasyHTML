@@ -1,0 +1,25 @@
+"search"="搜索";
+"searchrepo"="搜索 用户/仓库";
+
+"recentsearches"="最近";
+"norecentitems"="在这里你可以找到你最近的请求，访问过的仓库和用户";
+"repos"="仓库";
+"users"="用户";
+"more"="更多 #...";
+"repolastupdate"="最后更新";
+"notfoundrepos"="没有仓库";
+"notfoundusers"="没有用户";
+"yousearched"="您搜索了:";
+"youvisitedrepo"="您访问了仓库:";
+"youvisiteduser"="您访问了档案:";
+"errorratelimitexceeded"="超过API访问速率限制";
+"errorunkown"="未知错误";
+"errornotfound"="文件未找到";
+"noreadme"="无readme文件";
+"openinsafari"="在Safari中打开";
+"clonerepo"="克隆仓库";
+"viewcode"="预览代码";
+"erroraccessdenied"="拒绝访问";
+
+"more-users"="用户 for '#'";
+"more-repos"="仓库 for '#'";

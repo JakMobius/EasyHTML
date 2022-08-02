@@ -1,0 +1,68 @@
+"loadingstep_downloading"="下载文件中... (#%)";
+"loadingstep_booting"="启动编辑器中...";
+"loadingstep_processingfile"="处理文件中... (#%)";
+"loadingstep_loadingfile"="加载文件中...";
+
+"downloaderror"="下载文件时出错。请检查您的网络连接，然后再试一次";
+
+"lowdiskspace"="您的设备只有 # 可用存储空间。为防止信息丢失，需要释放存储空间";
+"search"="搜索";
+"replace"="替换";
+"copy"="复制";
+"paste"="黏贴";
+"cut"="剪切";
+"select"="选择";
+"selectall"="全选";
+"replacewith"="替换为";
+"undo"="撤销";
+"redo"="重做";
+"commentOut"="注解选择";
+"searchingerror"="搜索错误";
+"save"="保存文件";
+"insertlineafter"="插入行后";
+"insertlinebefore"="插入行前";
+"selectline"="选择行";
+"duplicateline"="复制行";
+"jumptobracket"="跳转到括号";
+"expandAbbreviation"="展开缩写";
+"balanceOutward"="分离外部标签";
+"balanceInward"="分离内部标签";
+"wrapWithAbbreviation"="包裹缩写";
+"selectScope"="选择范围";
+"enterabbreviation"="输入缩写";
+"togglefullscreen"="切换全屏";
+"reflectCSSValue"="重构CSS值";
+"selectNextItem"="选择下一个项";
+"selectPrevItem"="选择上一个项";
+"nextEditPoint"="跳转到下一个编辑点";
+"prevEditPoint"="跳转到上一个编辑点";
+"solveMathExpression"="处理数学表达式";
+
+"editorerror"="在编辑器中打开此文件时出现错误。 您是否希望发送错误报告以帮助开发人员更快地修复此错误?
+会发送以下信息:
+
+- 设备型号名称和iOS版本号;
+- EasyHTML版本
+- 错误信息;
+- 编辑器配置
+
+报告信息将以加密的形式发送。";
+
+"encodingerror"="无法使用编码 \"{1}\" 打开此文件。 返回到 \"{2}\"";
+
+"readonly"="文件为只读文件";
+
+"filemoved"="文件已被移动或重命名。编辑器将把它保存到一个新的位置。";
+
+"ue_desc"="请详细说明如何打开这种类型的文件 (#0)";
+
+"noeditor"="无编辑器";
+"noeditorhint"="在左侧的列表中选择要编辑的文件";
+
+"replacesingle"="替换";
+"replaceall"="全部";
+"replacednumber"="替代 # 出现";
+"occurencesfound"="匹配: #";
+"searching"="搜索中...";
+"replacing"="替换中...";
+"nooccurrencesfound"="未能找到";
