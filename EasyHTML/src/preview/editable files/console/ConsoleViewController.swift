@@ -318,9 +318,13 @@ class ConsoleViewController: UIViewController, UIWebViewDelegate, UITextViewDele
             }
 
             let wasScrolledToBottom = self.scrolledBottom
-            self.tableView.insertRows(at: self.rowsToAddQueue, with: .none)
-            if (wasScrolledToBottom) {
-                self.scrollBottom()
+            if (self.tableView.window != nil) {
+                self.tableView.insertRows(at: self.rowsToAddQueue, with: .none)
+                if (wasScrolledToBottom) {
+                    self.scrollBottom()
+                }
+            } else {
+                self.tableView.reloadData()
             }
             self.rowsToAddQueue.removeAll(keepingCapacity: true)
         }
@@ -509,7 +513,7 @@ class ConsoleViewController: UIViewController, UIWebViewDelegate, UITextViewDele
             weakself.bottomConstraint.constant = -value
 
             weakself.adjustTableViewOffset()
-            weakself.view.layoutIfNeeded()
+            weakself.view.setNeedsLayout()
         }
 
         executeField.inputAccessoryView = keyboardInputView
@@ -584,8 +588,10 @@ class ConsoleViewController: UIViewController, UIWebViewDelegate, UITextViewDele
             }
         }
 
-        if let visibleRows = tableView.indexPathsForVisibleRows {
-            tableView.reloadRows(at: visibleRows, with: .none)
+        if (tableView.window != nil) {
+            if let visibleRows = tableView.indexPathsForVisibleRows {
+                tableView.reloadRows(at: visibleRows, with: .none)
+            }
         }
 
         setupTheme()

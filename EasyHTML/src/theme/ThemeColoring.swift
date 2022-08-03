@@ -192,8 +192,10 @@ internal class AlternatingColorTableView: UITableViewController, NotificationHan
         tableView.reloadData()
         tableView.separatorColor = userPreferences.currentTheme.tableViewDelimiterColor
 
-        for cell in tableView.visibleCells {
-            cell.updateColors()
+        if (tableView.window != nil) {
+            for cell in tableView.visibleCells {
+                cell.updateColors()
+            }
         }
     }
 
