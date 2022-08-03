@@ -502,8 +502,9 @@ class ConsoleViewController: UIViewController, UIWebViewDelegate, UITextViewDele
             guard weakself != nil else {
                 return
             }
-
-            let value = max(0, UIScreen.main.bounds.height - frame.minY - (UIScreen.main.bounds.height - weakself.view.globalFrame!.maxY))
+            
+            let kbHeight = UIScreen.main.bounds.height - (weakself.view.globalFrame?.maxY ?? UIScreen.main.bounds.height)
+            let value = max(0, UIScreen.main.bounds.height - frame.minY - kbHeight)
 
             weakself.bottomConstraint.constant = -value
 
