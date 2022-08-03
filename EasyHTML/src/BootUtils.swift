@@ -59,5 +59,5 @@ class BootUtils {
         }
     }
 
-    static var isFirstLaunch: Bool = !isDir(fileName: applicationPath + FileBrowser.filesDir)
+    static var isFirstLaunch: Bool = true//!isDir(fileName: applicationPath + FileBrowser.filesDir)
 }
