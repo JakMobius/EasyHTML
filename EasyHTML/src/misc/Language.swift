@@ -17,7 +17,7 @@ public class Language {
 public let applicationLanguages = [
     Language.base,
     Language(name: "Русский", code: "ru", deviceCodes: ["ru"]),
-    Language(name: "中文", code: "zh-Hans", deviceCodes: ["zh-CN", "zh-HK", "zh-MO", "zh-CHS", "zh-SG", "zh-TW", "zh-CHT", "zh-Hans"]),
+    Language(name: "中文", code: "zh-Hans", deviceCodes: ["zh"]),
     //Language(name: "Deutsch", code: "de")
 ]
 
