@@ -51,7 +51,7 @@ class Defaults {
     }
 
     internal static func set(_ value: Any?, forKey key: String) {
-        defaults.set(value, forKey: key.modified())
+        defaults.setValue(value, forKey: key.modified())
     }
 
     internal static func removeObject(forKey: String) {
