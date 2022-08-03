@@ -3,21 +3,21 @@ import Foundation
 public class Language {
     let name: String
     let code: String
-    let deviceCodes: [String]
+    let languageCodes: [String]
 
-    init(name: String, code: String, deviceCodes: [String] = []) {
+    init(name: String, code: String, languageCodes: [String] = []) {
         self.name = name
         self.code = code
-        self.deviceCodes = deviceCodes
+        self.languageCodes = languageCodes
     }
 
-    static let base = Language(name: "English", code: "Base", deviceCodes: [])
+    static let base = Language(name: "English", code: "Base", languageCodes: [])
 }
 
 public let applicationLanguages = [
     Language.base,
-    Language(name: "Русский", code: "ru", deviceCodes: ["ru"]),
-    Language(name: "中文", code: "zh-Hans", deviceCodes: ["zh"]),
+    Language(name: "Русский", code: "ru", languageCodes: ["ru"]),
+    Language(name: "中文", code: "zh-Hans", languageCodes: ["zh"]),
     //Language(name: "Deutsch", code: "de")
 ]
 
