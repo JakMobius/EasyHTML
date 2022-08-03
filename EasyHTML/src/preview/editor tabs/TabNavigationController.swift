@@ -53,10 +53,6 @@ class TabNavigationController: ThemeColoredNavigationController, UINavigationCon
         view.bringSubviewToFront(titleContainer)
     }
 
-    func position(for bar: UIBarPositioning) -> UIBarPosition {
-        .topAttached
-    }
-
     func goBack() {
         let switcherView = parentView.parentView!
 

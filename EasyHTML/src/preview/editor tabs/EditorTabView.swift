@@ -259,6 +259,7 @@ class EditorTabView: UIView, UIGestureRecognizerDelegate {
         }
         viewsIsAppeared = false
 
+        navController.didMove(toParent: nil)
         navController.hideView()
     }
 
@@ -268,6 +269,7 @@ class EditorTabView: UIView, UIGestureRecognizerDelegate {
         }
         viewsIsAppeared = true
 
+        navController.didMove(toParent: parentView.parentViewController)
         navController.presentView()
     }
 
