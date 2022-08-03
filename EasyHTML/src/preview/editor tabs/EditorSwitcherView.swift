@@ -1026,9 +1026,8 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
     }
 
     private var insets: UIEdgeInsets {
-
-        if UIDevice.current.hasAnEyebrow {
-            return UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        if #available(iOS 11.0, *) {
+            return safeAreaInsets
         }
         return .zero
     }
