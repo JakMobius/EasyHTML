@@ -70,15 +70,16 @@ class WelcomeViewController: UIViewController {
             // Create all necessary files and perform transition to the main application view
 
             install()
+            
+            let window = view.window!
+            let viewController = PrimarySplitViewController.instance(for: view)!
+            
+            viewController.view.frame = window.rootViewController!.view.frame
+            viewController.view.layoutIfNeeded()
 
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "main")
-
-            UIView.transition(from: view, to: viewController.view, duration: 1.0, options: [.allowAnimatedContent, .layoutSubviews, .transitionFlipFromLeft], completion: {
-                _ in
-                self.removeFromParent()
+            UIView.transition(with: window, duration: 1.0, options: [.allowAnimatedContent,     .layoutSubviews, .transitionFlipFromLeft], animations: {
+                            window.rootViewController = viewController
             })
-
-            UIApplication.shared.delegate?.window!?.rootViewController = viewController
 
             return;
         }
