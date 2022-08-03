@@ -1269,7 +1269,7 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
         animate(transform: transform, view: presentedView, timingFunction: .easeInEaseOut)
 
         // Move back the currently shown card.
-        // Since it should not have a from the shadow on it lower cards,
+        // Since it should not have a shadow of the lower cards on it,
         // it is automatically moved to the foreground when it is shown.
 
         zoomContainer.bringSubviewToFront(bottomView)
