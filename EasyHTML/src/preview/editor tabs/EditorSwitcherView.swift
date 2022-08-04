@@ -205,7 +205,7 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
 
                         if (!view.navController.titleContainer.isCompact) {
                             view.navController.titleContainer.becomeCompact()
-                            view.setGestureRecognisersEnabled(true)
+                            view.gestureHandler.enabled = true
                         }
 
                         // Similar to the case with the main tab.
@@ -694,8 +694,8 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
 
             if isRotate && isScale {
 
-                if view.slideMovement != 0 {
-                    transform = CATransform3DTranslate(transform, view.slideMovement, 0, 0)
+                if view.transformManager.slideOffset != 0 {
+                    transform = CATransform3DTranslate(transform, view.transformManager.slideOffset, 0, 0)
                 }
 
                 let yPoint = CGFloat(view.index) * switcherViewPadding
@@ -765,7 +765,7 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
             view.frame = getFrameForItem(at: view.index)
 
             view.setInteractionEnabled(false)
-            view.setGestureRecognisersEnabled(true)
+            view.gestureHandler.enabled = true
 
             // This fixes the glitch with a fraction of a second shadow at
             // the top of an open card from the card above it.
@@ -931,12 +931,12 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
         prevView.blurred()
         prevView.viewsDisappeared()
         prevView.navController.switchToCompact(animated: false)
-        prevView.setGestureRecognisersEnabled(true)
+        prevView.gestureHandler.enabled = true
         prevView.setInteractionEnabled(false)
 
         newView.isHidden = false
         newView.navController.switchToDefault(animated: false)
-        newView.setGestureRecognisersEnabled(false)
+        newView.gestureHandler.enabled = false
         newView.setInteractionEnabled(true)
         newView.viewsAppeared()
         newView.focused(byShortcut: true)
@@ -1207,11 +1207,11 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
         }
 
         mainView.setInteractionEnabled(true)
-        mainView.setGestureRecognisersEnabled(false)
+        mainView.gestureHandler.enabled = false
 
         bottomView.navController.titleContainer.becomeCompact()
 
-        bottomView.setGestureRecognisersEnabled(true)
+        bottomView.gestureHandler.enabled = true
 
         // This fixes UINavigationBar size not being updated on screen rotation on iOS < 11
         mainView.navController.fixResizeIssue()
@@ -1244,7 +1244,7 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
         bottomView.navController.switchToDefault()
 
         bottomView.setInteractionEnabled(true)
-        bottomView.setGestureRecognisersEnabled(false)
+        bottomView.gestureHandler.enabled = false
         bottomView.viewsAppeared()
 
         // In case this tab was just added by addContainerViewsSilently method
@@ -1339,7 +1339,7 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
         }
 
         mainView.setInteractionEnabled(true)
-        mainView.setGestureRecognisersEnabled(false)
+        mainView.gestureHandler.enabled = false
 
     }
 
@@ -1382,7 +1382,7 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
             for i in firstIndex..<view.index {
                 let eachView = containerViews[i]
 
-                eachView.setGestureRecognisersEnabled(false)
+                eachView.gestureHandler.enabled = false
                 eachView.navController.view.layer.mask = nil
 
                 if eachView.isHidden {
@@ -1396,10 +1396,6 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
                 } else {
                     eachView.layer.transform = transform
                 }
-
-                //if eachView.placeholderImageView?.image == nil {
-                //    eachView.makeImage()
-                //}
             }
 
             // This fixes the glitch with a fraction of a second shadow at
@@ -1427,7 +1423,7 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
 
             view.layer.transform = oldTransform
 
-            view.setGestureRecognisersEnabled(false)
+            view.gestureHandler.enabled = false
 
             // Round the bottom corners of the main tab, if it is selected and there is more tabs
 
@@ -1506,7 +1502,7 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
 
                     transform = self.getTransform(view: eachView, translatedToY: bounds.size.height * 1.5, isScale: true, isRotate: false)
 
-                    eachView.setGestureRecognisersEnabled(false)
+                    eachView.gestureHandler.enabled = false
                     eachView.navController.view.layer.mask = nil
                 }
 
@@ -1517,10 +1513,6 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
                 } else {
                     eachView.layer.transform = transform
                 }
-
-                //if eachView.placeholderImageView?.image == nil {
-                //    eachView.makeImage()
-                //}
             }
 
         } else {
@@ -1536,7 +1528,7 @@ class EditorSwitcherView: UIView, UIScrollViewDelegate {
             }
 
             for view in containerViews {
-                view.setGestureRecognisersEnabled(false)
+                view.gestureHandler.enabled = false
             }
         }
 

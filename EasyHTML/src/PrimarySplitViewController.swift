@@ -25,15 +25,10 @@ class SmallScreenEditorTabView: EditorTabView {
 
     override func viewsDisappeared() {
         navController.topViewController?.view.isHidden = true
-
-        //navController.screenshot()
     }
 
     override func viewsAppeared() {
         navController.topViewController?.view.isHidden = false
-
-        //navController.placeholderImageView?.isHidden = true
-        //navController.placeholderImageView?.image = nil
     }
 
     override init(frame: CGRect, navigationController: TabNavigationController) {

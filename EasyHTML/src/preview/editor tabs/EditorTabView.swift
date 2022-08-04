@@ -4,8 +4,8 @@ import UIKit
     @objc optional func tabWillClose(editorTabView: EditorTabView)
 }
 
-class EditorTabView: UIView, UIGestureRecognizerDelegate {
-
+class EditorTabView: UIView, EditorTabGestureHandlerDelegate {
+    
     override var keyCommands: [UIKeyCommand]? {
         if (parentView.containerViews.count < 2) {
             return []
@@ -18,7 +18,6 @@ class EditorTabView: UIView, UIGestureRecognizerDelegate {
     }
 
     private func switchToTab(index: Int) {
-
         var index = index
 
         if (index == -1) {
@@ -29,10 +28,6 @@ class EditorTabView: UIView, UIGestureRecognizerDelegate {
         }
 
         parentView.switchToTab(index: index)
-
-//        parentView.animateOut(animated: false, force: false) {
-//            self.parentView.animateIn(animated: false, force: false, view: self.parentView.containerViews[index])
-//        }
     }
 
     @objc func prevTab() {
@@ -42,24 +37,24 @@ class EditorTabView: UIView, UIGestureRecognizerDelegate {
     @objc func nextTab() {
         switchToTab(index: index + 1)
     }
-
-    var savedOriginY: CGFloat = 0.0
+    
     weak var parentView: EditorSwitcherView!
     var index: Int = 0 {
         didSet {
             layer.zPosition = CGFloat(index)
         }
     }
-    var savedTransform: CATransform3D = CATransform3DIdentity
-    var panRecognizer: UIPanGestureRecognizer!
-    var pressRecognizer: UILongPressGestureRecognizer!
+    
+    var transformManager: TabViewTransformManager!
+    var gestureHandler: EditorTabGestureHandler!
     var navController: TabNavigationController!
     var isRemovable: Bool {
         didSet {
             navController.titleContainer.closeButton.isHidden = !isRemovable
+            gestureHandler.isTabRemovable = isRemovable
         }
     }
-    //var zoomGestureRecognizer: UIPinchGestureRecognizer!
+    
     weak var delegate: EditorTabViewDelegate?
 
     init(frame: CGRect, navigationController: TabNavigationController) {
@@ -69,43 +64,19 @@ class EditorTabView: UIView, UIGestureRecognizerDelegate {
         super.init(frame: frame)
 
         isOpaque = true
-
-        navController = navigationController
-        navController.parentView = self
-
         backgroundColor = .clear
         layer.backgroundColor = UIColor.clear.cgColor
 
+        navController = navigationController
+        navController.parentView = self
         navController.view.frame = bounds
+        
+        gestureHandler = EditorTabGestureHandler(view: self)
+        gestureHandler.delegate = self
+        
+        transformManager = TabViewTransformManager()
 
         addSubview(navController.view)
-
-        savedOriginY = frame.origin.y
-
-        //tapRecognizer = UITapGestureRecognizer(target:self, action: #selector(handleTouch))
-
-        //tapRecognizer.numberOfTapsRequired = 1
-
-        //addGestureRecognizer(tapRecognizer)
-        //tapRecognizer.delegate = self
-
-        panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-
-        panRecognizer.maximumNumberOfTouches = 1
-
-        addGestureRecognizer(panRecognizer)
-        panRecognizer.delegate = self
-
-        //zoomGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
-
-        //addGestureRecognizer(zoomGestureRecognizer)
-
-        pressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handlePress))
-        pressRecognizer.minimumPressDuration = 0
-        pressRecognizer.delegate = self
-        pressRecognizer.allowableMovement = .infinity
-
-        addGestureRecognizer(pressRecognizer)
 
         layer.edgeAntialiasingMask = CAEdgeAntialiasingMask(rawValue:
         CAEdgeAntialiasingMask.layerLeftEdge.rawValue |
@@ -156,18 +127,6 @@ class EditorTabView: UIView, UIGestureRecognizerDelegate {
         }
     }
 
-    func setGestureRecognisersEnabled(_ enabled: Bool) {
-        guard gestureRecognizers != nil else {
-            return
-        }
-
-        //tapRecognizer.isEnabled = enabled
-        panRecognizer.isEnabled = enabled
-        pressRecognizer.isEnabled = enabled
-
-        // zoomGestureRecognizer.isEnabled = !enabled
-    }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -177,16 +136,6 @@ class EditorTabView: UIView, UIGestureRecognizerDelegate {
         navController.view.frame = bounds
     }
 
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith shouldRecognizeSimultaneouslyWithGestureRecognizer: UIGestureRecognizer) -> Bool {
-        true
-    }
-
-    private var startPanPoint: CGPoint!
-    private(set) var slideMovement: CGFloat = 0
-    private var touchConfirmed = false
-    private var touchFailed = false
-    private var isTap = false
-
     // TODO
 
     /* @objc func handleZoom(_ sender: UIPinchGestureRecognizer) {
@@ -195,61 +144,7 @@ class EditorTabView: UIView, UIGestureRecognizerDelegate {
             sender.isEnabled = true
             return
         }
-        
-        
     }*/
-
-    private var initialTransform: CATransform3D!
-
-    @objc func handlePress(_ sender: UILongPressGestureRecognizer) {
-        let press = !sender.isEnabled || parentView.isFullScreen
-
-        if sender.state == .began {
-            if press {
-                UIView.animate(withDuration: 0.4) {
-                    self.initialTransform = self.layer.transform
-                    self.layer.transform = CATransform3DScale(self.layer.transform, 1.02, 1.02, 1)
-                }
-            }
-            isTap = true
-        } else if sender.state == .ended || sender.state == .cancelled || sender.state == .failed {
-            if press {
-                if let transform = initialTransform {
-                    UIView.animate(withDuration: 0.2) {
-                        self.layer.transform = transform
-                    }
-                }
-            }
-
-            if (!isTap || sender.state != .ended) {
-                return
-            }
-
-            let location = sender.location(in: self)
-
-            let buttonFrame = navController.titleContainer.closeButton.frame
-
-            let buttonSize = buttonFrame.width + buttonFrame.origin.x * 2
-
-            if location.x < buttonSize && location.y < buttonSize && isRemovable {
-                closeTab()
-                return
-            }
-
-            if parentView.isFullScreen {
-
-                if parentView.containerViews.count == 2 {
-
-                    parentView.animateBottomViewIn()
-
-                } else {
-                    parentView.animateOut()
-                }
-            } else {
-                parentView.animateIn(view: self)
-            }
-        }
-    }
 
     internal var viewsIsAppeared = false
 
@@ -272,159 +167,64 @@ class EditorTabView: UIView, UIGestureRecognizerDelegate {
         navController.didMove(toParent: parentView.parentViewController)
         navController.presentView()
     }
-
-    /*internal var placeholderImageView: UIImageView!
     
-    internal var placeholderImageShown: Bool {
-        get {
-            return navController.placeholderImageView.image != nil
-        }
-    }
-    
-    internal func hideImage() {
-        guard placeholderImageView?.image != nil else { return }
-        self.navController.view.isHidden = false
-        placeholderImageView?.removeFromSuperview()
-        placeholderImageView?.image = nil
-        
-    }*/
+    func tabPressed(editorTabGesture: EditorTabGestureHandler, at position: CGPoint) {
+        let buttonFrame = navController.titleContainer.closeButton.frame
 
-    @objc func handlePan(_ sender: UIPanGestureRecognizer) {
-        if parentView.isFullScreen {
-            sender.isEnabled = false
-            sender.isEnabled = true
-            slideMovement = 0
-            touchConfirmed = false
-            touchFailed = false
-            startPanPoint = nil
-            isTap = true
+        let buttonSize = buttonFrame.width + buttonFrame.origin.x * 2
+
+        if position.x < buttonSize && position.y < buttonSize && isRemovable {
+            closeTab()
             return
         }
 
-        if sender.state == .began {
-            startPanPoint = sender.location(in: superview)
-
-            startPanPoint.y -= parentView.scrollView.contentOffset.y
-            isTap = true
-        } else if sender.state == .changed {
-
-            if parentView.isFullScreen {
-                return
-            }
-
-            let location = sender.location(in: superview)
-
-            if (isTap) {
-                isTap = sender.translation(in: superview) == .zero
-            }
-
-            if !touchConfirmed && !touchFailed {
-                let x1 = startPanPoint.x
-                let y1 = startPanPoint.y
-                let x2 = location.x
-                let y2 = location.y - parentView.scrollView.contentOffset.y
-                let dx = x2 - x1
-                let dy = y2 - y1
-
-                if (dx * dx + dy * dy > 25) {
-                    if dy == 0 {
-                        touchConfirmed = true
-                        parentView.scrollLockFactor += 1
-                    } else if abs(dx / dy) > 1 {
-                        touchConfirmed = true
-                        parentView.scrollLockFactor += 1
-                    } else {
-                        touchFailed = true
-                        panRecognizer.isEnabled = false
-                        panRecognizer.isEnabled = true
-                    }
-
-                    if touchConfirmed {
-                        if index != parentView.containerViews.count - 1 && !parentView.isCompact {
-                            layer.zPosition = 1000
-                        }
-                    }
-                }
-                return
-            }
-
-            if touchFailed {
-                return
-            }
-
-            var dx = location.x - startPanPoint.x
-
-            // Bounce effect
-
-            if dx > 0 {
-                dx = (sqrt(dx / 10 + 1) - 1) * 10
-            } else if !isRemovable {
-                dx = -(sqrt(-dx / 10 + 1) - 1) * 10
-            }
-
-            let ddx = dx - slideMovement
-
-            slideMovement = dx
-
-            layer.transform = CATransform3DTranslate(layer.transform, ddx, 0, 0)
-
-        } else if sender.state == .ended {
-            startPanPoint = nil
-            slideMovement = 0
-
-            if touchConfirmed {
-                parentView.scrollLockFactor -= 1
-            }
-
-            if parentView.isFullScreen || !touchConfirmed {
-                touchConfirmed = false
-                touchFailed = false
-                return
-            }
-
-            touchConfirmed = false
-            touchFailed = false
-
-            let velocity = sender.velocity(in: self)
-
-            if isRemovable && velocity.x <= 25 && (velocity.x < -500 || slideMovement < -200) {
-                closeTab()
+        if parentView.isFullScreen {
+            if parentView.containerViews.count == 2 {
+                parentView.animateBottomViewIn()
             } else {
-                parentView.restoreCardsLocations(animated: true)
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + parentView.animationDuration) {
-                    if self.index < self.superview!.subviews.count - 1 && !self.parentView.isCompact {
-                        self.layer.zPosition = 0
-                    }
-                }
+                parentView.animateOut()
             }
-
-        } else if sender.state == .failed || sender.state == .cancelled {
-            startPanPoint = nil
-            slideMovement = 0
-
-            if touchConfirmed {
-                parentView.scrollLockFactor -= 1
-            }
-
-            if parentView.isFullScreen || !touchConfirmed {
-                touchConfirmed = false
-                touchFailed = false
-                return
-            }
-
-            touchConfirmed = false
-            touchFailed = false
-
-            parentView.restoreCardsLocations(animated: true)
+        } else {
+            parentView.animateIn(view: self)
+        }
+    }
+    
+    func tabHighlighted(editorTabGesture: EditorTabGestureHandler) {
+        UIView.animate(withDuration: 0.4) {
+            self.layer.transform = CATransform3DScale(self.layer.transform, 1.02, 1.02, 1)
+        }
+    }
+    
+    func tabUnHighlighted(editorTabGesture: EditorTabGestureHandler) {
+        UIView.animate(withDuration: 0.2) {
+            self.layer.transform = CATransform3DIdentity
+        }
+    }
+    
+    func tabDidSlide(_ gestureHandler: EditorTabGestureHandler) {
+        transformManager.slideOffset = gestureHandler.slideMovement
+    }
+    
+    func tabWillSlide(_ gestureHandler: EditorTabGestureHandler) {
+        parentView.scrollLockFactor += 1
+    }
+    
+    func tabDidEndSlide(_ gestureHandler: EditorTabGestureHandler) {
+        parentView.scrollLockFactor -= 1
+        let velocity = gestureHandler.slideVelocity
+        let movement = gestureHandler.slideMovement
+        
+        if isRemovable && velocity <= 25 && (velocity < -500 || movement < -200) {
+            closeTab()
+        } else {
+            transformManager.slideOffset = 0
         }
     }
 
     func closeTab(animated: Bool = true, completion: (() -> ())! = nil) {
         delegate?.tabWillClose?(editorTabView: self)
 
-        panRecognizer.isEnabled = false
-        //tapRecognizer.isEnabled = false
+        gestureHandler.enabled = false
 
         if animated {
             UIView.animate(withDuration: 0.35, delay: 0, options: .curveEaseIn, animations: {

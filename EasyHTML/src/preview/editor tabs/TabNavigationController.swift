@@ -6,42 +6,6 @@ class TabNavigationController: ThemeColoredNavigationController, UINavigationCon
 
     var shouldHideBackButton = true
 
-    //var placeholderImageView: UIImageView!
-
-    /*func screenshot() {
-        
-        guard let topView = topViewController?.view else { return }
-        
-        let width = topView.bounds.width
-        let height = topView.bounds.height
-        let rect = CGRect(x: 0, y: 0, width: width / 2, height: height / 2)
-        
-        UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.main.scale)
-        
-        topView.drawHierarchy(in: rect, afterScreenUpdates: false)
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        if placeholderImageView == nil {
-            placeholderImageView = UIImageView(frame: topView.frame)
-            placeholderImageView.contentMode = .scaleToFill
-            placeholderImageView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(placeholderImageView)
-            
-            let anchor = self.toolbar?.topAnchor ?? self.view.bottomAnchor
-            
-            titleContainer.bottomAnchor.constraint(equalTo: placeholderImageView.topAnchor, constant: 0).isActive = true
-            anchor.constraint(equalTo: placeholderImageView.bottomAnchor, constant: 0).isActive = true
-            titleContainer.leftAnchor.constraint(equalTo: placeholderImageView.leftAnchor, constant: 0).isActive = true
-            titleContainer.rightAnchor.constraint(equalTo: placeholderImageView.rightAnchor, constant: 0).isActive = true
-        }
-        
-        placeholderImageView.isHidden = false
-        
-        placeholderImageView.image = image
-    }*/
-
     func fixResizeIssue() {
         guard iOSVersionIsBelow11 else {
             return
@@ -75,23 +39,7 @@ class TabNavigationController: ThemeColoredNavigationController, UINavigationCon
         }
     }
 
-    /*func updateScreenshot() {
-        guard editorViewController != nil else {
-            return
-        }
-        
-        if placeholderImageView != nil {
-            placeholderImageView.image = nil
-            placeholderImageView.isHidden = true
-        }
-        
-        viewControllers = [editorViewController]
-        screenshot()
-        viewControllers = []
-    }*/
-
     func hideView() {
-        //screenshot()
         editorViewController?.removeFromParent()
 
         let message: EditorMessage = .custom(EDITOR_ENABLE_LOW_ENERGY_MODE)
@@ -111,11 +59,6 @@ class TabNavigationController: ThemeColoredNavigationController, UINavigationCon
             shouldPresentView = true
             return
         }
-
-        //if placeholderImageView != nil {
-        //    placeholderImageView.image = nil
-        //    placeholderImageView.isHidden = true
-        //}
 
         viewControllers = [editorViewController]
 
@@ -145,18 +88,6 @@ class TabNavigationController: ThemeColoredNavigationController, UINavigationCon
             view.frame.origin.y += 64 - view.frame.origin.y
             view.frame.size.height += dy
         }
-
-        /*guard placeholderImageView?.image != nil else { return }
-        
-        let oldFrame = placeholderImageView.frame
-        
-        var newFrame = self.view.bounds
-        newFrame.origin.y += 64
-        newFrame.size.height -= 64
-        
-        if oldFrame != newFrame {
-            DispatchQueue.main.async(execute: updateScreenshot)
-        }*/
 
         navigationBar.isHidden = true
         navigationBar.isHidden = false
