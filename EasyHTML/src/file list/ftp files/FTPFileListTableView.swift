@@ -82,7 +82,11 @@ class FTPFileListTableView: FileListController, FileListDelegate, FileListDataSo
         }
     }
 
-    var files: [FSNode] = []
+    var files: [FSNode] = [] {
+        didSet {
+            Thread.callStackSymbols.forEach{print($0)}
+        }
+    }
     var isRoot = false
 
     override func viewDidLoad() {

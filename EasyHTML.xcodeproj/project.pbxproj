@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -211,11 +211,6 @@
 		89D835422085207F0084C5CE /* FileSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D835412085207F0084C5CE /* FileSourceType.swift */; };
 		89D83545208520E50084C5CE /* FileListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89D83544208520E50084C5CE /* FileListCell.xib */; };
 		89DE52BF20A3758F0020B52D /* InstantPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE52BE20A3758F0020B52D /* InstantPanGestureRecognizer.swift */; };
-		89E439E8225E12D80001E0FE /* NMSSH.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 89E439E1225E12B00001E0FE /* NMSSH.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		89E439ED225E12E40001E0FE /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E439DB225E12990001E0FE /* libcrypto.a */; };
-		89E439EE225E12E40001E0FE /* libssh2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E439DC225E12990001E0FE /* libssh2.a */; };
-		89E439EF225E12E40001E0FE /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E439DD225E12990001E0FE /* libssl.a */; };
-		89E439F0225E12E40001E0FE /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E439E1225E12B00001E0FE /* NMSSH.framework */; };
 		89E439F3225E12E40001E0FE /* Pods_EasyHTML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF7AC4FD26E2CCBE660B0C1 /* Pods_EasyHTML.framework */; };
 		89E64FD72012455400D49D74 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 89E64FD92012455400D49D74 /* Localizable.strings */; };
 		89E64FDB201246DB00D49D74 /* AboutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E64FDD201246DB00D49D74 /* AboutCell.xib */; };
@@ -240,6 +235,9 @@
 		89FB32BE229B1DFE00947238 /* GitHubRepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FB32BD229B1DFE00947238 /* GitHubRepoCell.swift */; };
 		89FB3D812173408C0013F9B3 /* TabTitleContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FB3D802173408C0013F9B3 /* TabTitleContainerView.swift */; };
 		89FE346F236DBE7400E78640 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89FE346E236DBE7400E78640 /* Assets.xcassets */; };
+		ACA53268289C429400737EA7 /* TemporaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA53267289C429300737EA7 /* TemporaryFile.swift */; };
+		ACA5326F289C462400737EA7 /* NMSSH.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACA5326C289C461900737EA7 /* NMSSH.xcframework */; };
+		ACA53270289C462400737EA7 /* NMSSH.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ACA5326C289C461900737EA7 /* NMSSH.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,13 +258,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		89E439D7225E11D30001E0FE /* Embed Frameworks */ = {
+		ACA5326B289C44A900737EA7 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				89E439E8225E12D80001E0FE /* NMSSH.framework in Embed Frameworks */,
+				ACA53270289C462400737EA7 /* NMSSH.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,7 +292,6 @@
 		891E523420A9E191000A539E /* FTPServerPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTPServerPickerViewController.swift; sourceTree = "<group>"; };
 		891E523B20AC5577000A539E /* FTPNewServerDialogTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTPNewServerDialogTableViewController.swift; sourceTree = "<group>"; };
 		891E523D20AC5B20000A539E /* InputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCell.swift; sourceTree = "<group>"; };
-		891E6DBE225E26990068360E /* SwiftPython3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftPython3.framework; path = frameworks/SwiftPython3.framework; sourceTree = "<group>"; };
 		891E6DC8225E44CC0068360E /* PythonEditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PythonEditorController.swift; sourceTree = "<group>"; };
 		891E6DCA225E450C0068360E /* GeneralSourceCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSourceCodeEditor.swift; sourceTree = "<group>"; };
 		891E6DCC225FC5900068360E /* PythonPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PythonPreviewController.swift; sourceTree = "<group>"; };
@@ -491,10 +488,6 @@
 		89D835412085207F0084C5CE /* FileSourceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSourceType.swift; sourceTree = "<group>"; };
 		89D83544208520E50084C5CE /* FileListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileListCell.xib; sourceTree = "<group>"; };
 		89DE52BE20A3758F0020B52D /* InstantPanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantPanGestureRecognizer.swift; sourceTree = "<group>"; };
-		89E439DB225E12990001E0FE /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = libraries/libcrypto.a; sourceTree = "<group>"; };
-		89E439DC225E12990001E0FE /* libssh2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssh2.a; path = libraries/libssh2.a; sourceTree = "<group>"; };
-		89E439DD225E12990001E0FE /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = libraries/libssl.a; sourceTree = "<group>"; };
-		89E439E1225E12B00001E0FE /* NMSSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NMSSH.framework; path = frameworks/NMSSH.framework; sourceTree = "<group>"; };
 		89E64FDC201246DB00D49D74 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/AboutCell.xib; sourceTree = "<group>"; };
 		89E7EE8A20133D1000B6EFD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		89E7EE8D20133EC200B6EFD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -531,6 +524,8 @@
 		AC8E43332899548100F9F235 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Copyrights.strings"; sourceTree = "<group>"; };
 		AC8E43342899548500F9F235 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Editor.strings"; sourceTree = "<group>"; };
 		AC8E43352899548900F9F235 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FileDesc.strings"; sourceTree = "<group>"; };
+		ACA53267289C429300737EA7 /* TemporaryFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryFile.swift; sourceTree = "<group>"; };
+		ACA5326C289C461900737EA7 /* NMSSH.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMSSH.xcframework; path = frameworks/NMSSH.xcframework; sourceTree = "<group>"; };
 		B95C9817282D960F841B559B /* Pods-EasyHTML Share.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyHTML Share.release.xcconfig"; path = "Pods/Target Support Files/Pods-EasyHTML Share/Pods-EasyHTML Share.release.xcconfig"; sourceTree = "<group>"; };
 		CEF7AC4FD26E2CCBE660B0C1 /* Pods_EasyHTML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EasyHTML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -540,11 +535,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89E439ED225E12E40001E0FE /* libcrypto.a in Frameworks */,
-				89E439EE225E12E40001E0FE /* libssh2.a in Frameworks */,
-				89E439EF225E12E40001E0FE /* libssl.a in Frameworks */,
-				89E439F0225E12E40001E0FE /* NMSSH.framework in Frameworks */,
 				89E439F3225E12E40001E0FE /* Pods_EasyHTML.framework in Frameworks */,
+				ACA5326F289C462400737EA7 /* NMSSH.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,6 +759,7 @@
 				89F1A2B12185FB1500353F12 /* Version.swift */,
 				8915B22522A9708600F17176 /* Weak.swift */,
 				8998160622DAA188006D51CC /* JSONParser.swift */,
+				ACA53267289C429300737EA7 /* TemporaryFile.swift */,
 			);
 			path = misc;
 			sourceTree = "<group>";
@@ -1101,11 +1094,7 @@
 		897B1331203989F800D910D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				89E439DB225E12990001E0FE /* libcrypto.a */,
-				89E439DC225E12990001E0FE /* libssh2.a */,
-				89E439DD225E12990001E0FE /* libssl.a */,
-				891E6DBE225E26990068360E /* SwiftPython3.framework */,
-				89E439E1225E12B00001E0FE /* NMSSH.framework */,
+				ACA5326C289C461900737EA7 /* NMSSH.xcframework */,
 				CEF7AC4FD26E2CCBE660B0C1 /* Pods_EasyHTML.framework */,
 			);
 			name = Frameworks;
@@ -1271,7 +1260,7 @@
 				893294DE1FFD05F200F63705 /* Resources */,
 				897B133520398A5E00D910D4 /* Headers */,
 				D8D02E2C38BA8545CB20ADA4 /* [CP] Embed Pods Frameworks */,
-				89E439D7225E11D30001E0FE /* Embed Frameworks */,
+				ACA5326B289C44A900737EA7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1325,7 +1314,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1340;
 				ORGANIZATIONNAME = "Артем";
 				TargetAttributes = {
 					893294DF1FFD05F200F63705 = {
@@ -1622,6 +1611,7 @@
 				896553B62049AE1900E1649F /* Language.swift in Sources */,
 				894594F721C525170010F743 /* FilesRelocationManager.swift in Sources */,
 				8915B22422A96EDD00F17176 /* SourceCodeEditorSession.swift in Sources */,
+				ACA53268289C429400737EA7 /* TemporaryFile.swift in Sources */,
 				891E6DD0225FC6780068360E /* ConsoleExecuteField.swift in Sources */,
 				89443E7A229C5AC90072C07F /* GitHubUserCell.swift in Sources */,
 				897B3EE2208724950017A87D /* DropboxFileListTableView.swift in Sources */,
@@ -1856,8 +1846,11 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = EasyHTML/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1901,8 +1894,11 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = EasyHTML/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1934,7 +1930,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = UITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = JakMobius.UITests;
@@ -1960,7 +1960,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = UITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = JakMobius.UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1985,7 +1989,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = JakMobius.Tests;
@@ -2012,7 +2020,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = JakMobius.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2046,6 +2058,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2057,6 +2070,8 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2071,8 +2086,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				"MTL_ENABLE_DEBUG_INFO[arch=*]" = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-Wl,-no_compact_unwind";
 				SDKROOT = iphoneos;
@@ -2080,7 +2096,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 arm64e armv7s armv7";
 			};
 			name = Debug;
 		};
@@ -2108,6 +2123,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2119,6 +2135,8 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = fast;
@@ -2128,16 +2146,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-Wl,-no_compact_unwind";
 				SDKROOT = iphoneos;
 				STRIP_BITCODE_FROM_COPIED_FILES = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 arm64e armv7s armv7";
 			};
 			name = Release;
 		};

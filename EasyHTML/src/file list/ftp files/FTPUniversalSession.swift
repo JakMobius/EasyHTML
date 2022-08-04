@@ -61,8 +61,8 @@ internal class FTPUniversalSession: NSObject, NSCopying {
     private func tryToReconnectSSH() -> Error? {
         if let session = sshSession {
             session.disconnect()
-            if let error = session.connect() {
-                return error
+            if !session.connect() {
+                return session.lastError
             }
 
             session.authenticate(byPassword: password)
@@ -96,8 +96,8 @@ internal class FTPUniversalSession: NSObject, NSCopying {
 
         if let session = sshSession {
             if !session.isConnected {
-                if let error = sshSession.connect() {
-                    return error
+                if !sshSession.connect() {
+                    return sshSession.lastError
                 }
             }
             if !session.isAuthorized {
@@ -241,7 +241,7 @@ internal class FTPUniversalSession: NSObject, NSCopying {
 
             let session = sshSession!
             var result = [Resource]()
-            if let contents = session.sftp.contentsOfDirectory(atPath: prefix + path) as? [NMSFTPFile] {
+            if let contents = session.sftp.contentsOfDirectory(atPath: prefix + path) {
 
                 var counted: UInt64 = 0
 
@@ -271,7 +271,7 @@ internal class FTPUniversalSession: NSObject, NSCopying {
                             return (error: nil, result: [])
                         }
                     } else {
-                        result.append(.file(path: path, size: file.fileSize.int64Value))
+                        result.append(.file(path: path, size: file.fileSize!.int64Value))
                     }
 
                     counted += 1
@@ -783,12 +783,12 @@ internal class FTPUniversalSession: NSObject, NSCopying {
                         }
 
                         let fileUrl = url.appendingPathComponent(filePath)
-
-                        guard let _ = session.sftp.downloadFile(atPath: sourcePath + filePath, to: url.appendingPathComponent(filePath), progress: {
+                        let outputStream = OutputStream(url: url.appendingPathComponent(filePath), append: false)!
+                        
+                        if(!session.sftp.contents(atPath: sourcePath + filePath, to: outputStream, progress: {
                             _, _ in
                             running
-                        })
-                        else {
+                        })) {
 
                             let error = FTPError(filename: fileUrl.lastPathComponent, error: self.error!)
                             errorOccurred(error: error)
@@ -1612,9 +1612,13 @@ internal class FTPUniversalSession: NSObject, NSCopying {
                     }
                     return
                 }
-
-                let url = session.sftp.downloadFile(atPath: path, progress: { (downloaded, total) -> Bool in
-
+                
+                
+                let fileUrl = FileManager.default.temporaryFileURL()
+                let outputStream = OutputStream(url: fileUrl, append: false)!
+                
+                let result = session.sftp.contents(atPath: path, to: outputStream, progress: { (downloaded, total) -> Bool in
+                    
                     DispatchQueue.main.async {
                         progress?(Float(downloaded) / Float(total))
                     }
@@ -1625,13 +1629,13 @@ internal class FTPUniversalSession: NSObject, NSCopying {
                 self.sftpDisconnect()
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    let error = (url == nil ? session.lastError : nil)
+                    let error = (result ? session.lastError : nil)
 
                     if !running {
                         return
                     }
 
-                    completion?(url, error)
+                    completion?(fileUrl, error)
                 }
             }
 
@@ -1878,7 +1882,7 @@ internal class FTPUniversalSession: NSObject, NSCopying {
             let symlink = FTPShortcut(url: fileUrl)
             return symlink
         } else {
-            let file = FTPFile(url: fileUrl, size: file.fileSize.int64Value, sourceType: sourceType)
+            let file = FTPFile(url: fileUrl, size: file.fileSize!.int64Value, sourceType: sourceType)
             file.modificationDate = modificationDate
             return file
         }
@@ -2037,7 +2041,8 @@ internal class FTPUniversalSession: NSObject, NSCopying {
                 return
             }
 
-            let result = session.sftp.readSymbolicLink(atPath: path)
+            // TODO:
+            let result: String? = nil //session.sftp.readSymbolicLink(atPath: path)
 
             DispatchQueue.main.async {
                 completion(result, result == nil ? self.error : nil)
@@ -2093,7 +2098,7 @@ internal class FTPUniversalSession: NSObject, NSCopying {
                     return
                 }
 
-                if let result = session.sftp.contentsOfDirectory(atPath: path) as? [NMSFTPFile] {
+                if let result = session.sftp.contentsOfDirectory(atPath: path) {
                     var files = [FSNode]()
                     let requestURL = URL(string: path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
 
