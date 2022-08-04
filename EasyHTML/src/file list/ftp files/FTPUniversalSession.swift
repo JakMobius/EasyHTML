@@ -1629,7 +1629,7 @@ internal class FTPUniversalSession: NSObject, NSCopying {
                 self.sftpDisconnect()
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    let error = (result ? session.lastError : nil)
+                    let error = (result ? nil : session.lastError)
 
                     if !running {
                         return
@@ -2040,9 +2040,8 @@ internal class FTPUniversalSession: NSObject, NSCopying {
                 }
                 return
             }
-
-            // TODO:
-            let result: String? = nil //session.sftp.readSymbolicLink(atPath: path)
+            
+            let result = session.sftp.realpath(path)
 
             DispatchQueue.main.async {
                 completion(result, result == nil ? self.error : nil)
