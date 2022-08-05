@@ -238,6 +238,12 @@
 		ACA53268289C429400737EA7 /* TemporaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA53267289C429300737EA7 /* TemporaryFile.swift */; };
 		ACA5326F289C462400737EA7 /* NMSSH.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACA5326C289C461900737EA7 /* NMSSH.xcframework */; };
 		ACA53270289C462400737EA7 /* NMSSH.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ACA5326C289C461900737EA7 /* NMSSH.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ACA53274289D172900737EA7 /* EditorTabGestureHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA53273289D172900737EA7 /* EditorTabGestureHandler.swift */; };
+		ACA5327A289D173400737EA7 /* EditorSwitcher3DOutLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA53276289D173400737EA7 /* EditorSwitcher3DOutLayout.swift */; };
+		ACA5327B289D173400737EA7 /* EditorSwitcherFlatOutLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA53277289D173400737EA7 /* EditorSwitcherFlatOutLayout.swift */; };
+		ACA5327C289D173400737EA7 /* EditorSwitcher3DInLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA53278289D173400737EA7 /* EditorSwitcher3DInLayout.swift */; };
+		ACA5327D289D173400737EA7 /* EditorSwitcherFlatInLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA53279289D173400737EA7 /* EditorSwitcherFlatInLayout.swift */; };
+		ACA5327F289D17A100737EA7 /* TabViewTransformManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA5327E289D17A100737EA7 /* TabViewTransformManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -526,6 +532,12 @@
 		AC8E43352899548900F9F235 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FileDesc.strings"; sourceTree = "<group>"; };
 		ACA53267289C429300737EA7 /* TemporaryFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryFile.swift; sourceTree = "<group>"; };
 		ACA5326C289C461900737EA7 /* NMSSH.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMSSH.xcframework; path = frameworks/NMSSH.xcframework; sourceTree = "<group>"; };
+		ACA53273289D172900737EA7 /* EditorTabGestureHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTabGestureHandler.swift; sourceTree = "<group>"; };
+		ACA53276289D173400737EA7 /* EditorSwitcher3DOutLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorSwitcher3DOutLayout.swift; sourceTree = "<group>"; };
+		ACA53277289D173400737EA7 /* EditorSwitcherFlatOutLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorSwitcherFlatOutLayout.swift; sourceTree = "<group>"; };
+		ACA53278289D173400737EA7 /* EditorSwitcher3DInLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorSwitcher3DInLayout.swift; sourceTree = "<group>"; };
+		ACA53279289D173400737EA7 /* EditorSwitcherFlatInLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorSwitcherFlatInLayout.swift; sourceTree = "<group>"; };
+		ACA5327E289D17A100737EA7 /* TabViewTransformManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewTransformManager.swift; sourceTree = "<group>"; };
 		B95C9817282D960F841B559B /* Pods-EasyHTML Share.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyHTML Share.release.xcconfig"; path = "Pods/Target Support Files/Pods-EasyHTML Share/Pods-EasyHTML Share.release.xcconfig"; sourceTree = "<group>"; };
 		CEF7AC4FD26E2CCBE660B0C1 /* Pods_EasyHTML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EasyHTML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1067,6 +1079,9 @@
 		897102AA211654E300D051E7 /* editor tabs */ = {
 			isa = PBXGroup;
 			children = (
+				ACA5327E289D17A100737EA7 /* TabViewTransformManager.swift */,
+				ACA53275289D173400737EA7 /* switcher layouts */,
+				ACA53273289D172900737EA7 /* EditorTabGestureHandler.swift */,
 				897102AC211654F700D051E7 /* EditorTabView.swift */,
 				897102AB211654F700D051E7 /* EditorSwitcherView.swift */,
 				897102AF2116550100D051E7 /* TabNavigationController.swift */,
@@ -1233,6 +1248,17 @@
 				89AEA64E236B647C00479822 /* GitHubMoreReposController.swift */,
 			);
 			path = github;
+			sourceTree = "<group>";
+		};
+		ACA53275289D173400737EA7 /* switcher layouts */ = {
+			isa = PBXGroup;
+			children = (
+				ACA53276289D173400737EA7 /* EditorSwitcher3DOutLayout.swift */,
+				ACA53277289D173400737EA7 /* EditorSwitcherFlatOutLayout.swift */,
+				ACA53278289D173400737EA7 /* EditorSwitcher3DInLayout.swift */,
+				ACA53279289D173400737EA7 /* EditorSwitcherFlatInLayout.swift */,
+			);
+			path = "switcher layouts";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1527,8 +1553,10 @@
 				8998160522DA79B9006D51CC /* GitHubAPIOAuthResult.swift in Sources */,
 				89ABAF9D20E1148500B53ABD /* SyntaxHighlightingPicker.swift in Sources */,
 				891E6DC9225E44CC0068360E /* PythonEditorController.swift in Sources */,
+				ACA5327A289D173400737EA7 /* EditorSwitcher3DOutLayout.swift in Sources */,
 				8945950421C52B530010F743 /* CustomScrollView.swift in Sources */,
 				893E43442299ABA100B912EA /* ExpanderMenuPreferencesMenuCell.swift in Sources */,
+				ACA53274289D172900737EA7 /* EditorTabGestureHandler.swift in Sources */,
 				89443E7C229D70CB0072C07F /* GitHubNotFoundCell.swift in Sources */,
 				892D43BC22A8075800CB26EB /* BootUtils.swift in Sources */,
 				8915389F22AA97D7006D3B87 /* WebEditorSessionDispatcher.swift in Sources */,
@@ -1586,6 +1614,7 @@
 				8968EC8A2164F62B0030418E /* EditorHelperFunctions.swift in Sources */,
 				8937765A2145AC80004010CA /* FileQuickInfoView.swift in Sources */,
 				899528F1227099D900BE8B8B /* SegmentedControlCell.swift in Sources */,
+				ACA5327D289D173400737EA7 /* EditorSwitcherFlatInLayout.swift in Sources */,
 				891D75632039F744007CBCCF /* ArchiveDialogTableViewController.swift in Sources */,
 				8945950821C52EC80010F743 /* RelocationForbid.swift in Sources */,
 				891E6DCD225FC5900068360E /* PythonPreviewController.swift in Sources */,
@@ -1595,7 +1624,9 @@
 				89039E5722A06FB3008EDD62 /* GitHubRepositoryLanguagesDiagram.swift in Sources */,
 				89494410223CEC9C00F7399A /* ColorPickerSettingsViewController.swift in Sources */,
 				891E523520A9E191000A539E /* FTPServerPickerViewController.swift in Sources */,
+				ACA5327C289D173400737EA7 /* EditorSwitcher3DInLayout.swift in Sources */,
 				8915389D22AA7068006D3B87 /* SourceCodeEditorSessionDispatcher.swift in Sources */,
+				ACA5327F289D17A100737EA7 /* TabViewTransformManager.swift in Sources */,
 				891E6DCB225E450C0068360E /* GeneralSourceCodeEditor.swift in Sources */,
 				89BE1CD520D12678007621D1 /* ReceivedFilesContainer.swift in Sources */,
 				892D43BA22A8048A00CB26EB /* SceneDelegate.swift in Sources */,
@@ -1627,6 +1658,7 @@
 				893295D81FFD078A00F63705 /* Defaults.swift in Sources */,
 				893295FF1FFD078A00F63705 /* PreferencesLobby.swift in Sources */,
 				89D45C722146351B0037AF6D /* ContextMenuAction.swift in Sources */,
+				ACA5327B289D173400737EA7 /* EditorSwitcherFlatOutLayout.swift in Sources */,
 				893295F71FFD078A00F63705 /* LayoutPreferencesMenu.swift in Sources */,
 				89F6CF6021A16D8B00903206 /* BABFrameObservingInputAccessoryView.m in Sources */,
 				8915B21C22A9586E00F17176 /* FileListDelegate.swift in Sources */,

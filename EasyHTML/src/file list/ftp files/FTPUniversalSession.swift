@@ -2287,7 +2287,7 @@ internal class FTPUniversalSession: NSObject, NSCopying {
 
         return FTPUniversalSession(server: server)
     }
-
+    
     func destroy() {
         switch proto {
         case .sftp:
