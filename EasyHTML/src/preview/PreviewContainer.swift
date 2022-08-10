@@ -129,7 +129,7 @@ class PreviewContainer: UIViewController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
-
+        
         automaticallyAdjustsScrollViewInsets = false
         let editorSwitcherView = EditorSwitcherView(frame: view.bounds)
         switcherView = editorSwitcherView

@@ -23,3 +23,7 @@ func rotate(vector: CGVector, by radians: Double) -> CGVector {
 
     return CGVector(dx: dx, dy: dy)
 }
+
+func radians(degrees: CGFloat) -> CGFloat {
+    degrees * CGFloat.pi / 180.0
+}

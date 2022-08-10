@@ -41,6 +41,7 @@ class EditorTabView: UIView, EditorTabGestureHandlerDelegate {
     weak var parentView: EditorSwitcherView!
     var index: Int = 0 {
         didSet {
+            transformManager.zIndex = index
             layer.zPosition = CGFloat(index)
         }
     }
@@ -106,6 +107,13 @@ class EditorTabView: UIView, EditorTabGestureHandlerDelegate {
         if let controller = controller as? FileEditor {
             controller.editor?.didFocus(byShortcut: byShortcut)
         }
+        
+        setInteractionEnabled(true)
+        gestureHandler.enabled = false
+
+        navController.switchToDefault(animated: false)
+        navController.titleContainer.closeButton.isHidden = !isRemovable
+        navController.titleContainer.becomeRegular()
     }
 
     func blurred() {
@@ -115,6 +123,12 @@ class EditorTabView: UIView, EditorTabGestureHandlerDelegate {
         if let controller = controller as? FileEditor {
             controller.editor?.didBlur()
         }
+        
+        setInteractionEnabled(false)
+        gestureHandler.enabled = true
+
+        navController.switchToCompact(animated: false)
+        navController.titleContainer.becomeCompact()
     }
 
     func setInteractionEnabled(_ enabled: Bool) {
@@ -178,14 +192,16 @@ class EditorTabView: UIView, EditorTabGestureHandlerDelegate {
             return
         }
 
-        if parentView.isFullScreen {
-            if parentView.containerViews.count == 2 {
-                parentView.animateBottomViewIn()
+        DispatchQueue.main.async { [self] in
+            if parentView.isFullScreen {
+                if parentView.containerViews.count == 2 {
+                    parentView.animateBottomViewIn()
+                } else {
+                    parentView.animateOut()
+                }
             } else {
-                parentView.animateOut()
+                parentView.animateIn(view: self)
             }
-        } else {
-            parentView.animateIn(view: self)
         }
     }
     
@@ -226,17 +242,7 @@ class EditorTabView: UIView, EditorTabGestureHandlerDelegate {
 
         gestureHandler.enabled = false
 
-        if animated {
-            UIView.animate(withDuration: 0.35, delay: 0, options: .curveEaseIn, animations: {
-                self.layer.transform = CATransform3DTranslate(self.layer.transform, -self.parentView.bounds.width * 2, 0, 0)
-
-            }, completion: {
-                _ in
-                self.removeFromSuperview()
-            })
-        } else {
-            removeFromSuperview()
-        }
+        removeFromSuperview()
 
         parentView.tabClosed(self, animated: animated)
     }

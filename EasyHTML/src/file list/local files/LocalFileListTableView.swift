@@ -79,8 +79,12 @@ internal class LocalFileListTableView: FileListController, FileListDataSource, F
                     path.remove(at: path.endIndex)
                 }
 
-                for (i, file) in files.enumerated() where file.url.path == path {
-                    tableView.reloadRows(at: [IndexPath(row: i, section: 0)], with: .fade)
+                if tableView.window != nil {
+                    for (i, file) in files.enumerated() where file.url.path == path {
+                        tableView.reloadRows(at: [IndexPath(row: i, section: 0)], with: .fade)
+                    }
+                } else {
+                    tableView.reloadData()
                 }
             }
         }
